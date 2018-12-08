@@ -7,17 +7,35 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication13.FXMLDocumentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlSistemaCentroDeComputoController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="1080.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
-        <Button fx:id="button" layoutX="860.0" layoutY="857.0" onAction="#handleButtonAction" prefHeight="37.0" prefWidth="229.0" text="Click Me!" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="800.0" layoutX="-5.0" layoutY="-8.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="1280.0" />
+        <Button fx:id="button" layoutX="523.0" layoutY="587.0" onAction="#handleButtonAction" prefHeight="61.0" prefWidth="334.0" text="Ingresar">
+         <font>
+            <Font size="36.0" />
+         </font></Button>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <ImageView fitHeight="334.0" fitWidth="323.0" layoutX="801.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <TextField layoutX="471.0" layoutY="354.0" prefHeight="55.0" prefWidth="418.0" />
+      <Text fill="#18529d" layoutX="472.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario: ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#18529d" layoutX="487.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField layoutX="474.0" layoutY="498.0" prefHeight="55.0" prefWidth="418.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="88.0" layoutX="-1.0" layoutY="713.0" stroke="#18529d" strokeType="INSIDE" width="1280.0" />
+      <ImageView fitHeight="215.0" fitWidth="217.0" layoutX="532.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../iconos/logo%20cc.png" />
          </image>
       </ImageView>
-      <TextField layoutX="861.0" layoutY="642.0" prefHeight="49.0" prefWidth="257.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="44.0" layoutX="-1.0" layoutY="700.0" stroke="#18529d" strokeType="INSIDE" width="1280.0" />
     </children>
 </AnchorPane>
