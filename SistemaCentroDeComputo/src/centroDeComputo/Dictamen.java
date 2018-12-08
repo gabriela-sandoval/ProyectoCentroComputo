@@ -14,11 +14,10 @@ public class Dictamen {
 	private int numeroReporte;
 	private String descripcionDictamen;
 	private String observacionesEquipo;
-	private Usuario tecnico;
 
 	
 	public Dictamen(String idDictamen, Date fechaServicio, String estado, int numeroReporte, String descripcionDictamen,
-			String observacionesEquipo, Usuario tecnico) {
+			String observacionesEquipo) {
 		super();
 		this.idDictamen = idDictamen;
 		this.fechaServicio = fechaServicio;
@@ -26,7 +25,7 @@ public class Dictamen {
 		this.numeroReporte = numeroReporte;
 		this.descripcionDictamen = descripcionDictamen;
 		this.observacionesEquipo = observacionesEquipo;
-		this.tecnico = tecnico;
+		
 		
 	}
 	
@@ -48,8 +47,5 @@ public class Dictamen {
 	public String getObservacionesEquipo() {
 		return observacionesEquipo;
 	}
-	public Usuario getTecnico() {
-		return tecnico;
-	}	
     
 }
