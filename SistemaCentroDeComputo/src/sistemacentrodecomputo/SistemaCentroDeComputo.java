@@ -5,13 +5,13 @@
  */
 package sistemacentrodecomputo;
 
-import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+    import javafx.fxml.FXMLLoader;
+    import javafx.scene.Scene;
+    import javafx.scene.layout.VBox;
+    import javafx.stage.Stage;
+    import java.net.URL;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 /**
  *
@@ -21,16 +21,11 @@ public class SistemaCentroDeComputo extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("FxmlSistemaCentroDeComputo.fxml"));
-
-    Scene scene = new Scene(root);
-
-    stage.setScene(scene);
-    Image icono = new Image("/iconos/logo cc.png");
-    stage.getIcons().add(icono);
-    stage.setResizable(false);
-    stage.show();
-  }
+        Parent root = FXMLLoader.load(getClass().getResource("FxmlSistemaCentroDeComputo.fxml"));        
+        Scene scene = new Scene(root);        
+        stage.setScene(scene);
+        stage.show();
+    }
 
   /**
    * Clase main de AnalisisEstiloJava.
