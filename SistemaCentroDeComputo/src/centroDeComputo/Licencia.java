@@ -1,5 +1,10 @@
 package CentroComputo;
 
+/**
+ * @author Irasema Caicero
+ * @since 19/11/18
+ * @version 1.0
+ */
 import java.sql.Date;
 
 public class Licencia {

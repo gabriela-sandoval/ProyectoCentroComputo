@@ -2,6 +2,11 @@ package CentroComputo;
 
 import java.sql.Date;
 
+/**
+ * @author Irasema Caicero
+ * @since 19/11/18
+ * @version 1.0
+ */
 public class Hardware {
 	
 	private String noInventarioUv;
