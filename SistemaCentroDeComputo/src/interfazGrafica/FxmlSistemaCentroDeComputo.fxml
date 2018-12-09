@@ -10,32 +10,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlSistemaCentroDeComputoController">
+<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlSistemaCentroDeComputoController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="800.0" layoutX="-5.0" layoutY="-8.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="1280.0" />
-        <Button fx:id="button" layoutX="523.0" layoutY="587.0" onAction="#handleButtonAction" prefHeight="61.0" prefWidth="334.0" text="Ingresar">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-1.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+        <Button fx:id="buttonIngresar" layoutX="525.0" layoutY="481.0" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="181.0" text="Ingresar" textFill="#28ad56">
          <font>
-            <Font size="36.0" />
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font></Button>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField layoutX="471.0" layoutY="354.0" prefHeight="55.0" prefWidth="418.0" />
-      <Text fill="#18529d" layoutX="472.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario: ">
+      <TextField fx:id="textFieldNombreDeUsuario" layoutX="433.0" layoutY="313.0" prefHeight="34.0" prefWidth="346.0">
          <font>
-            <Font name="Arial Rounded MT Bold" size="36.0" />
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font></TextField>
+      <Text fx:id="textNombreDeUsuario" fill="#18529d" layoutX="435.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario: ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#18529d" layoutX="487.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+      <Text fx:id="textContrasenia" fill="#18529d" layoutX="435.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
          <font>
-            <Font name="Arial Rounded MT Bold" size="36.0" />
+            <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="474.0" layoutY="498.0" prefHeight="55.0" prefWidth="418.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="88.0" layoutX="-1.0" layoutY="713.0" stroke="#18529d" strokeType="INSIDE" width="1280.0" />
-      <ImageView fitHeight="215.0" fitWidth="217.0" layoutX="532.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="textFieldContrasenia" layoutX="437.0" layoutY="415.0" prefHeight="34.0" prefWidth="347.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font></TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="62.0" layoutY="589.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+      <ImageView fx:id="imageViewLogoCC" fitHeight="216.0" fitWidth="240.0" layoutX="497.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../iconos/logo%20cc.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="44.0" layoutX="-1.0" layoutY="700.0" stroke="#18529d" strokeType="INSIDE" width="1280.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="26.0" layoutY="606.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
     </children>
 </AnchorPane>

@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="interfazGrafica.FxmlAdministrarHardwareController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.FxmlAdministrarHardwareController">
    <children>
-      <Button layoutX="204.0" layoutY="168.0" mnemonicParsing="false" text="Button" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+      <Button layoutX="541.0" layoutY="153.0" mnemonicParsing="false" text="Button" />
+      <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../iconos/logo%20cc.png" />
+         </image>
+      </ImageView>
+      <Text fill="#18529d" layoutX="168.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar hardware">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <TableView layoutX="126.0" layoutY="394.0" prefHeight="200.0" prefWidth="598.0">
+        <columns>
+          <TableColumn prefWidth="100.071533203125" text="No. inventario" />
+          <TableColumn prefWidth="50.59513854980469" text="Marca" />
+        </columns>
+      </TableView>
+      <Text fill="#28ad56" layoutX="867.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldNombreDeUsuario" layoutX="173.0" layoutY="153.0" prefHeight="34.0" prefWidth="346.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
