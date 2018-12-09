@@ -19,7 +19,8 @@ public class Software {
 	private String sistemaOperativo;
 	private boolean requiereActualizacion;
 	private String observaciones;
-	private Licencia licencia;
+        private boolean disponible;
+	
 	
         /**
          * constructor por default
@@ -30,7 +31,7 @@ public class Software {
 	
 	public Software(String nombre, String idSoftware, String marca, double version, String origen, String tipoSoftware,
 			Date fechaAdquisicion, String idioma, String sistemaOperativo, boolean requiereActualizacion,
-			String observaciones, Licencia licencia) {
+			String observaciones, boolean disponible) {
 		super();
 		this.nombre = nombre;
 		this.idSoftware = idSoftware;
@@ -43,7 +44,8 @@ public class Software {
 		this.sistemaOperativo = sistemaOperativo;
 		this.requiereActualizacion = requiereActualizacion;
 		this.observaciones = observaciones;
-		this.licencia = licencia;
+                this.disponible=disponible;
+		
 	}
 	public String getNombre() {
 		return nombre;
@@ -78,9 +80,9 @@ public class Software {
 	public String getObservaciones() {
 		return observaciones;
 	}
-	public Licencia getLicencia() {
-		return licencia;
-	}
+        public boolean getDisponible(){
+            return disponible;
+        }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -125,11 +127,12 @@ public class Software {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-
-    public void setLicencia(Licencia licencia) {
-        this.licencia = licencia;
+    
+    public void setDisponible(boolean disponible){
+        this.disponible=disponible;
     }
-	
+
+   
         
 	
 	
