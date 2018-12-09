@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controlador.FxmlVentanaJefeCentroDeComputoController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="1.0" layoutY="-13.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="62.0" layoutX="3.0" layoutY="599.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="26.0" layoutX="3.0" layoutY="616.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+      <ImageView fx:id="imageViewLogo" fitHeight="150.0" fitWidth="200.0" layoutX="67.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../iconos/logo%20cc.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="textNombreJefe" fill="#28ad56" layoutX="256.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre jefe de centro de computo" wrappingWidth="668.0138549804688">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="textAdministrador" fill="#18529d" layoutX="259.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrador" wrappingWidth="498.36981201171875">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonSalir" layoutX="983.0" layoutY="112.0" mnemonicParsing="false" text="Salir" />
+      <Button fx:id="buttonAdministrarSoftware" layoutX="173.0" layoutY="299.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Administrar software" textFill="#18529d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonAdministrarHardware" layoutX="490.0" layoutY="304.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Administrar hardware" textFill="#18529d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonAdministrarUsuarios" layoutX="814.0" layoutY="306.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Administrar usuarios" textFill="#18529d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
