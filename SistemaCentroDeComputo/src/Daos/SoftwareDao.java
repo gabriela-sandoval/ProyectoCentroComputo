@@ -29,8 +29,8 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         
         consulta= "insert into software values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)) {
-            consultaParametrizada.setString(1, software.getNombre());
-            consultaParametrizada.setString(2, software.getIdSoftware());
+            consultaParametrizada.setString(1, software.getIdSoftware());
+            consultaParametrizada.setString(2, software.getNombre());            
             consultaParametrizada.setString(3, software.getMarca());
             consultaParametrizada.setDouble(4, software.getVersion());
             consultaParametrizada.setString(5, software.getOrigen());
@@ -53,14 +53,25 @@ public class SoftwareDao implements InterfaceSoftwareDao {
 
     @Override
     public boolean actualizarSoftware(Software software) {
-        consulta = "UPDATE Software s join SoftwareVersion on s.idsoftware=v.Software_idSoftware set" +
+        consulta = "UPDATE Software set" +
                 "'idSoftware' =? , 'nombre'= ?, 'marca'=?, 'version'=?, 'origen'=?, 'tipoSoftware'=?," +
                 "'fechaAdquisicion'=?, 'idioma'=?, 'sistemaOperativo'=?, 'requiereActualizacion'=?," + 
                 "'observaciones'=? ";
         
         try(PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)){
-            
-            
+            consultaParametrizada.setString(1, software.getIdSoftware());
+            consultaParametrizada.setString(2, software.getNombre());            
+            consultaParametrizada.setString(3, software.getMarca());
+            consultaParametrizada.setDouble(4, software.getVersion());
+            consultaParametrizada.setString(5, software.getOrigen());
+            consultaParametrizada.setString(6, software.getTipoSoftware());
+            consultaParametrizada.setDate(7, software.getFechaAdquisicion());
+            consultaParametrizada.setString(8, software.getIdioma());
+            consultaParametrizada.setString(9, software.getSistemaOperativo());
+            consultaParametrizada.setBoolean(10, software.getRequiereActualizacion());
+            consultaParametrizada.setString(11, software.getObservaciones());
+            consultaParametrizada.setBoolean(12, software.getDisponible());
+            consultaParametrizada.executeUpdate();                 
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
