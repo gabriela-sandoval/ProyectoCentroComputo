@@ -16,8 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Irasema Caicero
+ * @since 8-12-18
+ * @version 1.0
  */
 public class SoftwareDao implements InterfaceSoftwareDao {
     private String consulta;
@@ -133,14 +134,16 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 software.setSistemaOperativo(resultado.getString("sistemaOperativo"));
                 software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
                 software.setObservaciones(resultado.getString("observaciones"));
-            }   software.setDisponible(resultado.getBoolean("disponible"));
+                software.setDisponible(resultado.getBoolean("disponible"));
+                return software;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }finally{
             AccesoDataBase.cerrarConexion();
         }
-       return software;
+       return null;
     }
 
     @Override
