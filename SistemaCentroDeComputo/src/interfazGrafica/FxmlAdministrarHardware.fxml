@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,8 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.FxmlAdministrarHardwareController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
-      <Button layoutX="541.0" layoutY="153.0" mnemonicParsing="false" text="Button" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-9.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
       <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../iconos/logo%20cc.png" />
@@ -25,10 +24,19 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
-      <TableView layoutX="126.0" layoutY="394.0" prefHeight="200.0" prefWidth="598.0">
+      <TableView layoutX="107.0" layoutY="299.0" prefHeight="253.0" prefWidth="921.0">
         <columns>
           <TableColumn prefWidth="100.071533203125" text="No. inventario" />
-          <TableColumn prefWidth="50.59513854980469" text="Marca" />
+          <TableColumn prefWidth="73.09341430664062" text="Marca" />
+            <TableColumn prefWidth="64.84219360351562" text="Modelo" />
+            <TableColumn prefWidth="74.07730102539062" text="No. serie" />
+            <TableColumn prefWidth="151.33621215820312" text="Responsable" />
+            <TableColumn prefWidth="82.66375732421875" text="Ubicación" />
+            <TableColumn prefWidth="66.77264404296875" text="Tipo" />
+            <TableColumn minWidth="6.3231201171875" prefWidth="77.63848876953125" text="Garantia" />
+            <TableColumn prefWidth="67.76849365234375" text="Estado" />
+            <TableColumn prefWidth="75.1258544921875" text="Fecha" />
+            <TableColumn prefWidth="87.18939208984375" text="Partes" />
         </columns>
       </TableView>
       <Text fill="#28ad56" layoutX="867.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
@@ -36,10 +44,23 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="textFieldNombreDeUsuario" layoutX="173.0" layoutY="153.0" prefHeight="34.0" prefWidth="346.0">
+      <TextField fx:id="textFieldNombreDeUsuario" layoutX="115.0" layoutY="184.0" prefHeight="34.0" prefWidth="425.0" promptText="Buscar hardware">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </TextField>
+      <Icon content="ARROW_BACK" layoutX="100.0" layoutY="150.0" />
+      <Text layoutX="125.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <Icon content="ADD" layoutX="774.0" layoutY="189.0" />
+      <Icon content="DELETE" layoutX="998.0" layoutY="191.0" />
+      <Icon content="SEARCH" layoutX="543.0" layoutY="194.0" />
+      <Icon content="EDIT" layoutX="926.0" layoutY="189.0" />
+      <Icon content="VISIBILITY" layoutX="855.0" layoutY="191.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="563.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="585.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
    </children>
 </AnchorPane>
