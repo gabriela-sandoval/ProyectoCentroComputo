@@ -10,10 +10,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlSistemaCentroDeComputoController">
+<AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlSistemaCentroDeComputoController">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-1.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
-        <Button fx:id="buttonIngresar" layoutX="525.0" layoutY="481.0" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="181.0" text="Ingresar" textFill="#28ad56">
+        <Button fx:id="buttonIngresar" layoutX="525.0" layoutY="481.0" prefHeight="40.0" prefWidth="181.0" text="Ingresar" textFill="#28ad56">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font></Button>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,8 +13,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfazGrafica.FxmlAdministrarHardwareController">
    <children>
+<<<<<<< HEAD
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-9.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
       <ImageView fx:id="imageViewLogo" fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+=======
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+      <Button layoutX="541.0" layoutY="153.0" mnemonicParsing="false" text="Button" />
+      <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> parent of 53028ab... Creación de interfaz "Administrar hardware"
          <image>
             <Image url="@../iconos/logo%20cc.png" />
          </image>
@@ -24,6 +30,7 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
+<<<<<<< HEAD
       <TableView fx:id="tableViewAdministrarHardware" layoutX="107.0" layoutY="299.0" prefHeight="253.0" prefWidth="921.0">
         <columns>
           <TableColumn fx:id="tableColumnNoInventario" prefWidth="100.071533203125" text="No. inventario" />
@@ -37,6 +44,12 @@
             <TableColumn fx:id="tableColumnEstado" prefWidth="67.76849365234375" text="Estado" />
             <TableColumn fx:id="tableColumnFecha" prefWidth="75.1258544921875" text="Fecha" />
             <TableColumn fx:id="tableColumnPartes" prefWidth="87.18939208984375" text="Partes" />
+=======
+      <TableView layoutX="126.0" layoutY="394.0" prefHeight="200.0" prefWidth="598.0">
+        <columns>
+          <TableColumn prefWidth="100.071533203125" text="No. inventario" />
+          <TableColumn prefWidth="50.59513854980469" text="Marca" />
+>>>>>>> parent of 53028ab... Creación de interfaz "Administrar hardware"
         </columns>
       </TableView>
       <Text fx:id="textJefeDelCentroDeComputo" fill="#28ad56" layoutX="867.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
@@ -44,11 +57,12 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="textFieldNombreDeUsuario" layoutX="115.0" layoutY="184.0" prefHeight="34.0" prefWidth="425.0" promptText="Buscar hardware">
+      <TextField fx:id="textFieldNombreDeUsuario" layoutX="173.0" layoutY="153.0" prefHeight="34.0" prefWidth="346.0">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </TextField>
+<<<<<<< HEAD
       <Icon fx:id="iconRegresar" content="ARROW_BACK" layoutX="100.0" layoutY="150.0" />
       <Text fx:id="textRegresar" layoutX="125.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
          <font>
@@ -62,5 +76,7 @@
       <Icon fx:id="iconVerMas" content="VISIBILITY" layoutX="855.0" layoutY="191.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="563.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="585.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
+=======
+>>>>>>> parent of 53028ab... Creación de interfaz "Administrar hardware"
    </children>
 </AnchorPane>
