@@ -8,6 +8,8 @@ package Daos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +18,9 @@ import java.sql.SQLException;
 public class AccesoDataBase {
     static final String JDBC_DRIVER = "com.mwsql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://";
+    private static Connection conexion;
     
-    protected Connection conectar(){
+    private static Connection conectar(){
         String usuario = CredencialesDB.usuario;
         String pass = CredencialesDB.password;
         String db = CredencialesDB.baseDatos;
@@ -39,6 +42,21 @@ public class AccesoDataBase {
             e.printStackTrace();
         }
         return res;
+    }
+    
+    public static Connection obtenerConexionBaseDatos(){
+        return conectar();
+    }
+    
+    public static void cerrarConexion() {
+        if(conexion!= null) {
+         try{   
+             conexion.close();
+         
+         }  catch (SQLException ex) {
+                Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
 }

@@ -17,29 +17,19 @@ public class Software {
 	private Date fechaAdquisicion;
 	private String idioma;
 	private String sistemaOperativo;
-	private String requiereActualizacion;
+	private boolean requiereActualizacion;
 	private String observaciones;
 	private Licencia licencia;
 	
-	public Software(String nombre, String idSoftware, String marca, double version, String origen, String tipoSoftware,
-			Date fechaAdquisicion, String idioma, String sistemaOperativo, String requiereActualizacion,
-			String observaciones) {
-		super();
-		this.nombre = nombre;
-		this.idSoftware = idSoftware;
-		this.marca = marca;
-		this.version = version;
-		this.origen = origen;
-		this.tipoSoftware = tipoSoftware;
-		this.fechaAdquisicion = fechaAdquisicion;
-		this.idioma = idioma;
-		this.sistemaOperativo = sistemaOperativo;
-		this.requiereActualizacion = requiereActualizacion;
-		this.observaciones = observaciones;
+        /**
+         * constructor por default
+         */
+	public Software() {
+		
 	}
 	
 	public Software(String nombre, String idSoftware, String marca, double version, String origen, String tipoSoftware,
-			Date fechaAdquisicion, String idioma, String sistemaOperativo, String requiereActualizacion,
+			Date fechaAdquisicion, String idioma, String sistemaOperativo, boolean requiereActualizacion,
 			String observaciones, Licencia licencia) {
 		super();
 		this.nombre = nombre;
@@ -82,7 +72,7 @@ public class Software {
 	public String getSistemaOperativo() {
 		return sistemaOperativo;
 	}
-	public String getRequiereActualizacion() {
+	public boolean getRequiereActualizacion() {
 		return requiereActualizacion;
 	}
 	public String getObservaciones() {
@@ -91,7 +81,56 @@ public class Software {
 	public Licencia getLicencia() {
 		return licencia;
 	}
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setIdSoftware(String idSoftware) {
+        this.idSoftware = idSoftware;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public void setTipoSoftware(String tipoSoftware) {
+        this.tipoSoftware = tipoSoftware;
+    }
+
+    public void setFechaAdquisicion(Date fechaAdquisicion) {
+        this.fechaAdquisicion = fechaAdquisicion;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public void setSistemaOperativo(String sistemaOperativo) {
+        this.sistemaOperativo = sistemaOperativo;
+    }
+
+    public void setRequiereActualizacion(boolean requiereActualizacion) {
+        this.requiereActualizacion = requiereActualizacion;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public void setLicencia(Licencia licencia) {
+        this.licencia = licencia;
+    }
 	
+        
 	
 	
 

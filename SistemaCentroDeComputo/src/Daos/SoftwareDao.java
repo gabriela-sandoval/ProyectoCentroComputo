@@ -5,10 +5,16 @@
  */
 package Daos;
 
+import CentroComputo.Licencia;
 import CentroComputo.Software;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,21 +29,75 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     public boolean agregarSoftware(Software software) {
         
         consulta= "insert into software values (?, ?, ?, ?, ?)";
-        try(PreparedStatement consultaparametrizada = AccesoDataBase){
-            
-            
-            
+        try (PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)) {
+            consultaParametrizada.setString(1, software.getNombre());
+            consultaParametrizada.setString(2, software.getIdSoftware());
+            consultaParametrizada.setString(3, software.getMarca());
+            consultaParametrizada.setDouble(4, software.getVersion());
+            consultaParametrizada.setString(5, software.getOrigen());
+            consultaParametrizada.setString(6, software.getTipoSoftware());
+            consultaParametrizada.setDate(7, software.getFechaAdquisicion());
+            consultaParametrizada.setString(8, software.getIdioma());
+            consultaParametrizada.setString(9, software.getSistemaOperativo());
+            consultaParametrizada.setBoolean(10, software.getRequiereActualizacion());
+            consultaParametrizada.setString(11, software.getObservaciones());
+            consultaParametrizada.setObject(12, software.getLicencia());
+            consultaParametrizada.executeUpdate();                       
+        } catch (SQLException ex) {
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+           AccesoDataBase.cerrarConexion();
         }
+        return true;
     }
 
     @Override
     public boolean actualizarSoftware(Software software) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        consulta = "UPDATE software s join softwareVersion v on s.idSoftware = v.Software_idSoftware set ";
+        
+        try(PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)){
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            AccesoDataBase.cerrarConexion();
+        }
+        return true;
     }
 
     @Override
     public List<Software> obtenerListaSoftware() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        consulta = "select * from Software";
+        listaSoftware = new ArrayList <>();
+        
+        try{
+            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
+            ResultSet resultado = consultaParametrizada.executeQuery();
+            while (resultado.next()){
+                Software software = new Software();
+                software.setNombre(resultado.getString("nombre"));
+                software.setIdSoftware(resultado.getString("clave"));
+                software.setMarca(resultado.getString("marca"));
+                software.setVersion(resultado.getDouble("version"));
+                software.setOrigen(resultado.getString("origen"));
+                software.setTipoSoftware(resultado.getString("tipo Software"));
+                software.setFechaAdquisicion(resultado.getDate("fecha adquisicion"));
+                software.setIdioma(resultado.getString("idioma"));
+                software.setSistemaOperativo(resultado.getString("sistemaOperativo"));
+                software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
+                software.setObservaciones(resultado.getString("observaciones"));
+                software.setLicencia((Licencia) resultado.getObject("licencia"));
+                listaSoftware.add(software);   
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            AccesoDataBase.cerrarConexion();
+        }
+        return null;
     }
 
     @Override
