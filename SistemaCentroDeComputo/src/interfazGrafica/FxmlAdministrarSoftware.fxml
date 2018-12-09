@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controlador.FxmlAdministrarSoftwareController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="1.0" layoutY="12.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+      <ImageView fx:id="imageViewLogo" fitHeight="113.0" fitWidth="124.0" layoutX="50.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../iconos/logo%20cc.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="textAdministrarSoftware" fill="#18529d" layoutX="178.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar software">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="textJefeDelCentroDeComputo" fill="#28ad56" layoutX="877.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldNombreDeUsuario" layoutX="125.0" layoutY="194.0" prefHeight="34.0" prefWidth="425.0" promptText="Buscar software">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </TextField>
+      <Icon fx:id="iconRegresar" content="ARROW_BACK" layoutX="110.0" layoutY="160.0" />
+      <Text fx:id="textRegresar" layoutX="135.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <Icon fx:id="iconAgregar" content="ADD" layoutX="784.0" layoutY="199.0" />
+      <Icon fx:id="iconDeshabilitar" content="DELETE" layoutX="1008.0" layoutY="201.0" />
+      <Icon content="SEARCH" layoutX="553.0" layoutY="204.0" />
+      <Icon fx:id="iconEditar" content="EDIT" layoutX="936.0" layoutY="199.0" />
+      <Icon fx:id="iconVerMas" content="VISIBILITY" layoutX="865.0" layoutY="201.0" />
+      <TableView layoutX="128.0" layoutY="280.0" prefHeight="200.0" prefWidth="917.0">
+        <columns>
+          <TableColumn fx:id="tableColumnNoInventario" prefWidth="116.26715087890625" text="No. inventario" />
+          <TableColumn fx:id="tableColumnNombreDeSoftware" prefWidth="171.9828643798828" text="Nombre de software" />
+            <TableColumn fx:id="tableColumnNoLicencias" prefWidth="148.73202514648438" text="No. de licencias" />
+            <TableColumn fx:id="tableColumnVersion" prefWidth="147.32049560546875" text="Versión" />
+            <TableColumn fx:id="tableColumnObservaciones" prefWidth="330.6666463216146" text="Observaciones" />
+        </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="573.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="595.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
+   </children>
+</AnchorPane>
