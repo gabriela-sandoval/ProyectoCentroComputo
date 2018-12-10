@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controlador.FxmlAgregarHardwareController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controlador.FxmlModificarHardwareController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9f4ff" height="500.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Text fill="#18529d" layoutX="80.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. inventario:">
@@ -19,7 +19,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#28ad56" layoutX="256.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir hardware">
+      <Text fill="#28ad56" layoutX="238.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modificar hardware">
          <font>
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>

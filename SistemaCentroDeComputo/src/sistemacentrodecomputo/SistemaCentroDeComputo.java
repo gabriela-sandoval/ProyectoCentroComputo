@@ -21,7 +21,7 @@ public class SistemaCentroDeComputo extends Application {
   @Override
   public void start(Stage primaryStage) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource(
-        "/interfazGrafica/FxmlSistemaCentroDeComputo.fxml"));
+        "/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml"));
 
     Scene scene = new Scene(root);
 
@@ -33,7 +33,7 @@ public class SistemaCentroDeComputo extends Application {
   }
 
   /**
-   * Clase main de AnalisisEstiloJava.
+   * Clase main SistemaCentroDeComputo.
    * @param args the command line arguments
    */
   public static void main(String[] args) {

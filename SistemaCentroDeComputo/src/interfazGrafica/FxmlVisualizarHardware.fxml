@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controlador.FxmlVisualizarHardwareController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9f4ff" height="500.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      <Text fill="#18529d" layoutX="79.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. inventario:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#28ad56" layoutX="255.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Visualizar hardware">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldNoInventario" layoutX="225.0" layoutY="125.0" />
+      <Text fill="#18529d" layoutX="145.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldMarca" layoutX="226.0" layoutY="167.0" />
+      <Text fill="#18529d" layoutX="90.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsable:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldResponsable" layoutX="226.0" layoutY="208.0" />
+      <Text fill="#18529d" layoutX="501.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldModelo" layoutX="589.0" layoutY="125.0" />
+      <ComboBox fx:id="comboBoxTipo" layoutX="226.0" layoutY="251.0" prefWidth="150.0" />
+      <Text fill="#18529d" layoutX="490.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. serie:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldNoSerie" layoutX="590.0" layoutY="168.0" />
+      <Text fill="#18529d" layoutX="480.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldUbicación" layoutX="589.0" layoutY="209.0" />
+      <Text fill="#18529d" layoutX="164.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#18529d" layoutX="469.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="radioButtonActivo" layoutX="551.0" layoutY="253.0" mnemonicParsing="false" text="Activo" textFill="#18529d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="radioButtonInactivo" layoutX="648.0" layoutY="252.0" mnemonicParsing="false" text="Inactivo" textFill="#18529d">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </RadioButton>
+      <DatePicker fx:id="datePickerFecha" layoutX="228.0" layoutY="294.0" prefHeight="25.0" prefWidth="145.0" />
+      <Text fill="#18529d" layoutX="152.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#18529d" layoutX="511.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partes:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldPartes" layoutX="590.0" layoutY="290.0" />
+      <Text fill="#18529d" layoutX="130.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Garantia:">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textFieldGarantia" layoutX="227.0" layoutY="338.0" />
+      <Button fx:id="buttonSalir" layoutX="622.0" layoutY="407.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Salir">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

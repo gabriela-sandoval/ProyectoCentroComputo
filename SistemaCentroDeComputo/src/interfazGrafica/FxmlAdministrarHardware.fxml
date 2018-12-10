@@ -12,56 +12,59 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FxmlAdministrarHardwareController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-9.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
-      <ImageView fx:id="imageViewLogo" fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
-      <Button layoutX="541.0" layoutY="153.0" mnemonicParsing="false" text="Button" />
-      <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../iconos/logo%20cc.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="textAdministrarHardware" fill="#18529d" layoutX="168.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar hardware">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="36.0" />
-         </font>
-      </Text>
-      <TableView fx:id="tableViewAdministrarHardware" layoutX="107.0" layoutY="299.0" prefHeight="253.0" prefWidth="921.0">
-        <columns>
-          <TableColumn fx:id="tableColumnNoInventario" prefWidth="100.071533203125" text="No. inventario" />
-          <TableColumn fx:id="tableColumnMarca" prefWidth="73.09341430664062" text="Marca" />
-            <TableColumn fx:id="tableColumnModelo" prefWidth="64.84219360351562" text="Modelo" />
-            <TableColumn fx:id="tableColumnNoSerie" prefWidth="74.07730102539062" text="No. serie" />
-            <TableColumn fx:id="tableColumnResponsable" prefWidth="151.33621215820312" text="Responsable" />
-            <TableColumn fx:id="tableColumnUbicacion" prefWidth="82.66375732421875" text="Ubicación" />
-            <TableColumn fx:id="tableColumnTipo" prefWidth="66.77264404296875" text="Tipo" />
-            <TableColumn fx:id="tableColumnGarantia" minWidth="6.3231201171875" prefWidth="77.63848876953125" text="Garantia" />
-            <TableColumn fx:id="tableColumnEstado" prefWidth="67.76849365234375" text="Estado" />
-            <TableColumn fx:id="tableColumnFecha" prefWidth="75.1258544921875" text="Fecha" />
-            <TableColumn fx:id="tableColumnPartes" prefWidth="87.18939208984375" text="Partes" />
-      <TableView layoutX="126.0" layoutY="394.0" prefHeight="200.0" prefWidth="598.0">
-        <columns>
-          <TableColumn prefWidth="100.071533203125" text="No. inventario" />
-          <TableColumn prefWidth="50.59513854980469" text="Marca" />
-        </columns>
-      </TableView>
-      <Text fx:id="textJefeDelCentroDeComputo" fill="#28ad56" layoutX="867.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="36.0" />
-         </font>
-      </Text>
-      <TextField fx:id="textFieldNombreDeUsuario" layoutX="173.0" layoutY="153.0" prefHeight="34.0" prefWidth="346.0">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </TextField>
-      <Text fx:id="textRegresar" layoutX="125.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="563.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="585.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
-   </children>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" layoutX="-9.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+        <ImageView fx:id="imageViewLogo" fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="WHITE" strokeType="INSIDE" width="1150.0" />
+            <Button layoutX="541.0" layoutY="153.0" mnemonicParsing="false" text="Button" />
+            <ImageView fitHeight="113.0" fitWidth="124.0" layoutX="40.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../iconos/logo%20cc.png" />
+                </image>
+            </ImageView>
+            <Text fx:id="textAdministrarHardware" fill="#18529d" layoutX="168.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrar hardware">
+                <font>
+                    <Font name="Arial Rounded MT Bold" size="36.0" />
+                </font>
+            </Text>
+            <TableView fx:id="tableViewAdministrarHardware" layoutX="107.0" layoutY="299.0" prefHeight="253.0" prefWidth="921.0">
+                <columns>
+                    <TableColumn fx:id="tableColumnNoInventario" prefWidth="100.071533203125" text="No. inventario" />
+                    <TableColumn fx:id="tableColumnMarca" prefWidth="73.09341430664062" text="Marca" />
+                    <TableColumn fx:id="tableColumnModelo" prefWidth="64.84219360351562" text="Modelo" />
+                    <TableColumn fx:id="tableColumnNoSerie" prefWidth="74.07730102539062" text="No. serie" />
+                    <TableColumn fx:id="tableColumnResponsable" prefWidth="151.33621215820312" text="Responsable" />
+                    <TableColumn fx:id="tableColumnUbicacion" prefWidth="82.66375732421875" text="Ubicación" />
+                    <TableColumn fx:id="tableColumnTipo" prefWidth="66.77264404296875" text="Tipo" />
+                    <TableColumn fx:id="tableColumnGarantia" minWidth="6.3231201171875" prefWidth="77.63848876953125" text="Garantia" />
+                    <TableColumn fx:id="tableColumnEstado" prefWidth="67.76849365234375" text="Estado" />
+                    <TableColumn fx:id="tableColumnFecha" prefWidth="75.1258544921875" text="Fecha" />
+                    <TableColumn fx:id="tableColumnPartes" prefWidth="87.18939208984375" text="Partes" />
+                    <TableView layoutX="126.0" layoutY="394.0" prefHeight="200.0" prefWidth="598.0">
+                        <columns>
+                            <TableColumn prefWidth="100.071533203125" text="No. inventario" />
+                            <TableColumn prefWidth="50.59513854980469" text="Marca" />
+                        </columns>
+                    </TableView>
+                    <Text fx:id="textJefeDelCentroDeComputo" fill="#28ad56" layoutX="867.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jefe del CC">
+                        <font>
+                            <Font name="Arial Rounded MT Bold" size="36.0" />
+                        </font>
+                    </Text>
+                    <TextField fx:id="textFieldNombreDeUsuario" layoutX="173.0" layoutY="153.0" prefHeight="34.0" prefWidth="346.0">
+                        <font>
+                            <Font name="Arial Rounded MT Bold" size="18.0" />
+                        </font>
+                    </TextField>
+                    <Text fx:id="textRegresar" layoutX="125.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
+                        <font>
+                            <Font name="Arial Rounded MT Bold" size="18.0" />
+                        </font>
+                    </Text>
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="563.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="585.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
+                </columns>
+            </TableView>
+        </ImageView>    
+    </children>
 </AnchorPane>

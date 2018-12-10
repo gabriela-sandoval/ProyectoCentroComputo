@@ -34,7 +34,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </TextField>
-      <Text fx:id="textRegresar" layoutX="178.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
+      <Text fx:id="textRegresar" layoutX="178.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
@@ -55,6 +55,6 @@
       <Button fx:id="buttonVer" layoutX="859.0" layoutY="201.0" mnemonicParsing="false" text="Ver" />
       <Button fx:id="buttonEditar" layoutX="933.0" layoutY="201.0" mnemonicParsing="false" text="Editar" />
       <Button fx:id="buttonDeshabilitar" layoutX="1013.0" layoutY="201.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="buttonRegresar" layoutX="80.0" layoutY="161.0" mnemonicParsing="false" text="Regresar" />
+      <Button fx:id="buttonRegresar" layoutX="106.0" layoutY="160.0" mnemonicParsing="false" text="Regresar" />
    </children>
 </AnchorPane>

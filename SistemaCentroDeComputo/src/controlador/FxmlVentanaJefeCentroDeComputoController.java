@@ -11,8 +11,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,26 +60,23 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
             stage.close();
         });
 
-        buttonAdministrarHardware.setOnAction(new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                Stage primaryStage = null;
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource(
-                            "FxmlAdministarHardware.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(FxmlVentanaJefeCentroDeComputoController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                Scene scene = new Scene(root);
-
-                primaryStage.setScene(scene);
-                Image icono = new Image("/iconos/logo cc.png");
-                primaryStage.getIcons().add(icono);
-                primaryStage.setResizable(false);
-                primaryStage.show();
+        buttonAdministrarHardware.setOnMouseClicked((event) -> {
+            Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource(
+                        "/FxmlSistemaCentroDeComputo.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(FxmlVentanaJefeCentroDeComputoController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            Scene scene = new Scene(root);
+
+            primaryStage.setScene(scene);
+            Image icono = new Image("/iconos/logo cc.png");
+            primaryStage.getIcons().add(icono);
+            primaryStage.setResizable(false);
+            primaryStage.show();
         });
     }
 }
