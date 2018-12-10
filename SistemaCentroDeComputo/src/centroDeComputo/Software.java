@@ -1,6 +1,7 @@
 package CentroComputo;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Irasema Caicero
@@ -66,7 +67,8 @@ public class Software {
 		return tipoSoftware;
 	}
 	public Date getFechaAdquisicion() {
-		return fechaAdquisicion;
+            darFormatoAFecha(fechaAdquisicion);
+            return fechaAdquisicion;
 	}
 	public String getIdioma() {
 		return idioma;
@@ -110,6 +112,7 @@ public class Software {
 
     public void setFechaAdquisicion(Date fechaAdquisicion) {
         this.fechaAdquisicion = fechaAdquisicion;
+        darFormatoAFecha(fechaAdquisicion);
     }
 
     public void setIdioma(String idioma) {
@@ -130,6 +133,12 @@ public class Software {
     
     public void setDisponible(boolean disponible){
         this.disponible=disponible;
+    }
+    
+    private SimpleDateFormat darFormatoAFecha(Date fecha){
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        formatoFecha.format(fecha);      
+            return null;
     }
 
    
