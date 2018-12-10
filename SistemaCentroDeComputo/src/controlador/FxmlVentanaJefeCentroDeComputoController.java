@@ -5,13 +5,24 @@
  */
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -20,33 +31,57 @@ import javafx.scene.text.Text;
  */
 public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
 
-  @FXML
-  private ImageView imageViewLogo;
+    @FXML
+    private ImageView imageViewLogo;
 
-  @FXML
-  private Text textNombreJefe;
+    @FXML
+    private Text textNombreJefe;
 
-  @FXML
-  private Text textAdministrador;
+    @FXML
+    private Text textAdministrador;
 
-  @FXML
-  private Button buttonSalir;
+    @FXML
+    private Button buttonSalir;
 
-  @FXML
-  private Button buttonAdministrarSoftware;
+    @FXML
+    private Button buttonAdministrarSoftware;
 
-  @FXML
-  private Button buttonAdministrarHardware;
+    @FXML
+    private Button buttonAdministrarHardware;
 
-  @FXML
-  private Button buttonAdministrarUsuarios;
+    @FXML
+    private Button buttonAdministrarUsuarios;
 
-  /**
-   * Initializes the controller class.
-   */
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
-    // TODO
-  }
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        buttonSalir.setOnAction((ActionEvent event) -> {
+            Stage stage = (Stage) buttonSalir.getScene().getWindow();
+            stage.close();
+        });
 
+        buttonAdministrarHardware.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Stage primaryStage = null;
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource(
+                            "FxmlAdministarHardware.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(FxmlVentanaJefeCentroDeComputoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Scene scene = new Scene(root);
+
+                primaryStage.setScene(scene);
+                Image icono = new Image("/iconos/logo cc.png");
+                primaryStage.getIcons().add(icono);
+                primaryStage.setResizable(false);
+                primaryStage.show();
+            }
+        });
+    }
 }

@@ -1,7 +1,8 @@
 package controlador;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Control;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -76,5 +77,13 @@ public class FxmlAdministrarHardwareController {
 
     @FXML
     private Icon iconVerMas;
+    
+    /**
+   * Initializes the controller class.
+   */
+  public void initialize(URL url, ResourceBundle rb) {
+    
+  }
+  
   
 }
