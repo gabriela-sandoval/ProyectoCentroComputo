@@ -86,18 +86,7 @@ public class FxmlAdministrarSoftwareController {
     Image imagenVer = new Image(linkVer.toString(), 24, 24, false, true);
     Image imagenDeshabilitar = new Image(linkDeshabilitar.toString(), 24, 24, false, true);
 
-    buttonBuscar.setGraphic(new ImageView(imagenBuscar));
-      EventHandler<ActionEvent> ActionEvent = null;
-      EventHandler<ActionEvent> EventHandler = null;
-    buttonBuscar.setOnAction(EventHandler<ActionEvent>() {
-      public void handle(ActionEvent t){
-          SoftwareDao software = new SoftwareDao();
-          
-          
-  
-  }  
-  });
-    
+    buttonBuscar.setGraphic(new ImageView(imagenBuscar));   
     buttonRegresar.setGraphic(new ImageView(imagenRegresar));
     buttonAgregar.setGraphic(new ImageView(imagenAgregar));
     buttonEditar.setGraphic(new ImageView(imagenEditar));

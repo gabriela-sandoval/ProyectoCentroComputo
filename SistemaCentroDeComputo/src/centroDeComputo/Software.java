@@ -9,19 +9,18 @@ import java.text.SimpleDateFormat;
  * @version 1.0
  */
 public class Software {
-	private String nombre; 
 	private String idSoftware;
-	private String marca;
-	private double version;
+        private String nombre; 
 	private String origen;
-	private String tipoSoftware;
-	private Date fechaAdquisicion;
-	private String idioma;
-	private String sistemaOperativo;
-	private boolean requiereActualizacion;
 	private String observaciones;
-        private boolean disponible;
-	
+        private Date fechaAdquisicion;
+        private String tipoSoftware;
+        private String marca;
+        private boolean requiereActualizacion;
+	private double version;
+	private boolean disponible;
+	private String sistemaOperativo;
+	private String idioma;
 	
         /**
          * constructor por default
@@ -29,109 +28,125 @@ public class Software {
 	public Software() {
 		
 	}
-        
-	
-	public Software(String nombre, String idSoftware, String marca, double version, String origen, String tipoSoftware,
-			Date fechaAdquisicion, String idioma, String sistemaOperativo, boolean requiereActualizacion,
-			String observaciones, boolean disponible) {
-		this.nombre = nombre;
-		this.idSoftware = idSoftware;
-		this.marca = marca;
-		this.version = version;
-		this.origen = origen;
-		this.tipoSoftware = tipoSoftware;
-		this.fechaAdquisicion = fechaAdquisicion;
-		this.idioma = idioma;
-		this.sistemaOperativo = sistemaOperativo;
-		this.requiereActualizacion = requiereActualizacion;
-		this.observaciones = observaciones;
-                this.disponible=disponible;
-		
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public String getIdSoftware() {
-		return idSoftware;
-	}
-	public String getMarca() {
-		return marca;
-	}
-	public double getVersion() {
-		return version;
-	}
-	public String getOrigen() {
-		return origen;
-	}
-	public String getTipoSoftware() {
-		return tipoSoftware;
-	}
-	public Date getFechaAdquisicion() {
-            return fechaAdquisicion;
-	}
-	public String getIdioma() {
-		return idioma;
-	}
-	public String getSistemaOperativo() {
-		return sistemaOperativo;
-	}
-	public boolean getRequiereActualizacion() {
-		return requiereActualizacion;
-	}
-	public String getObservaciones() {
-		return observaciones;
-	}
-        public boolean getDisponible(){
-            return disponible;
-        }
 
-    public void setNombre(String nombre) {
+    public Software(String idSoftware, String nombre, String origen, String observaciones, 
+            Date fechaAdquisicion, String tipoSoftware, String marca, boolean requiereActualizacion, 
+            double version, boolean disponible, String sistemaOperativo, String idioma) {
+        this.idSoftware = idSoftware;
         this.nombre = nombre;
+        this.origen = origen;
+        this.observaciones = observaciones;
+        this.fechaAdquisicion = fechaAdquisicion;
+        this.tipoSoftware = tipoSoftware;
+        this.marca = marca;
+        this.requiereActualizacion = requiereActualizacion;
+        this.version = version;
+        this.disponible = disponible;
+        this.sistemaOperativo = sistemaOperativo;
+        this.idioma = idioma;
+    }
+
+    public String getIdSoftware() {
+        return idSoftware;
     }
 
     public void setIdSoftware(String idSoftware) {
         this.idSoftware = idSoftware;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setVersion(double version) {
-        this.version = version;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getOrigen() {
+        return origen;
     }
 
     public void setOrigen(String origen) {
         this.origen = origen;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Date getFechaAdquisicion() {
+        return fechaAdquisicion;
+    }
+
+    public void setFechaAdquisicion(Date fechaAdquisicion) {
+        this.fechaAdquisicion = fechaAdquisicion;
+    }
+
+    public String getTipoSoftware() {
+        return tipoSoftware;
+    }
+
     public void setTipoSoftware(String tipoSoftware) {
         this.tipoSoftware = tipoSoftware;
     }
 
-    public void setFechaAdquisicion(Date fechaAdquisicion) {
-        this.fechaAdquisicion = fechaAdquisicion;     
+    public String getMarca() {
+        return marca;
     }
 
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public void setSistemaOperativo(String sistemaOperativo) {
-        this.sistemaOperativo = sistemaOperativo;
+    public boolean isRequiereActualizacion() {
+        return requiereActualizacion;
     }
 
     public void setRequiereActualizacion(boolean requiereActualizacion) {
         this.requiereActualizacion = requiereActualizacion;
     }
 
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
+    public double getVersion() {
+        return version;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public String getSistemaOperativo() {
+        return sistemaOperativo;
+    }
+
+    public void setSistemaOperativo(String sistemaOperativo) {
+        this.sistemaOperativo = sistemaOperativo;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
     
-    public void setDisponible(boolean disponible){
-        this.disponible=disponible;
-    }
+    
+    
+        
+	
+	
     
     private SimpleDateFormat darFormatoAFecha(Date fecha){
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
