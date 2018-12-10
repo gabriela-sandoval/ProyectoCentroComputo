@@ -16,8 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Irasema Caicero
+ * @since 8-12-18
+ * @version 1.0
  */
 public class SoftwareDao implements InterfaceSoftwareDao {
     private String consulta;
@@ -29,8 +30,8 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         
         consulta= "insert into software values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)) {
-            consultaParametrizada.setString(1, software.getNombre());
-            consultaParametrizada.setString(2, software.getIdSoftware());
+            consultaParametrizada.setString(1, software.getIdSoftware());
+            consultaParametrizada.setString(2, software.getNombre());            
             consultaParametrizada.setString(3, software.getMarca());
             consultaParametrizada.setDouble(4, software.getVersion());
             consultaParametrizada.setString(5, software.getOrigen());
@@ -53,14 +54,25 @@ public class SoftwareDao implements InterfaceSoftwareDao {
 
     @Override
     public boolean actualizarSoftware(Software software) {
-        consulta = "UPDATE Software s join SoftwareVersion on s.idsoftware=v.Software_idSoftware set" +
+        consulta = "UPDATE Software set" +
                 "'idSoftware' =? , 'nombre'= ?, 'marca'=?, 'version'=?, 'origen'=?, 'tipoSoftware'=?," +
                 "'fechaAdquisicion'=?, 'idioma'=?, 'sistemaOperativo'=?, 'requiereActualizacion'=?," + 
                 "'observaciones'=? ";
         
         try(PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)){
-            
-            
+            consultaParametrizada.setString(1, software.getIdSoftware());
+            consultaParametrizada.setString(2, software.getNombre());            
+            consultaParametrizada.setString(3, software.getMarca());
+            consultaParametrizada.setDouble(4, software.getVersion());
+            consultaParametrizada.setString(5, software.getOrigen());
+            consultaParametrizada.setString(6, software.getTipoSoftware());
+            consultaParametrizada.setDate(7, software.getFechaAdquisicion());
+            consultaParametrizada.setString(8, software.getIdioma());
+            consultaParametrizada.setString(9, software.getSistemaOperativo());
+            consultaParametrizada.setBoolean(10, software.getRequiereActualizacion());
+            consultaParametrizada.setString(11, software.getObservaciones());
+            consultaParametrizada.setBoolean(12, software.getDisponible());
+            consultaParametrizada.executeUpdate();                 
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -122,14 +134,16 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 software.setSistemaOperativo(resultado.getString("sistemaOperativo"));
                 software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
                 software.setObservaciones(resultado.getString("observaciones"));
-            }   software.setDisponible(resultado.getBoolean("disponible"));
+                software.setDisponible(resultado.getBoolean("disponible"));
+                return software;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }finally{
             AccesoDataBase.cerrarConexion();
         }
-       return software;
+       return null;
     }
 
     @Override
