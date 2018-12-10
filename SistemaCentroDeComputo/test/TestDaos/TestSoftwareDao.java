@@ -2,6 +2,7 @@ package TestDaos;
 
 import CentroComputo.Software;
 import Daos.SoftwareDao;
+import java.sql.Date;
 import java.sql.SQLException;
 import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class TestSoftwareDao {
         softwarePrueba.setNombre("sait");
         softwarePrueba.setOrigen("comprado");
         softwarePrueba.setObservaciones("sin fallas bla bla bla");
-        softwarePrueba.setFechaAdquisicion("2017-02-11");
+        softwarePrueba.setFechaAdquisicion(Date.valueOf("2018-02-02"));
         softwarePrueba.setTipoSoftware("administrativo");
         softwarePrueba.setMarca("Sait");
         softwarePrueba.setRequiereActualizacion(true);

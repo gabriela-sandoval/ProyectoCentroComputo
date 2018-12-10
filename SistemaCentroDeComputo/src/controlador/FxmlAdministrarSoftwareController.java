@@ -1,6 +1,9 @@
 package controlador;
 
+import Daos.SoftwareDao;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -84,6 +87,17 @@ public class FxmlAdministrarSoftwareController {
     Image imagenDeshabilitar = new Image(linkDeshabilitar.toString(), 24, 24, false, true);
 
     buttonBuscar.setGraphic(new ImageView(imagenBuscar));
+      EventHandler<ActionEvent> ActionEvent = null;
+      EventHandler<ActionEvent> EventHandler = null;
+    buttonBuscar.setOnAction(EventHandler<ActionEvent>() {
+      public void handle(ActionEvent t){
+          SoftwareDao software = new SoftwareDao();
+          
+          
+  
+  }  
+  });
+    
     buttonRegresar.setGraphic(new ImageView(imagenRegresar));
     buttonAgregar.setGraphic(new ImageView(imagenAgregar));
     buttonEditar.setGraphic(new ImageView(imagenEditar));

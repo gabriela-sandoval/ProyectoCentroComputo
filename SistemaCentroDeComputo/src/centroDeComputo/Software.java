@@ -25,15 +25,15 @@ public class Software {
 	
         /**
          * constructor por default
-         */
+        **/
 	public Software() {
 		
 	}
+        
 	
 	public Software(String nombre, String idSoftware, String marca, double version, String origen, String tipoSoftware,
 			Date fechaAdquisicion, String idioma, String sistemaOperativo, boolean requiereActualizacion,
 			String observaciones, boolean disponible) {
-		super();
 		this.nombre = nombre;
 		this.idSoftware = idSoftware;
 		this.marca = marca;
@@ -67,7 +67,6 @@ public class Software {
 		return tipoSoftware;
 	}
 	public Date getFechaAdquisicion() {
-            darFormatoAFecha(fechaAdquisicion);
             return fechaAdquisicion;
 	}
 	public String getIdioma() {
@@ -111,8 +110,7 @@ public class Software {
     }
 
     public void setFechaAdquisicion(Date fechaAdquisicion) {
-        this.fechaAdquisicion = fechaAdquisicion;
-        darFormatoAFecha(fechaAdquisicion);
+        this.fechaAdquisicion = fechaAdquisicion;     
     }
 
     public void setIdioma(String idioma) {
