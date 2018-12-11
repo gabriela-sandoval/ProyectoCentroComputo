@@ -64,13 +64,12 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Date fechaAdquisicion = Date.valueOf(datePickerFecha.getValue());
         String tipoSoftware = textFieldTipo.getText();
         String marca = textFieldMarca.getText();
-        Boolean requiereActualizacion = Boolean.parseBoolean(marca)textFieldActualizacion.getText();
+        Boolean requiereActualizacion = Boolean.parseBoolean(textFieldActualizacion.getText());
         Double version = Double.parseDouble(textFieldVersion.getText());
         Boolean disponible= true;
         String sistemaOperativo = textFieldSO.getText();
         String idioma = textFieldIdioma.getText();
-        
-        
+               
         Software software = new Software(idSoftware, nombreSoftware, origen, 
                 observaciones, fechaAdquisicion, tipoSoftware, marca, 
                 requiereActualizacion, version, disponible, sistemaOperativo, idioma);        

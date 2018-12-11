@@ -7,6 +7,7 @@ package Daos;
 
 import CentroComputo.Licencia;
 import CentroComputo.Software;
+import ccExcepciones.NoExisteRegistroException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,9 +38,9 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setDate(5, software.getFechaAdquisicion());
             consultaParametrizada.setString(6, software.getTipoSoftware());
             consultaParametrizada.setString(7, software.getMarca());
-            consultaParametrizada.setBoolean(8, software.getRequiereActualizacion());
+            consultaParametrizada.setBoolean(8, software.isRequiereActualizacion());
             consultaParametrizada.setDouble(9, software.getVersion());
-            consultaParametrizada.setBoolean(10, software.getDisponible());
+            consultaParametrizada.setBoolean(10, software.isDisponible());
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
             consultaParametrizada.executeUpdate();                       
@@ -54,10 +55,17 @@ public class SoftwareDao implements InterfaceSoftwareDao {
 
     @Override
     public boolean actualizarSoftware(Software software) {
+        if(software.getIdSoftware().isEmpty()){
+            try {
+                throw new NoExisteRegistroException("El software que ingresó no existe.");
+            } catch (NoExisteRegistroException ex) {
+                Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         consulta = "UPDATE Software set" +
-                "'idSoftware' =? , 'nombreSoftware'= ?, 'origen'=?, 'Observaciones'=?, 'fechaAdquisicion'=?, 'tipoSoftware'=?," +
+                "'nombreSoftware'= ?, 'origen'=?, 'Observaciones'=?, 'fechaAdquisicion'=?, 'tipoSoftware'=?," +
                 "'marca'=?, 'requiereActualizacion'=?, 'version'=?, 'disponible'=?," + 
-                "'sistemaOperativo'=?, 'idioma'=? ";
+                "'sistemaOperativo'=?, 'idioma'=? where idSoftware=? ";
         
         try(PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)){
             consultaParametrizada.setString(1, software.getIdSoftware());
@@ -67,9 +75,9 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setDate(5, software.getFechaAdquisicion());
             consultaParametrizada.setString(6, software.getTipoSoftware());
             consultaParametrizada.setString(7, software.getMarca());
-            consultaParametrizada.setBoolean(8, software.getRequiereActualizacion());
+            consultaParametrizada.setBoolean(8, software.isRequiereActualizacion());
             consultaParametrizada.setDouble(9, software.getVersion());
-            consultaParametrizada.setBoolean(10, software.getDisponible());
+            consultaParametrizada.setBoolean(10, software.isDisponible());
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
             consultaParametrizada.executeUpdate();                 

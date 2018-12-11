@@ -1,7 +1,9 @@
 package TestDaos;
 
 import CentroComputo.Software;
+import Daos.AccesoDataBase;
 import Daos.SoftwareDao;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import static junit.framework.Assert.assertTrue;
@@ -12,7 +14,10 @@ import org.junit.Test;
  */
 public class TestSoftwareDao {
     
+    @Test
     public void agregarSoftwareCompleto(){
+        Connection conexion= null;
+        conexion= AccesoDataBase.obtenerConexionBaseDatos();
         Software softwarePrueba = new Software();
         
         softwarePrueba.setIdSoftware("S001");
@@ -36,6 +41,11 @@ public class TestSoftwareDao {
            e.printStackTrace();            
         }
         assertTrue("prueba agregacion: ", resultado);                  
+    }
+    
+    @Test
+    public void actualizarSoftwareCorrectamente(){
+        
     }
     
 }
