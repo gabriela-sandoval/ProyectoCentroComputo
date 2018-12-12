@@ -7,15 +7,23 @@ package controlador;
 
 import CentroComputo.Software;
 import Daos.SoftwareDao;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -51,11 +59,28 @@ public class FxmlAgregarSoftwareController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Stage stage = (Stage) buttonGuardar.getScene().getWindow();
+        Parent root = null;
+        try{
+            root = FXMLLoader.load(getClass().getResource(""));
+        } catch (IOException ex) {
+            Logger.getLogger(FxmlAgregarSoftwareController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Scene scence = new Scene(root);
+        stage.setScene(scence);
+        buttonGuardar.setOnAction((EventHandler<ActionEvent>), this));
+        stage.show();
+        
+        
+        
+           
         
     }    
     
     @FXML
     private void guardarSoftware(ActionEvent evento) {
+        if(evento.getSource()== buttonGuardar) {
         SoftwareDao softwareDao = new SoftwareDao();
         String idSoftware= "S001";
         String nombreSoftware = textFieldNombre.getText();
@@ -74,6 +99,7 @@ public class FxmlAgregarSoftwareController implements Initializable {
                 observaciones, fechaAdquisicion, tipoSoftware, marca, 
                 requiereActualizacion, version, disponible, sistemaOperativo, idioma);        
         softwareDao.agregarSoftware(software);
+        }
     }
    
 }
