@@ -8,30 +8,27 @@ import java.sql.Date;
  * @version 1.0
  */
 public class Hardware {
-	
+    
 	private String noInventarioUv;
+        private String marca;
+        private String modelo;
 	private int numeroSerie;
-	private String modelo;
-	private String marca;
-	private String tipoDispositivo;
 	private String estado;
-	private String ubicacion;
+	private String tipoDispositivo;
 	private Date fechaAdquisicion;
-	private Licencia garantia;
-	
-	public Hardware(String noInventarioUv, int numeroSerie, String modelo, String marca, String tipoDispositivo,
-			String estado, String ubicacion, Date fechaAdquisicion, Licencia garantia) {
-		super();
-		this.noInventarioUv = noInventarioUv;
-		this.numeroSerie = numeroSerie;
-		this.modelo = modelo;
-		this.marca = marca;
-		this.tipoDispositivo = tipoDispositivo;
-		this.estado = estado;
-		this.ubicacion = ubicacion;
-		this.fechaAdquisicion = fechaAdquisicion;
-		this.garantia = garantia;
-	}
+	private String ubicacion;
+
+    public Hardware(String noInventarioUv, String marca, String modelo, int numeroSerie, String estado, String tipoDispositivo, Date fechaAdquisicion, String ubicacion) {
+        this.noInventarioUv = noInventarioUv;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.numeroSerie = numeroSerie;
+        this.estado = estado;
+        this.tipoDispositivo = tipoDispositivo;
+        this.fechaAdquisicion = fechaAdquisicion;
+        this.ubicacion = ubicacion;
+    }
+		
 	
 	public String getNoInventarioUv() {
 		return noInventarioUv;
@@ -57,9 +54,5 @@ public class Hardware {
 	public Date getFechaAdquisicion() {
 		return fechaAdquisicion;
 	}
-	public Licencia getGarantia() {
-		return garantia;
-	}
 	
-
 }

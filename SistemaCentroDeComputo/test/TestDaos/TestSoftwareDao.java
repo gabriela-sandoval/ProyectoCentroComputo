@@ -3,10 +3,13 @@ package TestDaos;
 import CentroComputo.Software;
 import Daos.AccesoDataBase;
 import Daos.SoftwareDao;
+import ccExcepciones.ErrorOperacionDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -24,8 +27,12 @@ public class TestSoftwareDao {
     public void testAgregarSoftwareCompleto(){
         Connection conexion= null;
         conexion= AccesoDataBase.obtenerConexionBaseDatos();
+        try{
+            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
+        }catch(ErrorOperacionDB e){
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
+        }
         Software softwarePrueba = new Software();
-        
         softwarePrueba.setIdSoftware("S001");
         softwarePrueba.setNombre("sait");
         softwarePrueba.setOrigen("comprado");
@@ -53,6 +60,12 @@ public class TestSoftwareDao {
     public void testActualizarSoftwareCorrectamente(){
         Connection conexion = null;
         conexion = AccesoDataBase.obtenerConexionBaseDatos();
+        try{
+            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
+        }catch(ErrorOperacionDB e){
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
         Software softwarePrueba = new Software();
         if(!softwarePrueba.getIdSoftware().isEmpty()){
         
@@ -84,6 +97,12 @@ public class TestSoftwareDao {
     public void testObtenerListaSoftwareVacia(){
         Connection conexion = null;
         conexion = AccesoDataBase.obtenerConexionBaseDatos();
+        try{
+            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
+        }catch(ErrorOperacionDB e){
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
         SoftwareDao softwareDao = new SoftwareDao();
         List<Software> listaSoftware= new ArrayList();
         try{
@@ -115,12 +134,7 @@ public class TestSoftwareDao {
         
         SoftwareDao softwareDao = new SoftwareDao();
         Software software = new Software();
-        
-        try{
-            software = softwareDao.buscarSoftware(IDSOFTWARE_ESPERADO);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        software = softwareDao.buscarSoftware(IDSOFTWARE_ESPERADO);
         
         final String IDSOFTWARE_OBTENIDO = software.getIdSoftware();
         final String NOMBRE_OBTENIDO = software.getNombre();
@@ -155,11 +169,7 @@ public class TestSoftwareDao {
         software.setDisponible(false);
         boolean esperado = true;
         SoftwareDao softwareDao = new SoftwareDao();
-        try{
-            esperado = softwareDao.eliminarSoftware(software);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        esperado = softwareDao.eliminarSoftware(software);
         assertTrue("elimina el plan de curso ", esperado);       
     }
     

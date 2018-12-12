@@ -27,10 +27,10 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     
 
     @Override
-    public boolean agregarSoftware(Software software) {
-        
+    public boolean agregarSoftware(Software software) {       
         consulta= "insert into software values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)) {
+        try{
+            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
             consultaParametrizada.setString(1, software.getIdSoftware());
             consultaParametrizada.setString(2, software.getNombre());            
             consultaParametrizada.setString(3, software.getOrigen());
@@ -43,14 +43,14 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setBoolean(10, software.isDisponible());
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
-            consultaParametrizada.executeUpdate();                       
+            consultaParametrizada.executeUpdate(); 
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         } finally {
            AccesoDataBase.cerrarConexion();
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -62,12 +62,13 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        consulta = "UPDATE Software set" +
+        consulta = "UPDATE software set" +
                 "'nombreSoftware'= ?, 'origen'=?, 'Observaciones'=?, 'fechaAdquisicion'=?, 'tipoSoftware'=?," +
                 "'marca'=?, 'requiereActualizacion'=?, 'version'=?, 'disponible'=?," + 
                 "'sistemaOperativo'=?, 'idioma'=? where idSoftware=? ";
         
-        try(PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta)){
+        try{
+            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
             consultaParametrizada.setString(1, software.getIdSoftware());
             consultaParametrizada.setString(2, software.getNombre());            
             consultaParametrizada.setString(3, software.getOrigen());
@@ -80,14 +81,14 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setBoolean(10, software.isDisponible());
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
-            consultaParametrizada.executeUpdate();                 
+            consultaParametrizada.executeUpdate();   
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         } finally {
             AccesoDataBase.cerrarConexion();
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -112,7 +113,8 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
                 software.setObservaciones(resultado.getString("observaciones"));
                 software.setDisponible(resultado.getBoolean("disponible"));
-                listaSoftware.add(software);   
+                listaSoftware.add(software);  
+                return listaSoftware;
             }
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,13 +162,14 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
             consultaParametrizada.setBoolean(10, software.isDisponible()==false);
-            consultaParametrizada.executeUpdate();                   
+            consultaParametrizada.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             AccesoDataBase.cerrarConexion();
         }
-       return true;
+       return false;
     }
     
     

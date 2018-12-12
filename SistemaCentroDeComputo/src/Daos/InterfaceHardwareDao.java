@@ -12,6 +12,6 @@ public interface InterfaceHardwareDao {
     public boolean actualizarSoftware(Hardware hardware);
     public List<Hardware> obtenerListaSoftware();
     public Hardware buscarSoftware(String idSoftware);
-    public boolean eliminarSoftware(String noIventarioUv);   
+    public boolean eliminarSoftware(Hardware hardware);   
     
 }
