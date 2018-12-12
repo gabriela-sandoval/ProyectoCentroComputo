@@ -14,5 +14,5 @@ public interface InterfaceSoftwareDao {
     public boolean actualizarSoftware(Software software);
     public List<Software> obtenerListaSoftware();
     public Software buscarSoftware(String idSoftware);
-    public boolean eliminarSoftware(String idSoftware);   
+    public boolean eliminarSoftware(Software software);   
 }

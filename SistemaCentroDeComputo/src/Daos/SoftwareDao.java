@@ -155,15 +155,14 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     }
 
     @Override
-    public boolean eliminarSoftware(String idSoftware) {
+    public boolean eliminarSoftware(Software software) {      
         consulta= "update software set disponible=false where idSoftware= ?";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
-            consultaParametrizada.setBoolean(1, false);
-            consultaParametrizada.executeUpdate();
+            consultaParametrizada.setBoolean(10, software.isDisponible()==false);
+            consultaParametrizada.executeUpdate();                   
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }finally{
             AccesoDataBase.cerrarConexion();
         }
