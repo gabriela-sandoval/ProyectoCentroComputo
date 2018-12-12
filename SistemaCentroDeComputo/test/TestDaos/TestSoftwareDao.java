@@ -157,7 +157,7 @@ public class TestSoftwareDao {
         assertEquals("prueba tipo del software", TIPOSOFTWARE_ESPERADO, TIPOSOFTWARE_OBTENIDO);
         assertEquals("prueba marca del software", MARCA_ESPERADA, MARCA_OBTENIDO);
         assertEquals("prueba actualiacion del software", REQUIEREACTUALIZACION_ESPERADA, REQUIEREACTUALIZACION_OBTENIDO);
-        assertEquals("prueba version del software", VERSION_ESPERADA, VERSION_OBTENIDA);
+        assertEquals("prueba version del software", VERSION_ESPERADA, VERSION_OBTENIDA,0.00);
         assertEquals("prueba disponible del software", DISPONIBLE_ESPERADO, DISPONIBLE_OBTENIDO);
         assertEquals("prueba sistema operativo del software", SISTEMAOPERATIVO_ESPERADO, SISTEMAOPERATIVO_OBTENIDO);
         assertEquals("prueba idioma del software", IDIOMA_ESPERADO, IDIOMA_OBTENIDO);    
