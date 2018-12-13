@@ -21,7 +21,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     private String consulta;
 
     @Override
-    public boolean agregarSoftware(Hardware hardware) {
+    public boolean agregarHardware(Hardware hardware) {
         consulta = "insert into hardware values (?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
@@ -43,7 +43,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     }
 
     @Override
-    public boolean actualizarSoftware(Hardware hardware) {
+    public boolean actualizarHardware(Hardware hardware) {
         if(hardware.getNoInventarioUv().isEmpty()){
             try{
                 throw new NoExisteRegistroException("El hardware que ingresó no existe");
@@ -74,7 +74,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     }
 
     @Override
-    public List<Hardware> obtenerListaSoftware() {
+    public List<Hardware> obtenerListaHardware() {
         consulta = "select * from hardware";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
@@ -82,7 +82,7 @@ public class HardwareDao implements InterfaceHardwareDao {
             List<Hardware> listaHardware = new ArrayList<>();
             
             while(resultadoConsulta.next()) {
-                String idSoftware = resultadoConsulta.getString("idSoftware");
+                String noInventarioUv = resultadoConsulta.getString("noInventarioUv");
                 String marca = resultadoConsulta.getString("marca");
                 String modelo = resultadoConsulta.getString("modelo");
                 int numeroSerie = resultadoConsulta.getInt("numeroSerie");
@@ -92,7 +92,7 @@ public class HardwareDao implements InterfaceHardwareDao {
                 String ubicacion = resultadoConsulta.getString("ubicacion");
                 
                 
-                listaHardware.add(new Hardware(idSoftware, marca, modelo, numeroSerie, 
+                listaHardware.add(new Hardware(noInventarioUv, marca, modelo, numeroSerie, 
                         estado, tipoDispositivo, fechaAdquirido, ubicacion));
                 
             }
@@ -106,7 +106,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     }
 
     @Override
-    public Hardware buscarSoftware(String idSoftware) {
+    public Hardware buscarHardware(String idSoftware) {
         consulta = "select * from hardware where no.InventarioUv = ? ";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
@@ -132,7 +132,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     }
 
     @Override
-    public boolean eliminarSoftware(Hardware hardware) {
+    public boolean eliminarHardware(Hardware hardware) {
         consulta = "update software set estado = 'deshabilitado'  where no.InventarioUv = ?";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);

@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,6 +60,21 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
             Stage stage = (Stage) buttonSalir.getScene().getWindow();
             stage.close();
         });
+        
+        buttonAdministrarSoftware.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FxmlAdministrarSoftware.fxml"));
+                Parent root = (Parent)loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene (root));
+                stage.show();
+                } catch(IOException ex) {
+                Logger.getLogger(FxmlVentanaJefeCentroDeComputoController.class.getName()).log(Level.SEVERE, null, ex);
+                }          
+            }          
+        });
 
         buttonAdministrarHardware.setOnMouseClicked((event) -> {
             Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
@@ -78,5 +94,12 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
             primaryStage.setResizable(false);
             primaryStage.show();
         });
-    }
+    }      
 }
+    
+    
+    
+    
+    
+    
+

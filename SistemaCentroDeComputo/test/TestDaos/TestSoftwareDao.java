@@ -53,7 +53,7 @@ public class TestSoftwareDao {
         }catch(Exception e){
            e.printStackTrace();            
         }
-        assertTrue("prueba agregacion: ", esperado);                  
+        assertTrue("prueba agregar Software ", esperado);                  
     }
     
     @Test

@@ -5,16 +5,15 @@
         <group>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestSoftwareDao.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/InterfaceHardwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/sistemacentrodecomputo/SistemaCentroDeComputo.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAgregarSoftwareController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlVentanaJefeCentroDeComputoController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/HardwareDao.java</file>
         </group>
         <group>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestHardwareDao.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestSoftwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/InterfaceHardwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAgregarSoftwareController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlVentanaJefeCentroDeComputoController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/centroDeComputo/Hardware.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/sistemacentrodecomputo/SistemaCentroDeComputo.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/HardwareDao.java</file>
         </group>
     </open-files>
