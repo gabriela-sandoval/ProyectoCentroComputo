@@ -111,10 +111,10 @@ public class TestSoftwareDao {
             e.printStackTrace();
         }
         
-       final int LISTA_OBTENIDA = listaSoftware.size();
+      
         boolean esperado = listaSoftware.isEmpty();
         
-        assertEquals(esperado, LISTA_OBTENIDA);       
+        assertEquals(esperado, listaSoftware);       
     }
     
     @Test

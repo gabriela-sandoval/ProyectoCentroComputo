@@ -106,7 +106,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     }
 
     @Override
-    public Hardware buscarHardware(String idSoftware) {
+    public Hardware buscarHardware(String noInventarioUv) {
         consulta = "select * from hardware where no.InventarioUv = ? ";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
@@ -119,7 +119,7 @@ public class HardwareDao implements InterfaceHardwareDao {
             String tipoDispositivo = resultadoConsulta.getString("tipoDispositivo");
             Date fechaAdquirido = resultadoConsulta.getDate("fechaAdquisicion");
             String ubicacion = resultadoConsulta.getString("ubicacion");
-            Hardware hardware = new Hardware(idSoftware, marca, modelo, numeroSerie,
+            Hardware hardware = new Hardware(noInventarioUv, marca, modelo, numeroSerie,
             estado, tipoDispositivo, fechaAdquirido, ubicacion);
             return hardware;
             
