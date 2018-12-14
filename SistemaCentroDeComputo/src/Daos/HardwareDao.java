@@ -133,6 +133,7 @@ public class HardwareDao implements InterfaceHardwareDao {
 
     @Override
     public boolean eliminarHardware(Hardware hardware) {
+        hardware.CambiarEstado("deshabilitado");
         consulta = "update software set estado = 'deshabilitado'  where no.InventarioUv = ?";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
