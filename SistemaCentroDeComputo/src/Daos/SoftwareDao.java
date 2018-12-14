@@ -44,13 +44,13 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
             consultaParametrizada.executeUpdate(); 
-            return true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
            AccesoDataBase.cerrarConexion();
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -82,19 +82,19 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
             consultaParametrizada.executeUpdate();   
-            return true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             AccesoDataBase.cerrarConexion();
         }
-        return false;
+        return true;
     }
 
     @Override
     public List<Software> obtenerListaSoftware() {
         consulta = "select * from Software";
-        listaSoftware = new ArrayList <>();
+        List<Software>listaSoftware = new ArrayList <>();
         
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
@@ -113,15 +113,14 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
                 software.setObservaciones(resultado.getString("observaciones"));
                 software.setDisponible(resultado.getBoolean("disponible"));
-                listaSoftware.add(software);  
-                return listaSoftware;
+                listaSoftware.add(software);                
             }
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
             AccesoDataBase.cerrarConexion();
         }
-        return null;
+        return listaSoftware;
     }
 
     @Override
@@ -132,7 +131,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
             consultaParametrizada.setString(1, idSoftware);
             ResultSet resultado = consultaParametrizada.executeQuery();
-            if(resultado.next()){
+            resultado.next();
                 software.setNombre(resultado.getString("nombre"));
                 software.setIdSoftware(resultado.getString("clave"));
                 software.setMarca(resultado.getString("marca"));
@@ -145,15 +144,13 @@ public class SoftwareDao implements InterfaceSoftwareDao {
                 software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
                 software.setObservaciones(resultado.getString("observaciones"));
                 software.setDisponible(resultado.getBoolean("disponible"));
-                return software;
-            }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);            
         }finally{
             AccesoDataBase.cerrarConexion();
         }
-       return null;
+       return software;
     }
 
     @Override
@@ -163,13 +160,13 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
             consultaParametrizada.setBoolean(10, software.isDisponible()==false);
             consultaParametrizada.executeUpdate();
-            return true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             AccesoDataBase.cerrarConexion();
         }
-       return false;
+       return true;
     }
     
     

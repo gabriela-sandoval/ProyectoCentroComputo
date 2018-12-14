@@ -26,9 +26,9 @@ public class TestHardwareDao {
     
     @Test
     public void testAgregarHardwareCompleto(){
-        Connection connection = null;
-        connection= AccesoDataBase.obtenerConexionBaseDatos();
+        Connection connection;       
         try{
+            connection= AccesoDataBase.obtenerConexionBaseDatos();
             throw new ErrorOperacionDB("Sucedio Algo Inoportuno en la Operacion con la DataBase");
         }catch(ErrorOperacionDB e) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
@@ -56,8 +56,9 @@ public class TestHardwareDao {
     @Test
     public void testActualizarHardwareCorrectamente(){
         Connection conexion = null;
-        conexion = AccesoDataBase.obtenerConexionBaseDatos();
+       
         try{
+             conexion = AccesoDataBase.obtenerConexionBaseDatos();
             throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
         }catch(ErrorOperacionDB e){
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);

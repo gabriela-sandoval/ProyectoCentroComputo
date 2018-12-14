@@ -33,7 +33,8 @@ public class HardwareDao implements InterfaceHardwareDao {
             consultaParametrizada.setString(6, hardware.getTipoDispositivo());
             consultaParametrizada.setDate(7, hardware.getFechaAdquisicion());
             consultaParametrizada.setString(8, hardware.getUbicacion());
-            consultaParametrizada.executeUpdate();            
+            consultaParametrizada.executeUpdate(); 
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

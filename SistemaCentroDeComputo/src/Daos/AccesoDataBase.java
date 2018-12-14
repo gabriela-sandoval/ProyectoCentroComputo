@@ -17,42 +17,34 @@ import java.util.logging.Logger;
  */
 public class AccesoDataBase {
     static final String JDBC_DRIVER = "com.mwsql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://";
+    static final String DB_URL = "jdbc:mysql://localhost";
     private static Connection conexion;
     
-    private static Connection conectar(){
-        String usuario = CredencialesDB.usuario;
-        String pass = CredencialesDB.password;
-        String db = CredencialesDB.baseDatos;
-        String host = CredencialesDB.host;
-        
-        Connection res = null;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = DB_URL + host + "/" + db;
-            res = DriverManager.getConnection(url,usuario,pass);
-        }catch (SQLException exSql){
-            exSql.printStackTrace();
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        try{
-            res.setAutoCommit(false);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return res;
+    private static void conectar(){
+        try {
+            
+            String url= "jdbc:mysql://localhost/";
+            String databaseName = "centrocomputo";
+            String userName = "root";
+            String password = "ruletarusa98";
+       
+            conexion = (Connection)DriverManager.getConnection(url+databaseName,userName,password);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
     
     public static Connection obtenerConexionBaseDatos(){
-        return conectar();
+        conectar();
+        return AccesoDataBase.conexion;
     }
     
     public static void cerrarConexion() {
         if(conexion!= null) {
          try{   
-             conexion.close();
-         
+             if(!conexion.isClosed()){
+                 conexion.close();
+             }       
          }  catch (SQLException ex) {
                 Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
             }
