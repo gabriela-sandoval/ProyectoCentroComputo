@@ -2,6 +2,7 @@ package Daos;
 
 import CentroComputo.Hardware;
 import ccExcepciones.NoExisteRegistroException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class HardwareDao implements InterfaceHardwareDao {
     private String consulta;
+    private Connection conection;
 
     @Override
     public boolean agregarHardware(Hardware hardware) {
@@ -33,14 +35,13 @@ public class HardwareDao implements InterfaceHardwareDao {
             consultaParametrizada.setString(6, hardware.getTipoDispositivo());
             consultaParametrizada.setDate(7, hardware.getFechaAdquisicion());
             consultaParametrizada.setString(8, hardware.getUbicacion());
-            consultaParametrizada.executeUpdate(); 
-            return true;
+            consultaParametrizada.executeUpdate();            
         } catch (SQLException ex) {
             Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             AccesoDataBase.cerrarConexion();
         }
-        return false;        
+        return true;        
     }
 
     @Override
@@ -64,24 +65,23 @@ public class HardwareDao implements InterfaceHardwareDao {
             consultaParametrizada.setString(5, hardware.getEstado());
             consultaParametrizada.setString(6, hardware.getTipoDispositivo());
             consultaParametrizada.setString(7, hardware.getUbicacion());
-            consultaParametrizada.executeUpdate();
-            return true;   
+            consultaParametrizada.executeUpdate();              
         } catch (SQLException ex) {
             Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             AccesoDataBase.cerrarConexion();
         }     
-        return false;
+        return true;
     }
 
     @Override
     public List<Hardware> obtenerListaHardware() {
         consulta = "select * from hardware";
+        List<Hardware> listaHardware = new ArrayList<>();
         try{
-            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
+            conection = AccesoDataBase.obtenerConexionBaseDatos();
+            PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
             ResultSet resultadoConsulta = consultaParametrizada.executeQuery();
-            List<Hardware> listaHardware = new ArrayList<>();
-            
             while(resultadoConsulta.next()) {
                 String noInventarioUv = resultadoConsulta.getString("noInventarioUv");
                 String marca = resultadoConsulta.getString("marca");
@@ -91,28 +91,28 @@ public class HardwareDao implements InterfaceHardwareDao {
                 String tipoDispositivo = resultadoConsulta.getString("tipoDispositivo");
                 Date fechaAdquirido = resultadoConsulta.getDate("fechaAdquisicion");
                 String ubicacion = resultadoConsulta.getString("ubicacion");
-                
-                
+
                 listaHardware.add(new Hardware(noInventarioUv, marca, modelo, numeroSerie, 
-                        estado, tipoDispositivo, fechaAdquirido, ubicacion));
-                
+                        estado, tipoDispositivo, fechaAdquirido, ubicacion));                
             }
-            return listaHardware;
         } catch (SQLException ex) {
             Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             AccesoDataBase.cerrarConexion();
         }
-        return null;
+        return listaHardware;
     }
 
     @Override
     public Hardware buscarHardware(String noInventarioUv) {
         consulta = "select * from hardware where no.InventarioUv = ? ";
         try{
-            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
+            conection = AccesoDataBase.obtenerConexionBaseDatos();
+            PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
+            consultaParametrizada.setString(1, noInventarioUv);
             ResultSet resultadoConsulta = consultaParametrizada.executeQuery();
             resultadoConsulta.next();
+            String numInventario = resultadoConsulta.getString("num Inventario");
             String marca = resultadoConsulta.getString("marca");
             String modelo = resultadoConsulta.getString("modelo");
             int numeroSerie = resultadoConsulta.getInt("numeroSerie");
@@ -120,6 +120,7 @@ public class HardwareDao implements InterfaceHardwareDao {
             String tipoDispositivo = resultadoConsulta.getString("tipoDispositivo");
             Date fechaAdquirido = resultadoConsulta.getDate("fechaAdquisicion");
             String ubicacion = resultadoConsulta.getString("ubicacion");
+            
             Hardware hardware = new Hardware(noInventarioUv, marca, modelo, numeroSerie,
             estado, tipoDispositivo, fechaAdquirido, ubicacion);
             return hardware;

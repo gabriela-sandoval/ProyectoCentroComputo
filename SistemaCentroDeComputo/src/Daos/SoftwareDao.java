@@ -8,6 +8,7 @@ package Daos;
 import CentroComputo.Licencia;
 import CentroComputo.Software;
 import ccExcepciones.NoExisteRegistroException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,8 +44,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setBoolean(10, software.isDisponible());
             consultaParametrizada.setString(11, software.getSistemaOperativo());
             consultaParametrizada.setString(12, software.getIdioma());
-            consultaParametrizada.executeUpdate(); 
-            
+            consultaParametrizada.executeUpdate();             
         } catch (SQLException ex) {
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -94,29 +94,30 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     @Override
     public List<Software> obtenerListaSoftware() {
         consulta = "select * from Software";
-        List<Software>listaSoftware = new ArrayList <>();
+        List<Software> listaSoftware = new ArrayList <>();
         
         try{
-            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
+            Connection conection  = AccesoDataBase.obtenerConexionBaseDatos();
+            PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
             ResultSet resultado = consultaParametrizada.executeQuery();
             while (resultado.next()){
                 Software software = new Software();
-                software.setNombre(resultado.getString("nombre"));
-                software.setIdSoftware(resultado.getString("clave"));
+                software.setNombre(resultado.getString("nombreSoftware"));
+                software.setIdSoftware(resultado.getString("idSoftware"));
                 software.setMarca(resultado.getString("marca"));
                 software.setVersion(resultado.getDouble("version"));
                 software.setOrigen(resultado.getString("origen"));
-                software.setTipoSoftware(resultado.getString("tipo Software"));
-                software.setFechaAdquisicion(resultado.getDate("fecha adquisicion"));
+                software.setTipoSoftware(resultado.getString("tipoSoftware"));
+                software.setFechaAdquisicion(resultado.getDate("fechaAdquisicion"));
                 software.setIdioma(resultado.getString("idioma"));
                 software.setSistemaOperativo(resultado.getString("sistemaOperativo"));
-                software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
-                software.setObservaciones(resultado.getString("observaciones"));
+                software.setRequiereActualizacion(resultado.getBoolean("requiereActualizacion"));
+                software.setObservaciones(resultado.getString("Observaciones"));
                 software.setDisponible(resultado.getBoolean("disponible"));
                 listaSoftware.add(software);                
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         }finally {
             AccesoDataBase.cerrarConexion();
         }
@@ -132,21 +133,21 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setString(1, idSoftware);
             ResultSet resultado = consultaParametrizada.executeQuery();
             resultado.next();
-                software.setNombre(resultado.getString("nombre"));
-                software.setIdSoftware(resultado.getString("clave"));
+                software.setNombre(resultado.getString("nombreSoftware"));
+                software.setIdSoftware(resultado.getString("idSoftware"));
                 software.setMarca(resultado.getString("marca"));
                 software.setVersion(resultado.getDouble("version"));
                 software.setOrigen(resultado.getString("origen"));
-                software.setTipoSoftware(resultado.getString("tipo Software"));
-                software.setFechaAdquisicion(resultado.getDate("fecha adquisicion"));
+                software.setTipoSoftware(resultado.getString("tipoSoftware"));
+                software.setFechaAdquisicion(resultado.getDate("fechaAdquisicion"));
                 software.setIdioma(resultado.getString("idioma"));
                 software.setSistemaOperativo(resultado.getString("sistemaOperativo"));
-                software.setRequiereActualizacion(resultado.getBoolean("actualizacion"));
-                software.setObservaciones(resultado.getString("observaciones"));
+                software.setRequiereActualizacion(resultado.getBoolean("requiereActualizacion"));
+                software.setObservaciones(resultado.getString("Observaciones"));
                 software.setDisponible(resultado.getBoolean("disponible"));
             
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);            
+            ex.printStackTrace();
         }finally{
             AccesoDataBase.cerrarConexion();
         }
@@ -158,11 +159,11 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         consulta= "update software set disponible=false where idSoftware= ?";
         try{
             PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
-            consultaParametrizada.setBoolean(10, software.isDisponible()==false);
+            consultaParametrizada.setString(1, software.getIdSoftware());
             consultaParametrizada.executeUpdate();
             
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }finally{
             AccesoDataBase.cerrarConexion();
         }

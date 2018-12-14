@@ -48,7 +48,7 @@ public class TestSoftwareDao {
         softwarePrueba.setIdioma("español");
         
         SoftwareDao softwareDaoPrueba = new SoftwareDao();
-        boolean esperado = true;
+        boolean esperado = false;
         try{
             esperado = softwareDaoPrueba.agregarSoftware(softwarePrueba);          
         }catch(Exception e){
@@ -60,12 +60,10 @@ public class TestSoftwareDao {
     @Test
     public void testActualizarSoftwareCorrectamente(){
         Connection conexion;     
-        try{
+    
             conexion = AccesoDataBase.obtenerConexionBaseDatos();
-            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
-        }catch(ErrorOperacionDB e){
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
-        }
+              
+     
         
         Software softwarePrueba = new Software();
                 
@@ -96,25 +94,22 @@ public class TestSoftwareDao {
     public void testObtenerListaSoftware(){
         SoftwareDao softDao = new SoftwareDao();
         final int ELEMENTO_DELA_LISTA = 0;
-        final String IDSOFTWARE_ESPERADO = "S003";
-        final String NOMBRE_ESPERADO = "Excel";
-        final String ORIGEN_ESPERADO = "donado";
-        final String OBSERVACIONES_ESPERADAS= "no tiene fallas de ningun tipo";
-        final Date FECHAADQUISICION_ESPERADA = Date.valueOf("2018-02-03");
+        final String IDSOFTWARE_ESPERADO = "S001";
+        final String NOMBRE_ESPERADO = "sait";
+        final String ORIGEN_ESPERADO = "comprado";
+        final String OBSERVACIONES_ESPERADAS= "sin fallas bla bla bla";
+        final Date FECHAADQUISICION_ESPERADA = Date.valueOf("2018-02-02");
         final String TIPOSOFTWARE_ESPERADO = "administrativo";
-        final String MARCA_ESPERADA = "office";
+        final String MARCA_ESPERADA = "Sait";
         final boolean REQUIEREACTUALIZACION_ESPERADA= true;
-        final double VERSION_ESPERADA = 3.3;
-        final boolean DISPONIBLE_ESPERADO= true;
-        final String SISTEMAOPERATIVO_ESPERADO = "Windows";
+        final double VERSION_ESPERADA = 1.7;
+        final boolean DISPONIBLE_ESPERADO= false;
+        final String SISTEMAOPERATIVO_ESPERADO = "windows";
         final String IDIOMA_ESPERADO = "español";
         List<Software> listaSoftware = new ArrayList();
-        try{
-            listaSoftware = softDao.obtenerListaSoftware();
-            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");
-        }catch(ErrorOperacionDB e) {
-            e.printStackTrace();
-        }
+        listaSoftware = softDao.obtenerListaSoftware();
+            
+        
         
         final String IDSOFTWARE_OBTENIDO = listaSoftware.get(ELEMENTO_DELA_LISTA).getIdSoftware();
         final String NOMBRE_OBTENIDO = listaSoftware.get(ELEMENTO_DELA_LISTA).getNombre();
@@ -147,27 +142,26 @@ public class TestSoftwareDao {
     public void testBuscarSoftware() {
         SoftwareDao softwareDao = new SoftwareDao();
         
-        final String IDSOFTWARE_ESPERADO = "S003";
-        final String NOMBRE_ESPERADO = "Excel";
-        final String ORIGEN_ESPERADO = "donado";
-        final String OBSERVACIONES_ESPERADAS= "no tiene fallas de ningun tipo";
-        final Date FECHAADQUISICION_ESPERADA = Date.valueOf("2018-02-03");
+        final int ELEMENTO_DELA_LISTA = 0;
+        final String IDSOFTWARE_ESPERADO = "S001";
+        final String NOMBRE_ESPERADO = "sait";
+        final String ORIGEN_ESPERADO = "comprado";
+        final String OBSERVACIONES_ESPERADAS= "sin fallas bla bla bla";
+        final Date FECHAADQUISICION_ESPERADA = Date.valueOf("2018-02-02");
         final String TIPOSOFTWARE_ESPERADO = "administrativo";
-        final String MARCA_ESPERADA = "office";
+        final String MARCA_ESPERADA = "Sait";
         final boolean REQUIEREACTUALIZACION_ESPERADA= true;
-        final double VERSION_ESPERADA = 3.3;
-        final boolean DISPONIBLE_ESPERADO= true;
-        final String SISTEMAOPERATIVO_ESPERADO = "Windows";
+        final double VERSION_ESPERADA = 1.7;
+        final boolean DISPONIBLE_ESPERADO= false;
+        final String SISTEMAOPERATIVO_ESPERADO = "windows";
         final String IDIOMA_ESPERADO = "español";
+        List<Software> listaSoftware = new ArrayList();
+        listaSoftware = softwareDao.obtenerListaSoftware();
                
         Software software = new Software();
-        try{
-        software = softwareDao.buscarSoftware(IDSOFTWARE_ESPERADO);
-        throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");
-        } catch(ErrorOperacionDB e) {
-            e.printStackTrace();
-        }
         
+        software = softwareDao.buscarSoftware(IDSOFTWARE_ESPERADO);
+    
         final String IDSOFTWARE_OBTENIDO = software.getIdSoftware();
         final String NOMBRE_OBTENIDO = software.getNombre();
         final String ORIGEN_OBTENIDO = software.getOrigen();
@@ -199,6 +193,7 @@ public class TestSoftwareDao {
     public void testEliminarSoftwareCorrectamente(){
         Software software = new Software();
         software.setDisponible(false);
+        software.setIdSoftware("S001");
         boolean esperado = true;
         SoftwareDao softwareDao = new SoftwareDao();
         esperado = softwareDao.eliminarSoftware(software);
