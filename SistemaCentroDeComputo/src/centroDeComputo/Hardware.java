@@ -20,10 +20,10 @@ public class Hardware {
 	private String estado;
 	private String tipoDispositivo;
 	private Date fechaAdquisicion;
-	private String ubicacion;
+	
 
         
-    public Hardware(String noInventarioUv, String marca, String modelo, int numeroSerie, String estado, String tipoDispositivo, Date fechaAdquisicion, String ubicacion) {
+    public Hardware(String noInventarioUv, String marca, String modelo, int numeroSerie, String estado, String tipoDispositivo, Date fechaAdquisicion) {
         this.noInventarioUv = noInventarioUv;
         this.marca = marca;
         this.modelo = modelo;
@@ -31,42 +31,62 @@ public class Hardware {
         this.estado = estado;
         this.tipoDispositivo = tipoDispositivo;
         this.fechaAdquisicion = fechaAdquisicion;
-        this.ubicacion = ubicacion;
+        
     }
     
     public Hardware(){
         
     }
-			
-	public String getNoInventarioUv() {
+    public String getNoInventarioUv() {
 		return noInventarioUv;
 	}
-	public int getNumeroSerie() {
+    public int getNumeroSerie() {
 		return numeroSerie;
 	}
-	public String getModelo() {
+    public String getModelo() {
 		return modelo;
 	}
-	public String getMarca() {
+    public String getMarca() {
 		return marca;
 	}
-	public String getTipoDispositivo() {
+    public String getTipoDispositivo() {
 		return tipoDispositivo;
 	}
-	public String getEstado() {
+    public String getEstado() {
 		return estado;
 	}
-        public void setEstado(String estado) {
+    public void setEstado(String estado) {
             this.estado = estado;
         }
-	public String getUbicacion() {
-		return ubicacion;
-	}
-	public Date getFechaAdquisicion() {
+    public Date getFechaAdquisicion() {
 		return fechaAdquisicion;
 	}
-        
-        public boolean CambiarEstado(String estadoNuevo) {
+
+    public void setNoInventarioUv(String noInventarioUv) {
+        this.noInventarioUv = noInventarioUv;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setNumeroSerie(int numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+
+    public void setTipoDispositivo(String tipoDispositivo) {
+        this.tipoDispositivo = tipoDispositivo;
+    }
+
+    public void setFechaAdquisicion(Date fechaAdquisicion) {
+        this.fechaAdquisicion = fechaAdquisicion;
+    }
+    
+    public boolean CambiarEstado(String estadoNuevo) {
             boolean resultado = false;
             switch(estado){
                 case DISPONIBLE:

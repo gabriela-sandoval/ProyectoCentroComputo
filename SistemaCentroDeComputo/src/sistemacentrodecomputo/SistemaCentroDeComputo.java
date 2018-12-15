@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+
 /**
  * Clase principal de.
  * 
@@ -17,20 +18,19 @@ import javafx.stage.Stage;
  * @since 2018-12-08
  */
 public class SistemaCentroDeComputo extends Application {
-
+   
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource(
-        "/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml"));
-
-    Scene scene = new Scene(root);
-
-    primaryStage.setScene(scene);
-    Image icono = new Image("/iconos/logo cc.png");
-    primaryStage.getIcons().add(icono);
-    primaryStage.setResizable(false);
-    primaryStage.show();
+      Parent root = FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml"));
+      Scene scene = new Scene(root);
+      Image imagen = new Image("/iconos/logo cc.png");
+      primaryStage.setScene(scene);
+      primaryStage.getIcons().add(imagen);
+      primaryStage.setResizable(false);
+      primaryStage.show();
   }
+       
+  
 
   /**
    * Clase main SistemaCentroDeComputo.

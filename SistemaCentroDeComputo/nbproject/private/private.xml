@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestHardwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestSoftwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/AccesoDataBase.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/SoftwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/HardwareDao.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarSoftwareController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/sistemacentrodecomputo/SistemaCentroDeComputo.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlVentanaJefeCentroDeComputoController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarHardwareController.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestHardwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/test/TestDaos/TestSoftwareDao.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/AccesoDataBase.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/centroDeComputo/Hardware.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/SoftwareDao.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/HardwareDao.java</file>
         </group>

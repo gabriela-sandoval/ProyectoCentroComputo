@@ -31,7 +31,8 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     public boolean agregarSoftware(Software software) {       
         consulta= "insert into software values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
-            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
+            Connection connection = AccesoDataBase.obtenerConexionBaseDatos();
+            PreparedStatement consultaParametrizada = connection.prepareStatement(consulta);
             consultaParametrizada.setString(1, software.getIdSoftware());
             consultaParametrizada.setString(2, software.getNombre());            
             consultaParametrizada.setString(3, software.getOrigen());
@@ -46,7 +47,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             consultaParametrizada.setString(12, software.getIdioma());
             consultaParametrizada.executeUpdate();             
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         } finally {
            AccesoDataBase.cerrarConexion();
         }

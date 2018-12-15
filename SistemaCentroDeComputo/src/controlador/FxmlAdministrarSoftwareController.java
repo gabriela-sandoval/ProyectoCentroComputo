@@ -67,9 +67,9 @@ public class FxmlAdministrarSoftwareController {
     colocarIconoBotones();
   }
 
-  private FxmlAdministrarSoftwareController() {
+  //private FxmlAdministrarSoftwareController() {
 
-  }
+ // }
 
   private void colocarIconoBotones() {
     java.net.URL linkBuscar = getClass().getResource("/iconos/buscar.png");

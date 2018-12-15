@@ -73,7 +73,7 @@ public class TestSoftwareDao {
         softwarePrueba.setFechaAdquisicion(Date.valueOf("2018-02-08"));
         softwarePrueba.setTipoSoftware("administrativo");
         softwarePrueba.setMarca("office");
-        softwarePrueba.setRequiereActualizacion(false);
+        softwarePrueba.setRequiereActualizacion(true);
         softwarePrueba.setVersion(7.0);
         softwarePrueba.setDisponible(true);
         softwarePrueba.setSistemaOperativo("windows");
