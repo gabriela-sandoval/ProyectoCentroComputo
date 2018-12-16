@@ -3,6 +3,7 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -10,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javax.swing.Icon;
 
-public class FxmlAdministrarHardwareController {
+public class FxmlAdministrarHardwareController implements Initializable{
 
     @FXML
     private ImageView imageViewLogo;
@@ -18,42 +19,7 @@ public class FxmlAdministrarHardwareController {
     @FXML
     private Text textAdministrarHardware;
 
-    @FXML
-    private TableView<?> tableViewAdministrarHardware;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnNoInventario;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnMarca;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnModelo;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnNoSerie;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnResponsable;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnUbicacion;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnTipo;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnGarantia;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnEstado;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnFecha;
-
-    @FXML
-    private TableColumn<?, ?> tableColumnPartes;
-
+    
     @FXML
     private Text textJefeDelCentroDeComputo;
 

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
@@ -13,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javax.print.DocFlavor.URL;
 
-public class FxmlAdministrarSoftwareController {
+public class FxmlAdministrarSoftwareController implements Initializable {
 
   @FXML
   private ImageView imageViewLogo;
@@ -26,6 +27,8 @@ public class FxmlAdministrarSoftwareController {
 
   @FXML
   private TextField textFieldNombreDeUsuario;
+  @FXML
+  private TextField textFieldBuscar;
 
   @FXML
   private Text textRegresar;
@@ -63,13 +66,11 @@ public class FxmlAdministrarSoftwareController {
   @FXML
   private Button buttonRegresar;
 
-  public void inicialize(URL url, ResourceBundle rb) {
-    colocarIconoBotones();
-  }
+  //public void inicialize(URL url, ResourceBundle rb) {
+    //colocarIconoBotones();
+  //}
 
-  //private FxmlAdministrarSoftwareController() {
-
- // }
+ 
 
   private void colocarIconoBotones() {
     java.net.URL linkBuscar = getClass().getResource("/iconos/buscar.png");
@@ -92,6 +93,16 @@ public class FxmlAdministrarSoftwareController {
     buttonEditar.setGraphic(new ImageView(imagenEditar));
     buttonVer.setGraphic(new ImageView(imagenVer));
     buttonDeshabilitar.setGraphic(new ImageView(imagenDeshabilitar));
+    
 
   }
+
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        colocarIconoBotones();
+    }
 }
+
+/**
+ * SimpleIntegerProperty edad = new SimpleIntegerProperty(persona.getEdad());
+ */

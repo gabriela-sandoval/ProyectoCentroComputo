@@ -3,13 +3,14 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-public class FxmlSistemaCentroDeComputoController {
+public class FxmlSistemaCentroDeComputoController implements Initializable {
 
   @FXML
   private Button buttonIngresar;

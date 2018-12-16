@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -57,38 +58,38 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
             Stage stage = (Stage) buttonSalir.getScene().getWindow();
             stage.close();
         });
-        //buttonAdministrarSoftware.setDisable(false);
-/**        
-        buttonAdministrarSoftware.setOnMouseClicked((event)-> {               
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/interfazGrafica/FxmlAdministrarSoftware.fxml"));
-                 Stage stage = new Stage();
-                 Scene scene = new Scene(fxmlLoader.load());
-                 Image imagen = new Image("/iconos/logo cc.png");
-                 stage.setScene(scene);
-                 stage.getIcons().add(imagen);
-                 stage.setResizable(false);
-                 stage.show();
-                 
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                
-                } catch(IOException ex) {
-                ex.printStackTrace();
-                }          
-                     
-        });
-**/        
-        buttonAdministrarHardware.setOnMouseClicked((event) -> {
+        
+      
+        buttonAdministrarSoftware.setOnAction((event)-> {
+            Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
+            Parent root = null;
+            try{
+                root = FXMLLoader.load(getClass().getResource(
+                        "/interfazGrafica/FxmlAdministrarSoftware.fxml"));
+            
+                } catch (IOException e){
+            e.printStackTrace();
+          }
+            Scene scene = new Scene(root);
+            Stage appStage = new Stage();
+            appStage.setScene(scene);
+            Image imagen = new Image("/iconos/logo cc.png");
+            appStage.getIcons().add(imagen);
+            appStage.toFront();
+            appStage.show();
+       });
+     
+    
+        buttonAdministrarHardware.setOnAction((event) -> {
             Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource(
-                        "/FxmlSistemaCentroDeComputo.fxml"));
+                        "/interfazGrafica/FxmlAdministrarHardware.fxml"));
             } catch (IOException ex) {
-                Logger.getLogger(FxmlVentanaJefeCentroDeComputoController.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
-
+           
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
@@ -97,28 +98,82 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
             primaryStage.setResizable(false);
             primaryStage.show();
         });
+        
+      
+        
+        /*
+         buttonAdministrarSoftware.setOnAction((event) -> {
+            Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource(
+                        "/interfazGrafica/FxmlAdministrarSoftware.fxml"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+           
+            Scene scene = new Scene(root);
+
+            primaryStage.setScene(scene);
+            Image icono = new Image("/iconos/logo cc.png");
+            primaryStage.getIcons().add(icono);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        });
+    
+    */
+   //buttonAdministrarSoftware.setOnAction(this :: abrirVentanaAdministrarSoftware);
     }
     
+   /** 
     @FXML 
-    private void abrirAdministrarSoftware(ActionEvent event) {
-        buttonAdministrarSoftware.setDisable(true);
-        try{
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            Parent root;
-            root = (Parent) FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlAdministrarSoftware.fxml"));
-            Scene scene = new Scene(root);
-            Stage appStage = new Stage();
-            appStage.setScene(scene);
-            appStage.setTitle("admin software");
-            Image imagen = new Image("/iconos/logo cc.png");
-            appStage.getIcons().add(imagen);
-            appStage.toFront();
-            appStage.show();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+    private void abrirVentanaAdministrarSoftware(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setController(new FxmlAdministrarSoftwareController());
+        loader.setLocation(getClass().getResource("/interfazGrafica/FxmlAdministrarSoftware.fxml"));
+      
+            try {
+                Parent root =loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                Image icono = new Image("/iconos/logo cc.png");
+                stage.getIcons().add(icono);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+           
+          
+
+        
         
     }
+    
+    
+            
+    @FXML
+    private void abrirVentanaAdministrarHardware(ActionEvent event) {
+        Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource(
+                        "/interfazGrafica/FxmlAdministrarHardware.fxml"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+           
+            Scene scene = new Scene(root);
+
+            primaryStage.setScene(scene);
+            Image icono = new Image("/iconos/logo cc.png");
+            primaryStage.getIcons().add(icono);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+            * */
+        
+    
+   
     
 }
     

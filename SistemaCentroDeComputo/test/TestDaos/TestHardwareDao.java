@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Assert;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -29,55 +30,46 @@ public class TestHardwareDao {
         Connection connection;       
         try{
             connection= AccesoDataBase.obtenerConexionBaseDatos();      
-        throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
-        }catch(ErrorOperacionDB e){
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
-        }
-        String noInventario = "UV003";
-        String marca = "dell";
-        String modelo = "lv";
-        int numSerie = 12346;
-        String estado = "Disponible";
-        String tipoDispositivo = "laptop";
-        Date fechaAdquirido = Date.valueOf("2012-02-03");
-        String ubicacion = "centrodeComputo";
         
-        Hardware hardware = new Hardware( noInventario, marca, modelo, numSerie, 
-                estado, tipoDispositivo, fechaAdquirido, ubicacion);
-        
-        HardwareDao hardwareDao = new HardwareDao();        
-        boolean esperado = true;    
-        try{
-            esperado = hardwareDao.agregarHardware(hardware);    
         }catch(NullPointerException e){
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
         }
+        Hardware hardware = new Hardware();
+        hardware.setNoInventarioUv("H001");
+        hardware.setMarca("Dell");
+        hardware.setModelo("mini-lp");
+        hardware.setEstado("disponible");
+        hardware.setTipoDispositivo("laptop");
+        hardware.setFechaAdquisicion(Date.valueOf("2017-01-02"));
+        hardware.setNumeroSerie(12345);
+
+        HardwareDao hardwareDao = new HardwareDao();        
+        boolean esperado = false;    
+        try{
+            esperado = hardwareDao.agregarHardware(hardware);    
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
         
-        Assert.assertTrue("Prueba agregar Hardware", esperado);
+        assertTrue("Prueba agregar Hardware", esperado);
         
     }
     
     @Test
     public void testActualizarHardwareCorrectamente(){
         Connection conexion;      
-        try{
-             conexion = AccesoDataBase.obtenerConexionBaseDatos();
-            throw new ErrorOperacionDB("sucedió algo inoportuno en la operacion con la DB");        
-        }catch(ErrorOperacionDB e){
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
-        }
+        conexion = AccesoDataBase.obtenerConexionBaseDatos();
+           
+        Hardware hardware = new Hardware();
+        hardware.setNoInventarioUv("H001");
+        hardware.setMarca("Dell");
+        hardware.setModelo("mini-lp");
+        hardware.setEstado("disponible");
+        hardware.setTipoDispositivo("laptop");
+        hardware.setFechaAdquisicion(Date.valueOf("2017-01-02"));
+        hardware.setNumeroSerie(12345);
         
-        String noInventario = "UV010";
-        String marca = "edicion";
-        String modelo = "edicion";
-        int numSerie = 12341;
-        String estado = "edicion";
-        String tipoDispositivo = "edicion";
-        Date fechaAdquirido = Date.valueOf("2012-02-03");
-        String ubicacion = "cc1";
         
-        Hardware hardware = new Hardware (noInventario, marca, modelo, numSerie,
-        estado, tipoDispositivo, fechaAdquirido, ubicacion);
         HardwareDao hardwareDao = new HardwareDao();
         boolean esperado = true; 
         try{
