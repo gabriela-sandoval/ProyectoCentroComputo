@@ -5,22 +5,16 @@
         <group>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarSoftwareController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlAdministrarHardware.fxml</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlSistemaCentroDeComputo.fxml</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlSistemaCentroDeComputoController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarUsuariosController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlAdministrarSoftware.fxml</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAgregarSoftwareController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlVentanaJefeCentroDeComputoController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarHardwareController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarSoftwareController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlAdministrarHardware.fxml</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/sistemacentrodecomputo/SistemaCentroDeComputo.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/interfazGrafica/FxmlAdministrarSoftware.fxml</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlVentanaJefeCentroDeComputoController.java</file>
             <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarHardwareController.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlAdministrarSoftwareController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/controlador/FxmlModificarSoftwareController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/Daos/SoftwareDao.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/ProyectoCentroComputo/SistemaCentroDeComputo/src/centroDeComputo/Software.java</file>
         </group>
     </open-files>
 </project-private>

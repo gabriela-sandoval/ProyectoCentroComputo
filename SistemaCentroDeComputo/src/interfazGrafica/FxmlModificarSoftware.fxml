@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -55,16 +54,6 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <RadioButton fx:id="radioButtonSi" layoutX="155.0" layoutY="429.0" mnemonicParsing="false" text="Si" textFill="#18529d">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="radioButtonNo" layoutX="239.0" layoutY="429.0" mnemonicParsing="false" text="No" textFill="#18529d">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </RadioButton>
       <Text fill="#18529d" layoutX="38.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -111,15 +100,17 @@
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font>
       </Text>
-      <RadioButton fx:id="siActualizacion" layoutX="449.0" layoutY="334.0" mnemonicParsing="false" text="Si" textFill="#18529d">
+      <TextField fx:id="textFieldActualizacion" layoutX="457.0" layoutY="333.0" prefHeight="25.0" prefWidth="120.0" />
+      <TextField fx:id="textFieldDisponible" layoutX="148.0" layoutY="428.0" prefHeight="25.0" prefWidth="120.0" />
+      <Text fill="#79828d" layoutX="343.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
-      </RadioButton>
-      <RadioButton fx:id="radioButtonNo1" layoutX="517.0" layoutY="334.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="49.0" text="No" textFill="#18529d">
+      </Text>
+      <Text fill="#79828d" layoutX="50.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
-      </RadioButton>
+      </Text>
    </children>
 </AnchorPane>
