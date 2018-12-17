@@ -3,6 +3,8 @@ package centroDeComputo;
 import java.util.Date;
 
 /**
+ * clase del dictamen o reporte de mantenimiento
+ * 
  * @author Irasema Caicero
  * @since 19/11/18
  * @version 1.0

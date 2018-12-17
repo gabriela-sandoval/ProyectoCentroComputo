@@ -36,21 +36,10 @@ import javafx.stage.Stage;
  * 
  * @author Irasema
  */
-public class FxmlAdministrarSoftwareController implements Initializable {
+public class FxmlAdministrarSoftwareController implements Initializable  {
   
   @FXML
-  private ImageView imageViewLogo;
-  
-  @FXML
-  private Text textAdministrarSoftware;
-  @FXML
-  private Text textJefeDelCentroDeComputo;
-  @FXML
-  private Text textRegresar;
-  
-  @FXML
-  private TextField textFieldBuscar;
-   
+  private ImageView imageViewLogo; 
   //Tabla
   @FXML
   private TableView<Software> tabladeSoftware;
@@ -92,9 +81,14 @@ public class FxmlAdministrarSoftwareController implements Initializable {
   private Button buttonDeshabilitar;
   @FXML
   private Button buttonRegresar;
+  
+  FxmlAdministrarSoftwareController controlAdminSoftware;
 
     @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {      
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        
+        controlAdminSoftware = this;
+        
         buttonActualizar.setOnAction((ActionEvent event) -> {
             this.inicializarTabla();
         });
@@ -106,24 +100,26 @@ public class FxmlAdministrarSoftwareController implements Initializable {
         seleccion.addListener(selector);
         
         buttonEditar.setOnAction((event) -> {
-            Stage primaryStage = (Stage) buttonEditar.getScene().getWindow();
-            //Software aux = new Software();
-            //aux = seleccion.get(posicionSoftware);
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            AnchorPane root= null;
             try {
-                root = (AnchorPane) loader.load(getClass().getResource(
-                        "/interfazGrafica/FxmlModificarSoftware.fxml").openStream());
+                Stage primaryStage = (Stage) buttonEditar.getScene().getWindow();
+                Software aux = new Software();
+                aux = seleccion.get(0);
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+               // AnchorPane root= null;
+                loader.setLocation(getClass().getResource(
+                        "/interfazGrafica/FxmlModificarSoftware.fxml"));
+                Parent root = loader.load();
+                FxmlModificarSoftwareController controlModifSoftware = loader.<FxmlModificarSoftwareController>getController();
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.toFront();
+                stage.show(); 
+                controlModifSoftware.traerSoftware(aux);
             } catch (IOException ex) {
-                Logger.getLogger(FxmlAdministrarSoftwareController.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
-            
-            Scene scene = new Scene(root); 
-            stage.setScene(scene);
-            //stage.setUserData(aux);
-            stage.toFront();
-            stage.show();       
         });
         
         buttonDeshabilitar.setOnAction(new EventHandler() {
@@ -134,16 +130,6 @@ public class FxmlAdministrarSoftwareController implements Initializable {
                 
                 String idSoftware= software.getIdSoftware();
                 String nombreSoftware = software.getNombre();
-                String origen= software.getOrigen();
-                String observaciones= software.getObservaciones();
-                Date fechaAdquisicion = software.getFechaAdquisicion();
-                String tipoSoftware = software.getTipoSoftware();
-                String marca = software.getMarca();
-                Boolean requiereActualizacion = software.isRequiereActualizacion();
-                Double version = software.getVersion();
-                Boolean disponible= software.isDisponible();
-                String sistemaOperativo = software.getSistemaOperativo();
-                String idioma = software.getIdioma();
                 
                 Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -162,13 +148,11 @@ public class FxmlAdministrarSoftwareController implements Initializable {
           if (eleccion.get() == btEliminar) {
               SoftwareDao softwaredao = new SoftwareDao();
               softwaredao.eliminarSoftware(software);
-              tabladeSoftware.getColumns().clear(); 
+              tabladeSoftware.refresh(); 
           }
         }    
         });
-        
-        
-        
+
         buttonAgregar.setOnAction((event)-> {
         Stage primaryStage = (Stage) buttonAgregar.getScene().getWindow();
         Parent root = null;
@@ -244,42 +228,5 @@ public class FxmlAdministrarSoftwareController implements Initializable {
     }
     
     
-    
-    /**
-    public void llenarTabladeSoftware() {
-        //muestra la tabla
-        tabladeSoftware.refresh();
-        List inventarioSoftware;
-        SoftwareDao softwareDao = new SoftwareDao();
-        inventarioSoftware = softwareDao.obtenerListaSoftware();
-        ObservableList<Software> softwares = FXCollections.observableArrayList(
-                inventarioSoftware);
-        tableColumnIdSoftware.setCellFactory(new PropertyValueFactory<>("idSoftware"));
-        tableColumnNombreDeSoftware.setCellFactory(new PropertyValueFactory<>("nombre"));
-        tableColumnOrigen.setCellFactory(new PropertyValueFactory<>("origen"));
-        tableColumnObservaciones.setCellFactory(new PropertyValueFactory<>("observaciones"));
-        tableColumnFecha.setCellFactory(new PropertyValueFactory<>("fechaAdquisicion"));
-        tableColumnTipo.setCellFactory(new PropertyValueFactory<>("tipoSoftware"));
-        tableColumnMarca.setCellFactory(new PropertyValueFactory<>("marca"));
-        tableColumnActualizacion.setCellFactory(new PropertyValueFactory<>("requiereActualizacion"));
-        tableColumnVersion.setCellFactory(new PropertyValueFactory<>("version"));
-        tableColumnDisponibilidad.setCellFactory(new PropertyValueFactory<>("disponible"));
-        tableColumnSO.setCellFactory(new PropertyValueFactory<>("sistemaOperativo"));
-        tableColumnIdioma.setCellFactory(new PropertyValueFactory<>("idioma"));
-        
-        tabladeSoftware.setVisible(true);
-        
-        tabladeSoftware.getColumns().addAll(tableColumnIdSoftware, tableColumnNombreDeSoftware, 
-                tableColumnOrigen, tableColumnObservaciones, tableColumnFecha, tableColumnTipo,
-                tableColumnMarca, tableColumnActualizacion, tableColumnVersion, tableColumnDisponibilidad,
-                tableColumnSO, tableColumnIdioma);
-        tabladeSoftware.setItems(softwares);                   
-    }
-*/
-
-    
-}
-
-/**
- * SimpleIntegerProperty edad = new SimpleIntegerProperty(persona.getEdad());
- */
+} 
+   

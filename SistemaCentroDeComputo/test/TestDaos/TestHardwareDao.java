@@ -12,12 +12,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- *
+ * clase de prueba de metodos de hardware publicos
  * @author Irasema Caicero
+ * @since 17/12/18
+ * @version 1.0
  */
 public class TestHardwareDao {
     
@@ -25,9 +28,12 @@ public class TestHardwareDao {
         
     }
     
+    /**
+     * prueba insertar un hardware con todos sus parametros
+     */
     @Test
     public void testAgregarHardwareCompleto(){
-        Connection connection;       
+        Connection connection= null;       
         try{
             connection= AccesoDataBase.obtenerConexionBaseDatos();      
         
@@ -50,137 +56,119 @@ public class TestHardwareDao {
         }catch(NullPointerException e){
             e.printStackTrace();
         }
-        
         assertTrue("Prueba agregar Hardware", esperado);
         
     }
     
+    /**
+     * prueba actualizar un hardware
+     */
     @Test
     public void testActualizarHardwareCorrectamente(){
         Connection conexion;      
         conexion = AccesoDataBase.obtenerConexionBaseDatos();
-           
         Hardware hardware = new Hardware();
+        
         hardware.setNoInventarioUv("H001");
         hardware.setMarca("Dell");
         hardware.setModelo("mini-lp");
-        hardware.setEstado("disponible");
+        hardware.setEstado("prestado");
         hardware.setTipoDispositivo("laptop");
         hardware.setFechaAdquisicion(Date.valueOf("2017-01-02"));
         hardware.setNumeroSerie(12345);
         
-        
         HardwareDao hardwareDao = new HardwareDao();
         boolean esperado = true; 
         try{
-        esperado = hardwareDao.actualizarHardware(hardware);
+             esperado = hardwareDao.actualizarHardware(hardware);
         } catch(Exception e) {
             e.printStackTrace();
         }
         Assert.assertTrue("actualizacion del hardware", esperado);        
     }
     
+    /**
+     * obtiene la lista disponible
+     */
     @Test
     public void testObtenerListaHardware(){
         HardwareDao hardwDao = new HardwareDao();
+        
         final int NUMERODELALISTA_ESPERADO = 0;
-        final String NOINVENTARIO_ESPERADO = "UV001";
-        final String MARCA_ESPERADA = "dell";
-        String MODELO_ESPERADO = "inspiration 2322";
+        final String NOINVENTARIO_ESPERADO = "H001";
+        final String MARCA_ESPERADA = "Dell";
+        final String MODELO_ESPERADO = "mini-lp";
         int NUMSERIE_ESPERADO = 12345;
-        String ESTADO_ESPERADO = "Disponible";
-        String TIPODISPOSITIVO_ESPERADO = "laptop";
-        Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2018-02-02");
-        String UBICACION_ESPERADA = "centro de computo";
+        final String ESTADO_ESPERADO = "disponible";
+        final String TIPODISPOSITIVO_ESPERADO = "laptop";
+        final Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2017-01-02");
         
         List <Hardware> listaHardware = new ArrayList();
-        try{
-            listaHardware = hardwDao.obtenerListaHardware();
-            
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
-           
+        listaHardware = hardwDao.obtenerListaHardware();  
+        
         final String NOINVENTARIO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getNoInventarioUv();
         final String MARCA_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getMarca();
-        String MODELO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getModelo();
+        final String MODELO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getModelo();
         int NUMSERIE_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getNumeroSerie();
-        String ESTADO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getEstado();
-        String TIPODISPOSITIVO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getTipoDispositivo();
-        Date FECHAADQUIRIDO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getFechaAdquisicion();
-        String UBICACION_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getUbicacion();
+        final String ESTADO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getEstado();
+        final String TIPODISPOSITIVO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getTipoDispositivo();
+        final Date FECHAADQUIRIDO_OBTENIDO = listaHardware.get(NUMERODELALISTA_ESPERADO).getFechaAdquisicion();
         
-        Assert.assertEquals(NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);
-        Assert.assertEquals(MARCA_ESPERADA, MARCA_OBTENIDO);
-        Assert.assertEquals(MODELO_ESPERADO, MODELO_OBTENIDO);
-        Assert.assertEquals(NUMSERIE_ESPERADO, NUMSERIE_OBTENIDO);
-        Assert.assertEquals(ESTADO_ESPERADO, ESTADO_OBTENIDO);
-        Assert.assertEquals(TIPODISPOSITIVO_ESPERADO, TIPODISPOSITIVO_OBTENIDO);
-        Assert.assertEquals(FECHAADQUIRIDO_ESPERADO, FECHAADQUIRIDO_OBTENIDO);
-        Assert.assertEquals(UBICACION_ESPERADA, UBICACION_OBTENIDO);      
+        assertEquals(NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);
+        assertEquals(MARCA_ESPERADA, MARCA_OBTENIDO);
+        assertEquals(MODELO_ESPERADO, MODELO_OBTENIDO);
+        assertEquals(NUMSERIE_ESPERADO, NUMSERIE_OBTENIDO);
+        assertEquals(ESTADO_ESPERADO, ESTADO_OBTENIDO);
+        assertEquals(TIPODISPOSITIVO_ESPERADO, TIPODISPOSITIVO_OBTENIDO);
+        assertEquals(FECHAADQUIRIDO_ESPERADO, FECHAADQUIRIDO_OBTENIDO);  
     }
     
+    /**
+     * busca un hardware en la base de datos
+     */
     @Test
     public void testBuscarHardwareCorrectamente() {
         HardwareDao hardwDao = new HardwareDao();
         
-        final String NOINVENTARIO_ESPERADO = "UV001";
-        final String MARCA_ESPERADA = "dell";
-        String MODELO_ESPERADO = "inspiration 2322";
-        int NUMSERIE_ESPERADO = 12345;
-        String ESTADO_ESPERADO = "Disponible";
-        String TIPODISPOSITIVO_ESPERADO = "laptop";
-        Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2018-02-02");
-        String UBICACION_ESPERADA = "aula 12";
+        final String NOINVENTARIO_ESPERADO = "H001";
+        final String MARCA_ESPERADA = "Dell";
+        final String MODELO_ESPERADO = "mini-lp";
+        final int NUMSERIE_ESPERADO = 12345;
+        final String ESTADO_ESPERADO = "disponible";
+        final String TIPODISPOSITIVO_ESPERADO = "laptop";
+        final Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2017-01-02");
         
-        Hardware obtenido = new Hardware(NOINVENTARIO_ESPERADO, MARCA_ESPERADA, 
-        MODELO_ESPERADO, NUMSERIE_ESPERADO, ESTADO_ESPERADO, TIPODISPOSITIVO_ESPERADO, 
-        FECHAADQUIRIDO_ESPERADO, UBICACION_ESPERADA);
-        
-        
-        try{
-            obtenido= hardwDao.buscarHardware(NOINVENTARIO_ESPERADO);
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
+        Hardware obtenido = new Hardware();
+        obtenido = hardwDao.buscarHardware(NOINVENTARIO_ESPERADO);
         
         final String NOINVENTARIO_OBTENIDO = obtenido.getNoInventarioUv();
         final String MARCA_OBTENIDO = obtenido.getMarca();
-        String MODELO_OBTENIDO = obtenido.getModelo();
+        final String MODELO_OBTENIDO = obtenido.getModelo();
         int NUMSERIE_OBTENIDO = obtenido.getNumeroSerie();
-        String ESTADO_OBTENIDO = obtenido.getEstado();
-        String TIPODISPOSITIVO_OBTENIDO = obtenido.getTipoDispositivo();
-        Date FECHAADQUIRIDO_OBTENIDO = obtenido.getFechaAdquisicion();
-        String UBICACION_OBTENIDO = obtenido.getUbicacion();
+        final String ESTADO_OBTENIDO = obtenido.getEstado();
+        final String TIPODISPOSITIVO_OBTENIDO = obtenido.getTipoDispositivo();
+        final Date FECHAADQUIRIDO_OBTENIDO = obtenido.getFechaAdquisicion();
         
-        Assert.assertEquals("prueba inventario", NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);     
-        Assert.assertEquals("prueba inventario", MARCA_ESPERADA, MARCA_OBTENIDO);
-        Assert.assertEquals("prueba inventario", NUMSERIE_ESPERADO, NUMSERIE_OBTENIDO);
-        Assert.assertEquals("prueba inventario", ESTADO_ESPERADO, ESTADO_OBTENIDO);
-        Assert.assertEquals("prueba inventario", TIPODISPOSITIVO_ESPERADO, TIPODISPOSITIVO_OBTENIDO);
-        Assert.assertEquals("prueba inventario", NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);
-        Assert.assertEquals("prueba inventario", NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);
+        assertEquals("prueba inventario", NOINVENTARIO_ESPERADO, NOINVENTARIO_OBTENIDO);     
+        assertEquals("prueba inventario", MARCA_ESPERADA, MARCA_OBTENIDO);
+        assertEquals("prueba inventario", NUMSERIE_ESPERADO, NUMSERIE_OBTENIDO);
+        assertEquals("prueba inventario", ESTADO_ESPERADO, ESTADO_OBTENIDO);
+        assertEquals("prueba inventario", TIPODISPOSITIVO_ESPERADO, TIPODISPOSITIVO_OBTENIDO);
+        assertEquals("prueba inventario", FECHAADQUIRIDO_ESPERADO, FECHAADQUIRIDO_OBTENIDO);
     }
     
+    /**
+     * Deshabilita el hardware
+     */
     @Test
     public void testEliminarHardwareCorrectamente(){
+        Hardware hardware = new Hardware ();
+        hardware.setEstado("deshabilitado");
+        hardware.setNoInventarioUv("H001");
         boolean esperado = true;
-        final String NOINVENTARIO_ESPERADO = "UV001";
-        final String MARCA_ESPERADA = "dell";
-        String MODELO_ESPERADO = "inspiration 2322";
-        int NUMSERIE_ESPERADO = 12345;
-        String ESTADO_ESPERADO = "deshabilitado";
-        String TIPODISPOSITIVO_ESPERADO = "laptop";
-        Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2018-02-02");
-        String UBICACION_ESPERADA = null;
-        
-        Hardware hardware = new Hardware(NOINVENTARIO_ESPERADO, MARCA_ESPERADA, 
-        MODELO_ESPERADO, NUMSERIE_ESPERADO, ESTADO_ESPERADO, TIPODISPOSITIVO_ESPERADO, 
-        FECHAADQUIRIDO_ESPERADO, UBICACION_ESPERADA);
-        
-        HardwareDao hardwDao = new HardwareDao();
-        esperado = hardwDao.eliminarHardware(hardware);
-        Assert.assertTrue("hardware eliminado", esperado);
+        HardwareDao hardwareDao = new HardwareDao();
+        esperado = hardwareDao.eliminarHardware(hardware);
+        assertTrue("elimina el hardware", esperado); 
     }
     
     

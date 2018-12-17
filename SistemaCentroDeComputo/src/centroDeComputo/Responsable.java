@@ -1,6 +1,8 @@
 package CentroComputo;
 
 /**
+ * responsable a cargo de un equipo prestado por el centro de computo
+ * 
  * @author Irasema Caicero
  * @since 19/11/18
  * @version 1.0

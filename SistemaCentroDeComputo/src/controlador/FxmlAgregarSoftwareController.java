@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import CentroComputo.Software;
 import Daos.SoftwareDao;
+import centroDeComputo.Validador;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
@@ -17,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -68,12 +62,15 @@ public class FxmlAgregarSoftwareController implements Initializable {
         @Override
         public void handle(Event event) {  
         SoftwareDao softwareDao = new SoftwareDao();
+        Validador validador = new Validador();
         
+        boolean idValidacion =validador.validaIdSoftware(textFieldIdSoftware.getText());
+        if(idValidacion == true){
         String idSoftware= textFieldIdSoftware.getText();
         String nombreSoftware = textFieldNombre.getText();
         String origen= textFieldOrigen.getText();
         String observaciones= textFieldObservaciones.getText();
-        Date fechaAdquisicion = Date.valueOf(textFieldFecha.getText());
+        Date fechaAdquisicion = Date.valueOf(textFieldFecha.getText().trim());
         String tipoSoftware = textFieldTipo.getText();
         String marca = textFieldMarca.getText();
         boolean actualizacion = validarActualizacion(textFieldActualizacion.getText());
@@ -83,9 +80,7 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Boolean disponible= disponibilidad;
         String sistemaOperativo = textFieldSO.getText();
         String idioma = textFieldIdioma.getText();
-        
-        
-               
+       
         Software software = new Software(idSoftware, nombreSoftware, origen, 
                 observaciones, fechaAdquisicion, tipoSoftware, marca, 
                 requiereActualizacion, version, disponible, sistemaOperativo, idioma);        
@@ -97,8 +92,9 @@ public class FxmlAgregarSoftwareController implements Initializable {
         alerta.setTitle("Software Guardado");
         alerta.setHeaderText(null);
         alerta.setContentText("Los datos han sido guardados! :D");
-        alerta.show();        
-            }
+        alerta.show();
+           }        
+          }
         });
         
         buttonSalir.setOnAction((ActionEvent event) -> {

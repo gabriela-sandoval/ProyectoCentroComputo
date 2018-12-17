@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Daos;
 
 import java.sql.Connection;
@@ -12,17 +7,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Usuario
+ * clase encargada de conectarse a la base de datos
+ * 
+ * @author Irasema Caicero
+ * @since 15/12/2018
+ * @version 1.0
  */
 public class AccesoDataBase {
-    static final String JDBC_DRIVER = "com.mwsql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost";
     private static Connection conexion;
     
     private static void conectar(){
         try {
-            
             String url= "jdbc:mysql://localhost/";
             String databaseName = "centrocomputo";
             String userName = "root";
@@ -33,12 +28,18 @@ public class AccesoDataBase {
             java.util.logging.Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    
+
+/**
+ * obtiene la conexion a la base de datos
+ * @return conexion a la database
+ */    
     public static Connection obtenerConexionBaseDatos(){
         conectar();
         return AccesoDataBase.conexion;
     }
-    
+/**
+ * cierra la conexion a la base de datos 
+ */    
     public static void cerrarConexion() {
         if(conexion!= null) {
          try{   

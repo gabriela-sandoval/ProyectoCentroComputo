@@ -1,10 +1,11 @@
-
 package Daos;
 
 import CentroComputo.Software;
 import java.util.List;
 
 /**
+ * interfaz del software que para acceder a sus metodos
+ * 
  * @author Irasema Caicero
  * @since 8/12/2018
  * @version 1.0

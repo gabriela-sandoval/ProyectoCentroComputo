@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Daos;
 
-import CentroComputo.Licencia;
 import CentroComputo.Software;
 import ccExcepciones.NoExisteRegistroException;
 import centroDeComputo.Validador;
@@ -13,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * clase que se para implementar los metodos de administracion del
+ * software conectandose con la base de datos (CRUD)
+ * 
  * @author Irasema Caicero
  * @since 8-12-18
  * @version 1.0
@@ -28,7 +26,12 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     private String consulta;
     private List<Software> listaSoftware;
     
-
+    /**
+     * registra en la base de datos un nuevo software
+     * 
+     * @param software objeto a guardar
+     * @return booleano true
+     */
     @Override
     public boolean agregarSoftware(Software software) {
         Validador validador = new Validador();
@@ -60,42 +63,37 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         return true;
     }
 
+    /**
+     * modifica un software que ya existe 
+     * 
+     * @param software a modificar
+     * @return true
+     */
     @Override
     public boolean actualizarSoftware(Software software) {
-        if(software.getIdSoftware().isEmpty()){
-            try {
-                throw new NoExisteRegistroException("El software que ingresó no existe.");
-            } catch (NoExisteRegistroException ex) {
-                Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        consulta = "UPDATE software set" +
-                "'nombreSoftware'= ?, 'origen'=?, 'Observaciones'=?, 'fechaAdquisicion'=?, 'tipoSoftware'=?," +
-                "'marca'=?, 'requiereActualizacion'=?, 'version'=?, 'disponible'=?," + 
-                "'sistemaOperativo'=?, 'idioma'=? where idSoftware=? ";
+        Connection connection = null;
+        Statement statement = null;
         
+        boolean actualizar = false;
+        
+        consulta = "update software set " +
+                "nombreSoftware ='" +software.getNombre()+ "', origen = '" + software.getOrigen() + 
+                "', Observaciones ='" +software.getObservaciones()+"', fechaAdquisicion = " + software.getFechaAdquisicion()+
+                "', tipoSoftware ='" +software.getTipoSoftware()+"', marca ='" +software.getMarca()+ 
+                "', requiereActualizacion ='" +software.isRequiereActualizacion() + "', version ='" + software.getVersion()+
+                "', disponible ='" +software.isDisponible()+ "', sistemaOperativo = '" +software.getSistemaOperativo()+
+                "', idioma = '" +software.getIdioma() + "' where idSoftware= '" + software.getIdSoftware();
         try{
-            PreparedStatement consultaParametrizada = AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);
-            consultaParametrizada.setString(1, software.getIdSoftware());
-            consultaParametrizada.setString(2, software.getNombre());            
-            consultaParametrizada.setString(3, software.getOrigen());
-            consultaParametrizada.setString(4, software.getObservaciones());
-            consultaParametrizada.setDate(5, software.getFechaAdquisicion());
-            consultaParametrizada.setString(6, software.getTipoSoftware());
-            consultaParametrizada.setString(7, software.getMarca());
-            consultaParametrizada.setBoolean(8, software.isRequiereActualizacion());
-            consultaParametrizada.setDouble(9, software.getVersion());
-            consultaParametrizada.setBoolean(10, software.isDisponible());
-            consultaParametrizada.setString(11, software.getSistemaOperativo());
-            consultaParametrizada.setString(12, software.getIdioma());
-            consultaParametrizada.executeUpdate();   
-            
+            connection = AccesoDataBase.obtenerConexionBaseDatos();            
+            statement= connection.createStatement();
+            statement.execute(consulta);
+            actualizar = true;
         } catch (SQLException ex) {
-            Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();           
         } finally {
             AccesoDataBase.cerrarConexion();
-        }
-        return true;
+        }  
+        return actualizar;
     }
 
     @Override
@@ -109,6 +107,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
             ResultSet resultado = consultaParametrizada.executeQuery();
             while (resultado.next()){
                 Software software = new Software();
+                
                 software.setNombre(resultado.getString("nombreSoftware"));
                 software.setIdSoftware(resultado.getString("idSoftware"));
                 software.setMarca(resultado.getString("marca"));
@@ -131,6 +130,12 @@ public class SoftwareDao implements InterfaceSoftwareDao {
         return listaSoftware;
     }
 
+    /**
+     * busca un software existente en la base de datos
+     * 
+     * @param idSoftware a buscar
+     * @return software encontrado
+     */
     @Override
     public Software buscarSoftware(String idSoftware) {
         consulta = "select * from software where idSoftware = ?";
@@ -161,6 +166,13 @@ public class SoftwareDao implements InterfaceSoftwareDao {
        return software;
     }
 
+    /**
+     * coloca el software como "desahibilitado" en la base de datos, no lo
+     * borra realmente
+     * 
+     * @param software a deshabilitar
+     * @return true
+     */
     @Override
     public boolean eliminarSoftware(Software software) {      
         consulta= "update software set disponible=false where idSoftware= ?";

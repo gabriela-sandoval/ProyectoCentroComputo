@@ -1,6 +1,8 @@
 package CentroComputo;
 
 /**
+ * clase del usuario del sistema
+ * 
  * @author Irasema Caicero
  * @since 19/11/18
  * @version 1.0

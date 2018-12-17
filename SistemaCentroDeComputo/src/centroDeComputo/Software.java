@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
+ * clase de software a administrar 
+ * 
  * @author Irasema Caicero
  * @since 19/11/18
  * @version 1.0
@@ -140,28 +142,6 @@ public class Software {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
-    }
-    
-    public String convertirBooleanoActualizacionAString(boolean requiereActualizacion) {
-        String cadena= null;
-        if(requiereActualizacion==true) {
-            cadena = "si";
-        }
-        if(requiereActualizacion==false){
-            cadena = "no";
-        }
-        return cadena;
-    }
-    
-    public String convertirBooleanoDisponibleAString(boolean disponible) {
-        String cadena= null;
-        if(disponible==true) {
-            cadena = "si";
-        }
-        if(disponible==false){
-            cadena = "no";
-        }
-        return cadena;
-    }	
+    } 
 
 }

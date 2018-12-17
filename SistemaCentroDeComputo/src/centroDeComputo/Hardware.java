@@ -3,6 +3,8 @@ package CentroComputo;
 import java.sql.Date;
 
 /**
+ * clase de hardware a administrar
+ * 
  * @author Irasema Caicero
  * @since 19/11/18
  * @version 1.0
@@ -86,6 +88,12 @@ public class Hardware {
         this.fechaAdquisicion = fechaAdquisicion;
     }
     
+    /**
+     * gestiona los tipos de estados que tiene un hardware
+     * 
+     * @param estadoNuevo a cambiar
+     * @return estado cambiado
+     */
     public boolean CambiarEstado(String estadoNuevo) {
             boolean resultado = false;
             switch(estado){

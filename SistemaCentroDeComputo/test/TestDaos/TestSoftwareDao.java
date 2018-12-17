@@ -2,9 +2,7 @@ package TestDaos;
 
 import CentroComputo.Software;
 import Daos.AccesoDataBase;
-import Daos.HardwareDao;
 import Daos.SoftwareDao;
-import ccExcepciones.ErrorOperacionDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -16,7 +14,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
+ * clase de prueba de software
+ * 
  * @author Irasema Caicero
+ * @since 16/12/2018
+ * @version 1.0
  */
 public class TestSoftwareDao {
     
@@ -24,12 +26,14 @@ public class TestSoftwareDao {
         
     }
     
+    /**
+     * prueba el software ingresando todo sus datos  completos de forma correcta
+     */
     @Test
     public void testAgregarSoftwareCompleto(){
         Connection conexion= null;      
         try{
-            conexion= AccesoDataBase.obtenerConexionBaseDatos();
-               
+            conexion= AccesoDataBase.obtenerConexionBaseDatos(); 
         }catch(NullPointerException e){
             Logger.getLogger(SoftwareDao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -57,6 +61,9 @@ public class TestSoftwareDao {
         assertTrue("prueba agregar Software ", esperado);                  
     }
     
+    /**
+     * modifica los datos de un software existente
+     */
     @Test
     public void testActualizarSoftwareCorrectamente(){
         Connection conexion;     
@@ -83,13 +90,16 @@ public class TestSoftwareDao {
         }catch(Exception e){
            e.printStackTrace();            
         }
-        assertTrue("prueba de actualizacion correcta: ", esperado);           
-        
+        assertTrue("prueba de actualizacion correcta: ", esperado);             
     }
     
+    /**
+     * recupera el software disponible
+     */
     @Test
     public void testObtenerListaSoftware(){
         SoftwareDao softDao = new SoftwareDao();
+        
         final int ELEMENTO_DELA_LISTA = 0;
         final String IDSOFTWARE_ESPERADO = "S001";
         final String NOMBRE_ESPERADO = "sait";
@@ -105,9 +115,7 @@ public class TestSoftwareDao {
         final String IDIOMA_ESPERADO = "español";
         List<Software> listaSoftware = new ArrayList();
         listaSoftware = softDao.obtenerListaSoftware();
-            
-        
-        
+
         final String IDSOFTWARE_OBTENIDO = listaSoftware.get(ELEMENTO_DELA_LISTA).getIdSoftware();
         final String NOMBRE_OBTENIDO = listaSoftware.get(ELEMENTO_DELA_LISTA).getNombre();
         final String ORIGEN_OBTENIDO = listaSoftware.get(ELEMENTO_DELA_LISTA).getOrigen();
@@ -135,6 +143,9 @@ public class TestSoftwareDao {
         assertEquals("prueba id software", IDIOMA_ESPERADO, IDIOMA_OBTENIDO);                 
     }
     
+    /**
+     * recupera el software esperado que existe en la base de datos 
+     */
     @Test
     public void testBuscarSoftware() {
         SoftwareDao softwareDao = new SoftwareDao();
@@ -156,7 +167,6 @@ public class TestSoftwareDao {
         listaSoftware = softwareDao.obtenerListaSoftware();
                
         Software software = new Software();
-        
         software = softwareDao.buscarSoftware(IDSOFTWARE_ESPERADO);
     
         final String IDSOFTWARE_OBTENIDO = software.getIdSoftware();
@@ -186,6 +196,9 @@ public class TestSoftwareDao {
         assertEquals("prueba idioma del software", IDIOMA_ESPERADO, IDIOMA_OBTENIDO);    
     }
     
+    /**
+     * deshabilita un software que le pasamos que exista en la base de datos
+     */
     @Test
     public void testEliminarSoftwareCorrectamente(){
         Software software = new Software();
@@ -194,7 +207,7 @@ public class TestSoftwareDao {
         boolean esperado = true;
         SoftwareDao softwareDao = new SoftwareDao();
         esperado = softwareDao.eliminarSoftware(software);
-        assertTrue("elimina el plan de curso ", esperado);       
+        assertTrue("elimina el software ", esperado);       
     }
     
 }
