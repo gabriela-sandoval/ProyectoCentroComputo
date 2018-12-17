@@ -60,13 +60,10 @@ public class TestSoftwareDao {
     @Test
     public void testActualizarSoftwareCorrectamente(){
         Connection conexion;     
-    
-            conexion = AccesoDataBase.obtenerConexionBaseDatos();
-              
-     
-        
+        conexion = AccesoDataBase.obtenerConexionBaseDatos();
         Software softwarePrueba = new Software();
-                
+        
+        softwarePrueba.setIdSoftware("S002");
         softwarePrueba.setNombre("word");
         softwarePrueba.setOrigen("comprado");
         softwarePrueba.setObservaciones("sin fallas bla bla bla");
@@ -80,9 +77,9 @@ public class TestSoftwareDao {
         softwarePrueba.setIdioma("español");
         
         SoftwareDao softwareDaoPrueba = new SoftwareDao(); 
-        boolean esperado=true;
+        boolean esperado=false;
         try{
-            esperado = softwareDaoPrueba.agregarSoftware(softwarePrueba);          
+            esperado = softwareDaoPrueba.actualizarSoftware(softwarePrueba);          
         }catch(Exception e){
            e.printStackTrace();            
         }

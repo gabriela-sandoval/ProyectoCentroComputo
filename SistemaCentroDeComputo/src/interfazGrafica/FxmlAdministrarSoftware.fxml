@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,11 +28,6 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="textFieldBuscar" layoutX="125.0" layoutY="194.0" prefHeight="34.0" prefWidth="425.0" promptText="Buscar software">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </TextField>
       <Text fx:id="textRegresar" layoutX="178.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -57,7 +51,7 @@
       </TableView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18529d" height="50.0" layoutY="573.0" stroke="#18529d" strokeType="INSIDE" width="1150.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28ad56" height="50.0" layoutY="595.0" stroke="#28ad56" strokeType="INSIDE" width="1150.0" />
-      <Button fx:id="buttonActualizar" layoutX="561.0" layoutY="201.0" mnemonicParsing="false" text="Actualizar tabla" />
+      <Button fx:id="buttonActualizar" layoutX="697.0" layoutY="201.0" mnemonicParsing="false" text="Actualizar tabla" />
       <Button fx:id="buttonAgregar" layoutX="859.0" layoutY="201.0" mnemonicParsing="false" text="Agregar" />
       <Button fx:id="buttonEditar" layoutX="937.0" layoutY="201.0" mnemonicParsing="false" text="Editar" />
       <Button fx:id="buttonDeshabilitar" layoutX="1008.0" layoutY="201.0" mnemonicParsing="false" text="Eliminar" />

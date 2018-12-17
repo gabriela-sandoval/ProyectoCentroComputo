@@ -76,11 +76,15 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Date fechaAdquisicion = Date.valueOf(textFieldFecha.getText());
         String tipoSoftware = textFieldTipo.getText();
         String marca = textFieldMarca.getText();
-        Boolean requiereActualizacion = Boolean.parseBoolean(textFieldActualizacion.getText());
+        boolean actualizacion = validarActualizacion(textFieldActualizacion.getText());
+        Boolean requiereActualizacion = actualizacion;
         Double version = Double.parseDouble(textFieldVersion.getText());
-        Boolean disponible= Boolean.parseBoolean(textFieldDisponible.getText());
+        boolean disponibilidad = validarDisponibilidad(textFieldDisponible.getText());
+        Boolean disponible= disponibilidad;
         String sistemaOperativo = textFieldSO.getText();
         String idioma = textFieldIdioma.getText();
+        
+        
                
         Software software = new Software(idSoftware, nombreSoftware, origen, 
                 observaciones, fechaAdquisicion, tipoSoftware, marca, 
@@ -103,5 +107,31 @@ public class FxmlAgregarSoftwareController implements Initializable {
         });
     
     
-    }    
+    }
+
+    private boolean  validarActualizacion(String respuesta) {
+        boolean resultado= false;
+        respuesta = textFieldActualizacion.getText();
+        if(respuesta.equalsIgnoreCase("si")) {
+            resultado = true;   
+        }
+        else if(respuesta.equalsIgnoreCase("no")) {
+            resultado = false;
+        }
+        return resultado;
+    }
+    
+    private boolean validarDisponibilidad(String respuesta) {
+        boolean resultado= false;
+        respuesta = textFieldDisponible.getText();
+        if(respuesta.equalsIgnoreCase("si")) {
+            resultado = true;
+        }
+        else if(respuesta.equalsIgnoreCase("no")) {
+            resultado = false;
+        }
+        return resultado;   
+    }
+
+    
 }

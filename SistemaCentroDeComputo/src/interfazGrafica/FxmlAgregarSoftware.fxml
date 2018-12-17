@@ -101,12 +101,12 @@
          </font>
       </Text>
       <TextField fx:id="textFieldActualizacion" layoutX="431.0" layoutY="370.0" prefHeight="25.0" prefWidth="102.0" />
-      <Text fill="#77889e" layoutX="318.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
+      <Text fill="#77889e" layoutX="300.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="true o false">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#77889e" layoutX="52.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
+      <Text fill="#77889e" layoutX="34.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="true o false">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>

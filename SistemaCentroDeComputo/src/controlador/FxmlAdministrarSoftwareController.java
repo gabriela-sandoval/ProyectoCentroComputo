@@ -3,23 +3,33 @@ package controlador;
 import CentroComputo.Software;
 import Daos.SoftwareDao;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 /**
@@ -84,8 +94,7 @@ public class FxmlAdministrarSoftwareController implements Initializable {
   private Button buttonRegresar;
 
     @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {
-        //llenarTabladeSoftware();
+    public void initialize(java.net.URL location, ResourceBundle resources) {      
         buttonActualizar.setOnAction((ActionEvent event) -> {
             this.inicializarTabla();
         });
@@ -93,13 +102,72 @@ public class FxmlAdministrarSoftwareController implements Initializable {
         buttonEditar.setDisable(true);
         buttonDeshabilitar.setDisable(true);
         //seleccion de las tuplas
-        final ObservableList<Software> tablaSoftware = tabladeSoftware.getSelectionModel().getSelectedItems();
-        tablaSoftware.addListener(selector);
+        ObservableList<Software> seleccion = tabladeSoftware.getSelectionModel().getSelectedItems();
+        seleccion.addListener(selector);
         
-        buttonRegresar.setOnAction((ActionEvent event) -> {
-            Stage stage = (Stage) buttonRegresar.getScene().getWindow();
-            stage.close();
+        buttonEditar.setOnAction((event) -> {
+            Stage primaryStage = (Stage) buttonEditar.getScene().getWindow();
+            //Software aux = new Software();
+            //aux = seleccion.get(posicionSoftware);
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root= null;
+            try {
+                root = (AnchorPane) loader.load(getClass().getResource(
+                        "/interfazGrafica/FxmlModificarSoftware.fxml").openStream());
+            } catch (IOException ex) {
+                Logger.getLogger(FxmlAdministrarSoftwareController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            Scene scene = new Scene(root); 
+            stage.setScene(scene);
+            //stage.setUserData(aux);
+            stage.toFront();
+            stage.show();       
         });
+        
+        buttonDeshabilitar.setOnAction(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                Software software = new Software();
+                software = seleccion.get(0);
+                
+                String idSoftware= software.getIdSoftware();
+                String nombreSoftware = software.getNombre();
+                String origen= software.getOrigen();
+                String observaciones= software.getObservaciones();
+                Date fechaAdquisicion = software.getFechaAdquisicion();
+                String tipoSoftware = software.getTipoSoftware();
+                String marca = software.getMarca();
+                Boolean requiereActualizacion = software.isRequiereActualizacion();
+                Double version = software.getVersion();
+                Boolean disponible= software.isDisponible();
+                String sistemaOperativo = software.getSistemaOperativo();
+                String idioma = software.getIdioma();
+                
+                Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+
+                confirmacion.setTitle("Deshabilitacion de software");
+                confirmacion.setHeaderText(null);
+                confirmacion.setContentText("Id: " + idSoftware
+                    + "\nNombre: " + nombreSoftware);
+
+          ButtonType btEliminar = new ButtonType("Eliminar");
+          ButtonType btCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+          confirmacion.getButtonTypes().setAll(btEliminar, btCancelar);
+
+          Optional<ButtonType> eleccion = confirmacion.showAndWait();
+          
+          if (eleccion.get() == btEliminar) {
+              SoftwareDao softwaredao = new SoftwareDao();
+              softwaredao.eliminarSoftware(software);
+              tabladeSoftware.getColumns().clear(); 
+          }
+        }    
+        });
+        
+        
         
         buttonAgregar.setOnAction((event)-> {
         Stage primaryStage = (Stage) buttonAgregar.getScene().getWindow();
@@ -118,8 +186,9 @@ public class FxmlAdministrarSoftwareController implements Initializable {
           appStage.show();                   
         });
         
-        buttonEditar.setOnAction((event) -> {
-            
+        buttonRegresar.setOnAction((ActionEvent event) -> {
+            Stage stage = (Stage) buttonRegresar.getScene().getWindow();
+            stage.close();
         });
         
     }

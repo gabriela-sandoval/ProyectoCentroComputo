@@ -142,21 +142,26 @@ public class Software {
         this.idioma = idioma;
     }
     
-    
-    
-        
-	
-	
-    
-    private SimpleDateFormat darFormatoAFecha(Date fecha){
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        formatoFecha.format(fecha);      
-            return null;
+    public String convertirBooleanoActualizacionAString(boolean requiereActualizacion) {
+        String cadena= null;
+        if(requiereActualizacion==true) {
+            cadena = "si";
+        }
+        if(requiereActualizacion==false){
+            cadena = "no";
+        }
+        return cadena;
     }
-
-   
-        
-	
-	
+    
+    public String convertirBooleanoDisponibleAString(boolean disponible) {
+        String cadena= null;
+        if(disponible==true) {
+            cadena = "si";
+        }
+        if(disponible==false){
+            cadena = "no";
+        }
+        return cadena;
+    }	
 
 }

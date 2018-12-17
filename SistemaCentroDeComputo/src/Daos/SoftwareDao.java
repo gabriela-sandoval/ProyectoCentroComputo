@@ -8,10 +8,12 @@ package Daos;
 import CentroComputo.Licencia;
 import CentroComputo.Software;
 import ccExcepciones.NoExisteRegistroException;
+import centroDeComputo.Validador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +30,11 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     
 
     @Override
-    public boolean agregarSoftware(Software software) {       
+    public boolean agregarSoftware(Software software) {
+        Validador validador = new Validador();
+        validador.validaIdSoftware(software.getIdSoftware());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        validador.validarFechaMaxima(sdf.format(software.getFechaAdquisicion()));
         consulta= "insert into software values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             Connection connection = AccesoDataBase.obtenerConexionBaseDatos();

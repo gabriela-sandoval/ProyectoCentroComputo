@@ -102,12 +102,12 @@
       </Text>
       <TextField fx:id="textFieldActualizacion" layoutX="457.0" layoutY="333.0" prefHeight="25.0" prefWidth="120.0" />
       <TextField fx:id="textFieldDisponible" layoutX="148.0" layoutY="428.0" prefHeight="25.0" prefWidth="120.0" />
-      <Text fill="#79828d" layoutX="343.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
+      <Text fill="#79828d" layoutX="343.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="true o false">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#79828d" layoutX="50.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si o No">
+      <Text fill="#79828d" layoutX="50.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="true o false">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
