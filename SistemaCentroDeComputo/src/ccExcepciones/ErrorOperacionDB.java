@@ -9,8 +9,8 @@ package ccExcepciones;
  */
 
 public class ErrorOperacionDB extends Exception {
-    public ErrorOperacionDB(String mensaje){
-        super(mensaje);
-    }
-    
+  public ErrorOperacionDB(String mensaje) {
+    super(mensaje);
+  }
+
 }

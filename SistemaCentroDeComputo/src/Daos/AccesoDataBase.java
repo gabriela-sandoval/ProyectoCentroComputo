@@ -14,42 +14,45 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class AccesoDataBase {
-    private static Connection conexion;
-    
-    private static void conectar(){
-        try {
-            String url= "jdbc:mysql://localhost/";
-            String databaseName = "centrocomputo";
-            String userName = "root";
-            String password = "ruletarusa98";
-       
-            conexion = (Connection)DriverManager.getConnection(url+databaseName,userName,password);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
+  private static Connection conexion;
 
-/**
- * obtiene la conexion a la base de datos
- * @return conexion a la database
- */    
-    public static Connection obtenerConexionBaseDatos(){
-        conectar();
-        return AccesoDataBase.conexion;
+  private static void conectar() {
+    try {
+      String url = "jdbc:mysql://localhost/";
+      String databaseName = "centrocomputo";
+      String userName = "root";
+      String password = "ruletarusa98";
+
+      conexion = (Connection) DriverManager.getConnection(url + databaseName, userName, password);
+    } catch (SQLException ex) {
+      java.util.logging.Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null,
+          ex);
     }
-/**
- * cierra la conexion a la base de datos 
- */    
-    public static void cerrarConexion() {
-        if(conexion!= null) {
-         try{   
-             if(!conexion.isClosed()){
-                 conexion.close();
-             }       
-         }  catch (SQLException ex) {
-                Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
-            }
+  }
+
+  /**
+   * obtiene la conexion a la base de datos
+   * 
+   * @return conexion a la database
+   */
+  public static Connection obtenerConexionBaseDatos() {
+    conectar();
+    return AccesoDataBase.conexion;
+  }
+
+  /**
+   * cierra la conexion a la base de datos
+   */
+  public static void cerrarConexion() {
+    if (conexion != null) {
+      try {
+        if (!conexion.isClosed()) {
+          conexion.close();
         }
+      } catch (SQLException ex) {
+        Logger.getLogger(AccesoDataBase.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
-    
+  }
+
 }

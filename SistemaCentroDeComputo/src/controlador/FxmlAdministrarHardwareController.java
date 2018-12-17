@@ -11,45 +11,45 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javax.swing.Icon;
 
-public class FxmlAdministrarHardwareController implements Initializable{
+public class FxmlAdministrarHardwareController implements Initializable {
 
-    @FXML
-    private ImageView imageViewLogo;
+  @FXML
+  private ImageView imageViewLogo;
 
-    @FXML
-    private Text textAdministrarHardware;
+  @FXML
+  private Text textAdministrarHardware;
 
-    
-    @FXML
-    private Text textJefeDelCentroDeComputo;
 
-    @FXML
-    private TextField textFieldNombreDeUsuario;
+  @FXML
+  private Text textJefeDelCentroDeComputo;
 
-    @FXML
-    private Icon iconRegresar;
+  @FXML
+  private TextField textFieldNombreDeUsuario;
 
-    @FXML
-    private Text textRegresar;
+  @FXML
+  private Icon iconRegresar;
 
-    @FXML
-    private Icon iconAgregar;
+  @FXML
+  private Text textRegresar;
 
-    @FXML
-    private Icon iconDeshabilitar;
+  @FXML
+  private Icon iconAgregar;
 
-    @FXML
-    private Icon iconEditar;
+  @FXML
+  private Icon iconDeshabilitar;
 
-    @FXML
-    private Icon iconVerMas;
-    
-    /**
+  @FXML
+  private Icon iconEditar;
+
+  @FXML
+  private Icon iconVerMas;
+
+  /**
    * Initializes the controller class.
    */
   public void initialize(URL url, ResourceBundle rb) {
-    
+
   }
-  
-  
+
+
 }

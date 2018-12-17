@@ -11,9 +11,13 @@ import java.util.List;
  * @version 1.0
  */
 public interface InterfaceSoftwareDao {
-    public boolean agregarSoftware(Software software);
-    public boolean actualizarSoftware(Software software);
-    public List<Software> obtenerListaSoftware();
-    public Software buscarSoftware(String idSoftware);
-    public boolean eliminarSoftware(Software software);   
+  public boolean agregarSoftware(Software software);
+
+  public boolean actualizarSoftware(Software software);
+
+  public List<Software> obtenerListaSoftware();
+
+  public Software buscarSoftware(String idSoftware);
+
+  public boolean eliminarSoftware(Software software);
 }

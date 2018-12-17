@@ -34,8 +34,6 @@ public class FxmlSistemaCentroDeComputoController implements Initializable {
   private ImageView imageViewLogoCC;
 
   public void initialize(URL url, ResourceBundle rb) {
-      
+
   }
-  
-  
 }

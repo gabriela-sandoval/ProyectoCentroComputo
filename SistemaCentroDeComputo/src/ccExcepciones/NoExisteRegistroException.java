@@ -8,8 +8,8 @@ package ccExcepciones;
  * @version 1.0
  */
 public class NoExisteRegistroException extends Exception {
-    public NoExisteRegistroException(String mensaje) {
-        super(mensaje);        
-    }
-    
+  public NoExisteRegistroException(String mensaje) {
+    super(mensaje);
+  }
+
 }

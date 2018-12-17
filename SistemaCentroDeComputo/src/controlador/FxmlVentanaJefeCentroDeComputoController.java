@@ -21,154 +21,79 @@ import javafx.stage.Stage;
  * @author galil
  */
 public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
-    //logos
-    @FXML
-    private ImageView imageViewLogo;
-    //textos
-    @FXML
-    private Text textNombreJefe;
-    @FXML
-    private Text textAdministrador;
-    //botones
-    @FXML
-    private Button buttonSalir;
-    @FXML
-    private Button buttonAdministrarSoftware;
-    @FXML
-    private Button buttonAdministrarHardware;
-    @FXML
-    private Button buttonAdministrarUsuarios;
+  // logos
+  @FXML
+  private ImageView imageViewLogo;
+  // textos
+  @FXML
+  private Text textNombreJefe;
+  @FXML
+  private Text textAdministrador;
+  // botones
+  @FXML
+  private Button buttonSalir;
+  @FXML
+  private Button buttonAdministrarSoftware;
+  @FXML
+  private Button buttonAdministrarHardware;
+  @FXML
+  private Button buttonAdministrarUsuarios;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        buttonSalir.setOnAction((ActionEvent event) -> {
-            Stage stage = (Stage) buttonSalir.getScene().getWindow();
-            stage.close();
-        });
-        
-      
-        buttonAdministrarSoftware.setOnAction((event)-> {
-            Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
-            Parent root = null;
-            try{
-                root = FXMLLoader.load(getClass().getResource(
-                        "/interfazGrafica/FxmlAdministrarSoftware.fxml"));
-            
-                } catch (IOException e){
-            e.printStackTrace();
-          }
-            Scene scene = new Scene(root);
-            Stage appStage = new Stage();
-            appStage.setScene(scene);
-            Image imagen = new Image("/iconos/logo cc.png");
-            appStage.getIcons().add(imagen);
-            appStage.toFront();
-            appStage.show();
-       });
-     
-    
-        buttonAdministrarHardware.setOnAction((event) -> {
-            Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource(
-                        "/interfazGrafica/FxmlAdministrarHardware.fxml"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-           
-            Scene scene = new Scene(root);
+  /**
+   * Initializes the controller class.
+   */
+  @Override
+  public void initialize(URL url, ResourceBundle rb) {
+    buttonSalir.setOnAction((ActionEvent event) -> {
+      Stage stage = (Stage) buttonSalir.getScene().getWindow();
+      stage.close();
+    });
 
-            primaryStage.setScene(scene);
-            Image icono = new Image("/iconos/logo cc.png");
-            primaryStage.getIcons().add(icono);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        });
-        
-      
-        
-        /*
-         buttonAdministrarSoftware.setOnAction((event) -> {
-            Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource(
-                        "/interfazGrafica/FxmlAdministrarSoftware.fxml"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-           
-            Scene scene = new Scene(root);
 
-            primaryStage.setScene(scene);
-            Image icono = new Image("/iconos/logo cc.png");
-            primaryStage.getIcons().add(icono);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        });
-    
-    */
-   //buttonAdministrarSoftware.setOnAction(this :: abrirVentanaAdministrarSoftware);
-    }
-    
-   /** 
-    @FXML 
-    private void abrirVentanaAdministrarSoftware(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setController(new FxmlAdministrarSoftwareController());
-        loader.setLocation(getClass().getResource("/interfazGrafica/FxmlAdministrarSoftware.fxml"));
-      
-            try {
-                Parent root =loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                Image icono = new Image("/iconos/logo cc.png");
-                stage.getIcons().add(icono);
-                stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-           
-          
+    buttonAdministrarSoftware.setOnAction((event) -> {
+      Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
+      Parent root = null;
+      try {
+        root = FXMLLoader
+            .load(getClass().getResource("/interfazGrafica/FxmlAdministrarSoftware.fxml"));
 
-        
-        
-    }
-    
-    
-            
-    @FXML
-    private void abrirVentanaAdministrarHardware(ActionEvent event) {
-        Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource(
-                        "/interfazGrafica/FxmlAdministrarHardware.fxml"));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-           
-            Scene scene = new Scene(root);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      Scene scene = new Scene(root);
+      Stage appStage = new Stage();
+      appStage.setScene(scene);
+      Image imagen = new Image("/iconos/logo cc.png");
+      appStage.getIcons().add(imagen);
+      appStage.toFront();
+      appStage.show();
+    });
 
-            primaryStage.setScene(scene);
-            Image icono = new Image("/iconos/logo cc.png");
-            primaryStage.getIcons().add(icono);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-            * */
-        
-    
-   
-    
+
+    buttonAdministrarHardware.setOnAction((event) -> {
+      Stage primaryStage = (Stage) buttonAdministrarHardware.getScene().getWindow();
+      Parent root = null;
+      try {
+        root = FXMLLoader
+            .load(getClass().getResource("/interfazGrafica/FxmlAdministrarHardware.fxml"));
+      } catch (IOException ex) {
+        ex.printStackTrace();
+      }
+
+      Scene scene = new Scene(root);
+
+      primaryStage.setScene(scene);
+      Image icono = new Image("/iconos/logo cc.png");
+      primaryStage.getIcons().add(icono);
+      primaryStage.setResizable(false);
+      primaryStage.show();
+    });
+
+
+
+  }
+
 }
-    
-    
-    
     
     
     

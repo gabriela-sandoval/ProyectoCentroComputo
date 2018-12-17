@@ -11,29 +11,31 @@ import javafx.stage.Stage;
 
 
 /**
- * Clase principal de.
+ * Clase principal 
  * 
  * @author Gabriela Sandoval Cruz
  * @version 1.0
  * @since 2018-12-08
  */
 public class SistemaCentroDeComputo extends Application {
-   
+
   @Override
   public void start(Stage primaryStage) throws IOException {
-      Parent root = FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml"));
-      Scene scene = new Scene(root);
-      Image imagen = new Image("/iconos/logo cc.png");
-      primaryStage.setScene(scene);
-      primaryStage.getIcons().add(imagen);
-      primaryStage.setResizable(false);
-      primaryStage.show();
+    Parent root = FXMLLoader
+        .load(getClass().getResource("/interfazGrafica/FxmlVentanaJefeCentroDeComputo.fxml"));
+    Scene scene = new Scene(root);
+    Image imagen = new Image("/iconos/logo cc.png");
+    primaryStage.setScene(scene);
+    primaryStage.getIcons().add(imagen);
+    primaryStage.setResizable(false);
+    primaryStage.show();
   }
-       
-  
+
+
 
   /**
    * Clase main SistemaCentroDeComputo.
+   * 
    * @param args the command line arguments
    */
   public static void main(String[] args) {
