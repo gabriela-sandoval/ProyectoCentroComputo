@@ -73,9 +73,9 @@ public class HardwareDao implements InterfaceHardwareDao {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
     validador.validarFechaMaxima(sdf.format(hardware.getFechaAdquisicion()));
     
-    consulta = "update hardware set 'marca'= ?, 'modelo' = ?, 'estado' = ?, "
-        + "'tipoDispositivo' = ?, 'fechaAdquisicion' = ?, 'numeroSerie' = ?, "
-        + "'ubicacion' = ? , 'responsable' = ? where 'noInventarioUv' = ?";
+    consulta = "update hardware set marca= ?, modelo = ?, estado = ?, "
+        + "tipoDispositivo = ?, fechaAdquisicion = ?, noSerie = ?, "
+        + "ubicacion = ? , responsable = ? where noInventarioUv = ?";
     try {
       Connection conection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
@@ -89,6 +89,7 @@ public class HardwareDao implements InterfaceHardwareDao {
       consultaParametrizada.setString(8, hardware.getResponsable());
       consultaParametrizada.setString(9, hardware.getNoInventarioUv());
       consultaParametrizada.executeUpdate();
+      actualizar = true;
     } catch (SQLException ex) {
       Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
     } finally {
@@ -116,16 +117,16 @@ public class HardwareDao implements InterfaceHardwareDao {
         hardware.setNoInventarioUv(resultadoConsulta.getString("noInventarioUv"));
         hardware.setMarca(resultadoConsulta.getString("marca"));
         hardware.setModelo(resultadoConsulta.getString("modelo"));
-        hardware.setNumeroSerie(resultadoConsulta.getInt("noSerie"));
         hardware.setEstado(resultadoConsulta.getString("estado"));
         hardware.setTipoDispositivo(resultadoConsulta.getString("tipoDispositivo"));
         hardware.setFechaAdquisicion(resultadoConsulta.getDate("fechaAdquisicion"));
+        hardware.setNumeroSerie(resultadoConsulta.getInt("noSerie"));
         hardware.setUbicacion(resultadoConsulta.getString("ubicacion"));
-         hardware.setResponsable(resultadoConsulta.getString("responsable"));
+        hardware.setResponsable(resultadoConsulta.getString("responsable"));
         listaHardware.add(hardware);
       }
     } catch (SQLException ex) {
-      Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
     } finally {
       AccesoDataBase.cerrarConexion();
     }
@@ -173,7 +174,7 @@ public class HardwareDao implements InterfaceHardwareDao {
    */
   @Override
   public boolean eliminarHardware(Hardware hardware) {
-    consulta = "update software set estado = deshabilitado  where no.InventarioUv = ?";
+    consulta = "update hardware set estado = 'deshabilitado'  where noInventarioUv = ?";
     try {
       PreparedStatement consultaParametrizada =
           AccesoDataBase.obtenerConexionBaseDatos().prepareStatement(consulta);

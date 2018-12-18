@@ -58,7 +58,7 @@ public class FxmlAdministrarSoftwareController implements Initializable {
   @FXML
   private TableColumn<Software, String> tableColumnSO;
   @FXML
-  private TableColumn tableColumnIdioma;
+  private TableColumn<Software, String> tableColumnIdioma;
   
   ObservableList<Software> softwars;
   private int posicionSoftware;
@@ -200,7 +200,6 @@ public class FxmlAdministrarSoftwareController implements Initializable {
     SoftwareDao softwareDao = new SoftwareDao();
     softwares = softwareDao.obtenerListaSoftware();
     
-
     tableColumnIdSoftware.setCellValueFactory(new PropertyValueFactory<Software, String>("idSoftware"));
     tableColumnNombreDeSoftware.setCellValueFactory(new PropertyValueFactory<Software, String>("nombre"));
     tableColumnOrigen.setCellValueFactory(new PropertyValueFactory<Software, String>("origen"));
@@ -213,8 +212,7 @@ public class FxmlAdministrarSoftwareController implements Initializable {
     tableColumnDisponibilidad.setCellValueFactory(new PropertyValueFactory<Software, String>("disponible"));
     tableColumnSO.setCellValueFactory(new PropertyValueFactory<Software, String>("sistemaOperativo"));
     tableColumnIdioma.setCellValueFactory(new PropertyValueFactory<Software, String>("idioma"));
-
-    
+   
     softwars = FXCollections.observableArrayList(softwares);
 
     tabladeSoftware.setItems(softwars);

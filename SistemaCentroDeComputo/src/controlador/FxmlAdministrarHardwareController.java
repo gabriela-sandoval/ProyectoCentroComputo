@@ -1,11 +1,10 @@
 package controlador;
 
 import CentroComputo.Hardware;
-import CentroComputo.Software;
 import Daos.HardwareDao;
-import Daos.SoftwareDao;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,12 +27,8 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.swing.Icon;
 
 public class FxmlAdministrarHardwareController implements Initializable {
   //Tabla
@@ -78,18 +73,22 @@ public class FxmlAdministrarHardwareController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     controlAdminHardware = this;
     
+    buttonActualizar.setOnAction((ActionEvent event) -> {
+        this.inicializarTabla();
+    });
+    
+    buttonEditar.setDisable(true);
+    buttonDeshabilitar.setDisable(true);
+    ObservableList<Hardware> seleccion = tablaHardware.getSelectionModel().getSelectedItems();
+    seleccion.addListener(selector);
+    
     buttonRegresar.setOnAction((ActionEvent event) -> {
         Stage stage = (Stage) buttonRegresar.getScene().getWindow();
         stage.close();
     });
     
-    buttonActualizar.setOnAction((ActionEvent event) -> {
-        this.inicializarTabla();
-    });
-    buttonEditar.setDisable(true);
-    buttonDeshabilitar.setDisable(true);
-    ObservableList<Hardware> seleccion = tablaHardware.getSelectionModel().getSelectedItems();
-    seleccion.addListener(selector);
+    
+    
     
     buttonAgregar.setOnAction((event) -> {
         Stage stage = (Stage) buttonAgregar.getScene().getWindow();
@@ -110,15 +109,13 @@ public class FxmlAdministrarHardwareController implements Initializable {
         try {
             Stage stagePrimaria = (Stage) buttonEditar.getScene().getWindow();
             Hardware auxiliar = new Hardware();
-            auxiliar = seleccion.get(0);
-            
+            auxiliar = seleccion.get(0); 
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
+            
             loader.setLocation(getClass().getResource("/interfazGrafica/FxmlModificarHardware.fxml"));
             Parent ruta = loader.load();
-            
-            FxmlModificarHardwareController controlModificar = 
-                    loader.<FxmlModificarHardwareController>getController();
+            FxmlModificarHardwareController controlModificar = (FxmlModificarHardwareController) loader.getController();
             
             Scene escena = new Scene(ruta);
             stage.setScene(escena);
@@ -199,14 +196,17 @@ public class FxmlAdministrarHardwareController implements Initializable {
        HardwareDao hardwareDao = new HardwareDao();
        hardwars = hardwareDao.obtenerListaHardware();
        
-       columnaNoInventario.setCellFactory(new PropertyValueFactory<Hardware, String>("noInventarioUv"));
-       
-       equipos = FXCollections.observableArrayList(hardwars);
-       
+       columnaNoInventario.setCellValueFactory(new PropertyValueFactory<Hardware, String>("noInventarioUv"));
+       columnaMarca.setCellValueFactory(new PropertyValueFactory<Hardware, String>("marca"));
+       columnaModelo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("modelo"));
+       columnaNumeroSerie.setCellValueFactory(new PropertyValueFactory<Hardware, Integer>("numeroSerie"));       
+       columnaEstado.setCellValueFactory(new PropertyValueFactory<Hardware, String>("estado"));
+       columnaTipo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("tipoDispositivo"));
+       columnaFecha.setCellValueFactory(new PropertyValueFactory<Hardware, Date>("fechaAdquisicion"));
+       columnaUbicacion.setCellValueFactory(new PropertyValueFactory<Hardware, String>("ubicacion"));
+       columnaResponsable.setCellValueFactory(new PropertyValueFactory<Hardware, String>("responsable"));
+
+       equipos = FXCollections.observableArrayList(hardwars);   
        tablaHardware.setItems(equipos);
    }
-   
-  
-
-
 }

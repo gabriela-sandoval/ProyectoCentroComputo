@@ -52,7 +52,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="textFieldUbicación" layoutX="590.0" layoutY="210.0" />
+      <TextField fx:id="textFieldUbicacion" layoutX="590.0" layoutY="210.0" />
       <Text fill="#18529d" layoutX="165.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />

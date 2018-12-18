@@ -57,7 +57,6 @@ public class FxmlAgregarSoftwareController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
-
     buttonGuardar.setOnAction(new EventHandler() {
       @Override
       public void handle(Event event) {
@@ -65,7 +64,7 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Validador validador = new Validador();
 
         boolean idValidacion = validador.validaIdSoftware(textFieldIdSoftware.getText());
-        if (idValidacion == true) {
+        if(idValidacion == true) {
           String idSoftware = textFieldIdSoftware.getText();
           String nombreSoftware = textFieldNombre.getText();
           String origen = textFieldOrigen.getText();
