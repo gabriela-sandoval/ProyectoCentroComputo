@@ -99,7 +99,7 @@ public class TestHardwareDao {
     final String MARCA_ESPERADA = "Dell";
     final String MODELO_ESPERADO = "mini-lp";
     int NUMSERIE_ESPERADO = 12345;
-    final String ESTADO_ESPERADO = "disponible";
+    final String ESTADO_ESPERADO = "prestado";
     final String TIPODISPOSITIVO_ESPERADO = "laptop";
     final Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2017-01-02");
 
@@ -137,7 +137,7 @@ public class TestHardwareDao {
     final String MARCA_ESPERADA = "Dell";
     final String MODELO_ESPERADO = "mini-lp";
     final int NUMSERIE_ESPERADO = 12345;
-    final String ESTADO_ESPERADO = "disponible";
+    final String ESTADO_ESPERADO = "prestado";
     final String TIPODISPOSITIVO_ESPERADO = "laptop";
     final Date FECHAADQUIRIDO_ESPERADO = Date.valueOf("2017-01-02");
 
