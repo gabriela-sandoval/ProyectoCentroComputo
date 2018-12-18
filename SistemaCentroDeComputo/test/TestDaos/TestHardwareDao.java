@@ -4,7 +4,6 @@ import CentroComputo.Hardware;
 import Daos.AccesoDataBase;
 import Daos.HardwareDao;
 import Daos.SoftwareDao;
-import ccExcepciones.ErrorOperacionDB;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;

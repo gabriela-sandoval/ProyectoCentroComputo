@@ -17,9 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class de la interfaz agregar software
  *
  * @author galil y irasema
+ * @since 12/12/2018
+ * @version 1.0
  */
 public class FxmlAgregarSoftwareController implements Initializable {
   @FXML
@@ -52,7 +54,7 @@ public class FxmlAgregarSoftwareController implements Initializable {
   private Button buttonSalir;
 
   /**
-   * Initializes the controller class.
+   * Inicializa los eventos de los botones
    */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
@@ -96,7 +98,6 @@ public class FxmlAgregarSoftwareController implements Initializable {
           alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
           alerta.show();    
           } else {
-               // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.ERROR);
           alerta.setTitle("Software NO Guardado");
           alerta.setHeaderText(null);

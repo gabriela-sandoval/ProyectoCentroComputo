@@ -1,7 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
- */
 package controlador;
 
 import java.net.URL;
@@ -11,7 +7,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author galil
+ * @author galil y Irasema Caicero 
+ * @since 18/12/18
+ * @version 1.0
  */
 public class FxmlAdministrarUsuariosController implements Initializable {
 

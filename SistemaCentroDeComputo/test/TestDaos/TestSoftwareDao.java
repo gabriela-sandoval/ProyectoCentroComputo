@@ -27,7 +27,7 @@ public class TestSoftwareDao {
   }
 
   /**
-   * prueba el software ingresando todo sus datos completos de forma correcta
+   * prueba el software ingresando todos sus datos completos de forma correcta
    */
   @Test
   public void testAgregarSoftwareCompleto() {

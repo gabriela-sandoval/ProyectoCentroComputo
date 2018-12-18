@@ -16,9 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controlador de la clase ventana del jefe de centro de computo
  *
- * @author galil
+ * @author galil y Irasema Caicero
  */
 public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
   // logos
@@ -40,7 +40,7 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
   private Button buttonAdministrarUsuarios;
 
   /**
-   * Initializes the controller class.
+   * Inicializa los botones y eventos
    */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
@@ -48,7 +48,6 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
       Stage stage = (Stage) buttonSalir.getScene().getWindow();
       stage.close();
     });
-
 
     buttonAdministrarSoftware.setOnAction((event) -> {
       Stage primaryStage = (Stage) buttonAdministrarSoftware.getScene().getWindow();
@@ -88,11 +87,7 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
       stage.toFront();
       stage.show();
     });
-
-
-
   }
-
 }
     
     

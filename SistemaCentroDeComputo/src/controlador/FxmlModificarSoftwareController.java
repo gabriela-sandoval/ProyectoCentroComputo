@@ -17,12 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controlador de la interfaz de modificar software
  *
  * @author Irasema Caicero Franco
+ * @since 12/12/18
+ * @version 1.0
  */
 public class FxmlModificarSoftwareController implements Initializable {
-
   // cajas de texto
   @FXML
   private TextField textFieldIdSoftware;
@@ -57,6 +58,9 @@ public class FxmlModificarSoftwareController implements Initializable {
   FxmlAdministrarSoftwareController controlAdmSoftware;
   Software software;
 
+  /**
+   * inicializa los botones agregando sus eventos
+   */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
@@ -87,7 +91,6 @@ public class FxmlModificarSoftwareController implements Initializable {
               requiereActualizacion, version, disponible, sistemaOperativo, idioma));
 
           if(resultadoActualizacion == true) {
-          // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.INFORMATION);
           alerta.setTitle("Software Guardado");
           alerta.setHeaderText(null);
@@ -116,19 +119,23 @@ public class FxmlModificarSoftwareController implements Initializable {
     });
   }
 
-  public void traerSoftware(Software aux) {
-    textFieldIdSoftware.setText(aux.getIdSoftware());
-    textFieldNombre.setText(aux.getNombre());
-    textFieldOrigen.setText(aux.getOrigen());
-    textFieldObservaciones.setText(aux.getObservaciones());
-    textFieldFecha.setText(String.valueOf(aux.getFechaAdquisicion()));
-    textFieldTipo.setText(aux.getTipoSoftware());
-    textFieldMarca.setText(aux.getMarca());
-    textFieldActualizacion.setText(String.valueOf(aux.isRequiereActualizacion()));
-    textFieldVersion.setText(String.valueOf(aux.getVersion()));
-    textFieldDisponible.setText(String.valueOf(aux.isDisponible()));
-    textFieldSO.setText(aux.getSistemaOperativo());
-    textFieldIdioma.setText(aux.getIdioma());
-    this.software = aux;
+  /**
+   * obtiene el software que se selecciono a editar y los muestra en la ventana
+   * @param auxiliar software que fue seleccionado a editar 
+   */
+  public void traerSoftware(Software auxiliar) {
+    textFieldIdSoftware.setText(auxiliar.getIdSoftware());
+    textFieldNombre.setText(auxiliar.getNombre());
+    textFieldOrigen.setText(auxiliar.getOrigen());
+    textFieldObservaciones.setText(auxiliar.getObservaciones());
+    textFieldFecha.setText(String.valueOf(auxiliar.getFechaAdquisicion()));
+    textFieldTipo.setText(auxiliar.getTipoSoftware());
+    textFieldMarca.setText(auxiliar.getMarca());
+    textFieldActualizacion.setText(String.valueOf(auxiliar.isRequiereActualizacion()));
+    textFieldVersion.setText(String.valueOf(auxiliar.getVersion()));
+    textFieldDisponible.setText(String.valueOf(auxiliar.isDisponible()));
+    textFieldSO.setText(auxiliar.getSistemaOperativo());
+    textFieldIdioma.setText(auxiliar.getIdioma());
+    this.software = auxiliar;
   }
 }

@@ -30,6 +30,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+/**
+ * Controlador de la interfaz Administrar Hardware
+ * 
+ * @author Irasema Caicero
+ * @since  18/12/2018
+ * @version 1.0
+ */
 public class FxmlAdministrarHardwareController implements Initializable {
   //Tabla
   @FXML
@@ -55,7 +62,6 @@ public class FxmlAdministrarHardwareController implements Initializable {
   
   ObservableList<Hardware> equipos;
   private int posicion;
-  
   //Botones
   @FXML
   private Button buttonAgregar;
@@ -86,9 +92,6 @@ public class FxmlAdministrarHardwareController implements Initializable {
         Stage stage = (Stage) buttonRegresar.getScene().getWindow();
         stage.close();
     });
-    
-    
-    
     
     buttonAgregar.setOnAction((event) -> {
         Stage stage = (Stage) buttonAgregar.getScene().getWindow();
@@ -138,10 +141,8 @@ public class FxmlAdministrarHardwareController implements Initializable {
             String nombreHardware = hardware.getTipoDispositivo();
             String marca = hardware.getMarca();
             String modelo = hardware.getModelo();
-          
-            //Mensaje de Alerta de deshabilitacion
+            
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-
         confirmacion.setTitle("Deshabilitacion del equipo");
         confirmacion.setHeaderText(null);
         confirmacion.setContentText("¿Eliminar el equipo " + nombreHardware + 
@@ -158,16 +159,13 @@ public class FxmlAdministrarHardwareController implements Initializable {
         if (eleccion.get() == btDeshabilitar) {
           HardwareDao hardwareDao = new HardwareDao();
           hardwareDao.eliminarHardware(hardware);
-        Alert confirmacionDeshabilitado = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacion.setTitle("Deshabilitacion realizada");
-        confirmacion.setHeaderText(null);
-        confirmacion.setContentText("El equipo se ha deshabilitado. Recuerda Actualizar la tabla para ver los cambios");
           tablaHardware.refresh();
         }
         }     
     });
   }
   
+
   private final ListChangeListener<Hardware> selector = new ListChangeListener<Hardware>() {
     @Override
     public void onChanged(ListChangeListener.Change<? extends Hardware> c) {
@@ -175,6 +173,10 @@ public class FxmlAdministrarHardwareController implements Initializable {
     }
   };
   
+  /**
+   * método que permite obtener el elemento seleccionado
+   * @return Hardware seleccionado
+   */
    public Hardware getHardwareSeleccionado() {
     if (tablaHardware != null) {
       List<Hardware> tabla = tablaHardware.getSelectionModel().getSelectedItems();

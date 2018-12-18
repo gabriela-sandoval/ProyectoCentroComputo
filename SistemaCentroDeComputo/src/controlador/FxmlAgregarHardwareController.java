@@ -19,9 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class de la interfaz agregar hardware
  *
  * @author Irasema Caicero
+ * @since 18/12/18
+ * @version 1.0
  */
 public class FxmlAgregarHardwareController implements Initializable {
     @FXML
@@ -49,7 +51,7 @@ public class FxmlAgregarHardwareController implements Initializable {
     private Button buttonSalir;
 
   /**
-   * Initializes the controller class.
+   * Inicializa los botones de los eventos
    */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
@@ -85,7 +87,6 @@ public class FxmlAgregarHardwareController implements Initializable {
               estado, tipoDispositivo, fecha, responsable, ubicacion));
               
               if (resultadoGuardado == true) {
-               // agregar ventana emergente---------------------------------------
                   Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                   alerta.setTitle("Hardware Guardado");
                   alerta.setHeaderText(null);
@@ -93,7 +94,6 @@ public class FxmlAgregarHardwareController implements Initializable {
                           + " Recuerda actualizar la tabla!!");
                   alerta.show();   
               } else {
-                  // agregar ventana emergente---------------------------------------
                   Alert alerta = new Alert(Alert.AlertType.ERROR);
                   alerta.setTitle("hardware NO Guardado");
                   alerta.setHeaderText(null);
@@ -101,7 +101,6 @@ public class FxmlAgregarHardwareController implements Initializable {
                   alerta.show();
               }
               } else {
-              // agregar ventana emergente---------------------------------------
                   Alert alerta = new Alert(Alert.AlertType.WARNING);
                   alerta.setTitle("Datos Inválidos");
                   alerta.setHeaderText(null);

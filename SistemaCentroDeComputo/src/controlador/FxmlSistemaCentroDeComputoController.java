@@ -10,8 +10,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+/**
+ * controlador de la interfaz sistema centro de computo; loguin
+ * @author gabriela sandoval
+ */
 public class FxmlSistemaCentroDeComputoController implements Initializable {
-
+    
   @FXML
   private Button buttonIngresar;
 

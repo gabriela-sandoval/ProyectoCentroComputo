@@ -2,6 +2,13 @@ package CentroComputo;
 
 import java.sql.Date;
 
+/**
+ * clase de resguardo 
+ * 
+ * @author Irasema Caicero
+ * @since 10/12/18
+ * @version 1.0
+ */
 public class Resguardo {
   private Responsable responsable;
   private Hardware equipo;

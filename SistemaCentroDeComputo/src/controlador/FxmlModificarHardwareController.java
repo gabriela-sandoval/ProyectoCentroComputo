@@ -18,12 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controlador de la interfaz modificar hardware
  *
- * @author irasema caicero
+ * @author Gabriela Sandoval y Irasema Caicero
+ * @since 18/12/2018
+ * @version 1.0
  */
 public class FxmlModificarHardwareController implements Initializable {
-
     //cajas de texto y combo box
     @FXML
     private TextField textFieldNoInventario;
@@ -52,6 +53,11 @@ public class FxmlModificarHardwareController implements Initializable {
     FxmlAdministrarHardwareController controlAdminHardware;
     Hardware hardware;
 
+    /**
+     * inicializador de los botones - agregcion de eventos
+     * @param url
+     * @param rb 
+     */
   @Override
   public void initialize(URL url, ResourceBundle rb) {
       ObservableList<String> estados = FXCollections.observableArrayList();
@@ -84,7 +90,6 @@ public class FxmlModificarHardwareController implements Initializable {
                         tipoDispositivo, fecha,responsable, ubicacion));
               
               if(resultadoActualizacion == true) {
-                  // agregar ventana emergente---------------------------------------
                   Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                   alerta.setTitle("Hardware Guardado");
                   alerta.setHeaderText(null);
@@ -92,7 +97,6 @@ public class FxmlModificarHardwareController implements Initializable {
                           + "actualizar la tabla!!");
                   alerta.show();
                 }else {
-          // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.ERROR);
           alerta.setTitle("hardware no Guardado");
           alerta.setHeaderText(null);
@@ -100,7 +104,6 @@ public class FxmlModificarHardwareController implements Initializable {
           alerta.show();
             } 
           } else {
-              // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.WARNING);
           alerta.setTitle("Datos Inválidos");
           alerta.setHeaderText(null);
@@ -115,6 +118,10 @@ public class FxmlModificarHardwareController implements Initializable {
       });
   }
   
+  /**
+   * obtiene el objeto Hardware que se seleccionó de la tabla para editar
+   * @param auxiliar hardware que se seleccionó a editar
+   */
   public void traerHardware(Hardware auxiliar) {
       textFieldNoInventario.setText(auxiliar.getNoInventarioUv());
       textFieldMarca.setText(auxiliar.getMarca());
@@ -124,8 +131,7 @@ public class FxmlModificarHardwareController implements Initializable {
       textFieldModelo.setText(auxiliar.getModelo());
       textFieldNoSerie.setText(String.valueOf(auxiliar.getNumeroSerie()));
       textFieldUbicacion.setText(auxiliar.getUbicacion());
-      comboBoxEstado.getSelectionModel().select(auxiliar.getEstado());
-      
+      comboBoxEstado.getSelectionModel().select(auxiliar.getEstado());      
       this.hardware = auxiliar;    
   }
 
