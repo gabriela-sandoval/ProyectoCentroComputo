@@ -21,11 +21,10 @@ public class Hardware {
   private String estado;
   private String tipoDispositivo;
   private Date fechaAdquisicion;
+  private String responsable;
+  private String ubicacion;
 
-
-
-  public Hardware(String noInventarioUv, String marca, String modelo, int numeroSerie,
-      String estado, String tipoDispositivo, Date fechaAdquisicion) {
+  public Hardware(String noInventarioUv, String marca, String modelo, int numeroSerie, String estado, String tipoDispositivo, Date fechaAdquisicion, String responsable, String ubicacion) {
     this.noInventarioUv = noInventarioUv;
     this.marca = marca;
     this.modelo = modelo;
@@ -33,7 +32,8 @@ public class Hardware {
     this.estado = estado;
     this.tipoDispositivo = tipoDispositivo;
     this.fechaAdquisicion = fechaAdquisicion;
-
+    this.responsable = responsable;
+    this.ubicacion = ubicacion;
   }
 
   public Hardware() {
@@ -95,6 +95,23 @@ public class Hardware {
   public void setFechaAdquisicion(Date fechaAdquisicion) {
     this.fechaAdquisicion = fechaAdquisicion;
   }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+  
 
   /**
    * gestiona los tipos de estados que tiene un hardware

@@ -1,55 +1,212 @@
 package controlador;
 
+import CentroComputo.Hardware;
+import CentroComputo.Software;
+import Daos.HardwareDao;
+import Daos.SoftwareDao;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javax.swing.Icon;
 
 public class FxmlAdministrarHardwareController implements Initializable {
-
+  //Tabla
   @FXML
-  private ImageView imageViewLogo;
-
+  private TableView<Hardware> tablaHardware;
   @FXML
-  private Text textAdministrarHardware;
-
-
+  private TableColumn columnaNoInventario;
   @FXML
-  private Text textJefeDelCentroDeComputo;
-
+  private TableColumn columnaMarca;
   @FXML
-  private TextField textFieldNombreDeUsuario;
-
+  private TableColumn columnaModelo;
   @FXML
-  private Icon iconRegresar;
-
+  private TableColumn columnaNumeroSerie;
   @FXML
-  private Text textRegresar;
-
+  private TableColumn columnaEstado;
   @FXML
-  private Icon iconAgregar;
-
+  private TableColumn columnaTipo;
   @FXML
-  private Icon iconDeshabilitar;
-
+  private TableColumn columnaFecha;
   @FXML
-  private Icon iconEditar;
-
+  private TableColumn columnaUbicacion;
   @FXML
-  private Icon iconVerMas;
+  private TableColumn columnaResponsable;
+  
+  ObservableList<Hardware> equipos;
+  private int posicion;
+  
+  //Botones
+  @FXML
+  private Button buttonAgregar;
+  @FXML
+  private Button buttonEditar;
+  @FXML
+  private Button buttonDeshabilitar;
+  @FXML
+  private Button buttonActualizar;
+  @FXML
+  private Button buttonRegresar;
+  
+  FxmlAdministrarHardwareController controlAdminHardware;
 
-  /**
-   * Initializes the controller class.
-   */
   public void initialize(URL url, ResourceBundle rb) {
+    controlAdminHardware = this;
+    
+    buttonRegresar.setOnAction((ActionEvent event) -> {
+        Stage stage = (Stage) buttonRegresar.getScene().getWindow();
+        stage.close();
+    });
+    
+    buttonActualizar.setOnAction((ActionEvent event) -> {
+        this.inicializarTabla();
+    });
+    buttonEditar.setDisable(true);
+    buttonDeshabilitar.setDisable(true);
+    ObservableList<Hardware> seleccion = tablaHardware.getSelectionModel().getSelectedItems();
+    seleccion.addListener(selector);
+    
+    buttonAgregar.setOnAction((event) -> {
+        Stage stage = (Stage) buttonAgregar.getScene().getWindow();
+        Parent ruta = null;
+        try {
+            ruta = FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlAgregarHardware.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(ruta);
+        Stage nuevo = new Stage();
+        nuevo.setScene(scene);
+        nuevo.toFront();
+        nuevo.show();       
+    });
+    
+    buttonEditar.setOnAction((ActionEvent event) -> {
+        try {
+            Stage stagePrimaria = (Stage) buttonEditar.getScene().getWindow();
+            Hardware auxiliar = new Hardware();
+            auxiliar = seleccion.get(0);
+            
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/interfazGrafica/FxmlModificarHardware.fxml"));
+            Parent ruta = loader.load();
+            
+            FxmlModificarHardwareController controlModificar = 
+                    loader.<FxmlModificarHardwareController>getController();
+            
+            Scene escena = new Scene(ruta);
+            stage.setScene(escena);
+            stage.toFront();
+            stage.show();
+            controlModificar.traerHardware(auxiliar);
+        } catch (IOException ex) {
+            Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    });
+    
+    buttonDeshabilitar.setOnAction(new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            Hardware hardware = new Hardware();
+            hardware = seleccion.get(0);
+            
+            String noInventarioUv = hardware.getNoInventarioUv();
+            String nombreHardware = hardware.getTipoDispositivo();
+            String marca = hardware.getMarca();
+            String modelo = hardware.getModelo();
+          
+            //Mensaje de Alerta de deshabilitacion
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
 
+        confirmacion.setTitle("Deshabilitacion del equipo");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿eliminar el equipo " + nombreHardware + 
+                "de la marca "+ marca + " modelo: " +modelo + 
+                "con el numero de inventario: " +noInventarioUv +"?");
+
+        ButtonType btDeshabilitar = new ButtonType("Deshabilitar");
+        ButtonType btCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        confirmacion.getButtonTypes().setAll(btDeshabilitar, btCancelar);
+
+        Optional<ButtonType> eleccion = confirmacion.showAndWait();
+
+        if (eleccion.get() == btDeshabilitar) {
+          HardwareDao hardwareDao = new HardwareDao();
+          hardwareDao.eliminarHardware(hardware);
+          tablaHardware.refresh();
+        }
+        }     
+    });
   }
+  
+  private final ListChangeListener<Hardware> selector = new ListChangeListener<Hardware>() {
+    @Override
+    public void onChanged(ListChangeListener.Change<? extends Hardware> c) {
+      ponerHardwareSeleccionado();
+    }
+  };
+  
+   public Hardware getHardwareSeleccionado() {
+    if (tablaHardware != null) {
+      List<Hardware> tabla = tablaHardware.getSelectionModel().getSelectedItems();
+      if (tabla.size() == 1) {
+        final Hardware seleccionada = tabla.get(0);
+        return seleccionada;
+      }
+    }
+    return null;
+  }
+   
+   private void ponerHardwareSeleccionado() {
+    final Hardware hardware = getHardwareSeleccionado();
+    posicion = equipos.indexOf(hardware);
+    if (hardware != null) {
+      buttonEditar.setDisable(false);
+      buttonDeshabilitar.setDisable(false);
+    }
+  }
+   
+   private void inicializarTabla(){
+       List hardwars;
+       HardwareDao hardwareDao = new HardwareDao();
+       hardwars = hardwareDao.obtenerListaHardware();
+       
+       columnaNoInventario.setCellFactory(new PropertyValueFactory<Hardware, String>("noInventarioUv"));
+       
+       equipos = FXCollections.observableArrayList(hardwars);
+       
+       tablaHardware.setItems(equipos);
+   }
+   
+  
 
 
 }

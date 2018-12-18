@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class HardwareDao implements InterfaceHardwareDao {
   private String consulta;
   private List<Hardware> listaHardware;
-  private Connection conection;
+  
 
   /**
    * registra un nuevo hardware
@@ -37,9 +37,9 @@ public class HardwareDao implements InterfaceHardwareDao {
     validador.validarNoInventarioHardware(hardware.getNoInventarioUv());
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
     validador.validarFechaMaxima(sdf.format(hardware.getFechaAdquisicion()));
-    consulta = "insert into hardware values (?, ?, ?, ?, ?, ?, ?)";
+    consulta = "insert into hardware values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try {
-      conection = AccesoDataBase.obtenerConexionBaseDatos();
+      Connection conection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
       consultaParametrizada.setString(1, hardware.getNoInventarioUv());
       consultaParametrizada.setString(2, hardware.getMarca());
@@ -48,6 +48,8 @@ public class HardwareDao implements InterfaceHardwareDao {
       consultaParametrizada.setString(5, hardware.getTipoDispositivo());
       consultaParametrizada.setDate(6, hardware.getFechaAdquisicion());
       consultaParametrizada.setInt(7, hardware.getNumeroSerie());
+      consultaParametrizada.setString(8, hardware.getUbicacion());
+      consultaParametrizada.setString(9, hardware.getResponsable());
       consultaParametrizada.executeUpdate();
     } catch (SQLException ex) {
       Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,32 +67,34 @@ public class HardwareDao implements InterfaceHardwareDao {
    */
   @Override
   public boolean actualizarHardware(Hardware hardware) {
-    if (hardware.getNoInventarioUv().isEmpty()) {
-      try {
-        throw new NoExisteRegistroException("El hardware que ingresó no existe");
-      } catch (NoExisteRegistroException ex) {
-        Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
-    consulta = "UPDATE hardware set 'marca'= ?, 'modelo' = ?, 'estado' = ?, "
-        + "'tipoDispositivo' = ?, 'fechaAdquisicion' = ?, 'numeroSerie' = ?";
+    boolean actualizar = false;
+    Validador validador = new Validador();
+    validador.validarNoInventarioHardware(hardware.getNoInventarioUv());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+    validador.validarFechaMaxima(sdf.format(hardware.getFechaAdquisicion()));
+    
+    consulta = "update hardware set 'marca'= ?, 'modelo' = ?, 'estado' = ?, "
+        + "'tipoDispositivo' = ?, 'fechaAdquisicion' = ?, 'numeroSerie' = ?, "
+        + "'ubicacion' = ? , 'responsable' = ? where 'noInventarioUv' = ?";
     try {
-      conection = AccesoDataBase.obtenerConexionBaseDatos();
+      Connection conection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
-      consultaParametrizada.setString(1, hardware.getNoInventarioUv());
-      consultaParametrizada.setString(2, hardware.getMarca());
-      consultaParametrizada.setString(3, hardware.getModelo());
-      consultaParametrizada.setString(4, hardware.getEstado());
-      consultaParametrizada.setString(5, hardware.getTipoDispositivo());
-      consultaParametrizada.setDate(6, hardware.getFechaAdquisicion());
-      consultaParametrizada.setInt(7, hardware.getNumeroSerie());
+      consultaParametrizada.setString(1, hardware.getMarca());
+      consultaParametrizada.setString(2, hardware.getModelo());
+      consultaParametrizada.setString(3, hardware.getEstado());
+      consultaParametrizada.setString(4, hardware.getTipoDispositivo());
+      consultaParametrizada.setDate(5, hardware.getFechaAdquisicion());
+      consultaParametrizada.setInt(6, hardware.getNumeroSerie());
+      consultaParametrizada.setString(7, hardware.getUbicacion());
+      consultaParametrizada.setString(8, hardware.getResponsable());
+      consultaParametrizada.setString(9, hardware.getNoInventarioUv());
       consultaParametrizada.executeUpdate();
     } catch (SQLException ex) {
       Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);
     } finally {
       AccesoDataBase.cerrarConexion();
     }
-    return true;
+    return actualizar;
   }
 
   /**
@@ -103,18 +107,21 @@ public class HardwareDao implements InterfaceHardwareDao {
     consulta = "select * from hardware";
     List<Hardware> listaHardware = new ArrayList<>();
     try {
-      conection = AccesoDataBase.obtenerConexionBaseDatos();
+      Connection conection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
       ResultSet resultadoConsulta = consultaParametrizada.executeQuery();
       while (resultadoConsulta.next()) {
         Hardware hardware = new Hardware();
+        
         hardware.setNoInventarioUv(resultadoConsulta.getString("noInventarioUv"));
         hardware.setMarca(resultadoConsulta.getString("marca"));
         hardware.setModelo(resultadoConsulta.getString("modelo"));
+        hardware.setNumeroSerie(resultadoConsulta.getInt("noSerie"));
         hardware.setEstado(resultadoConsulta.getString("estado"));
         hardware.setTipoDispositivo(resultadoConsulta.getString("tipoDispositivo"));
         hardware.setFechaAdquisicion(resultadoConsulta.getDate("fechaAdquisicion"));
-        hardware.setNumeroSerie(resultadoConsulta.getInt("noSerie"));
+        hardware.setUbicacion(resultadoConsulta.getString("ubicacion"));
+         hardware.setResponsable(resultadoConsulta.getString("responsable"));
         listaHardware.add(hardware);
       }
     } catch (SQLException ex) {
@@ -125,12 +132,17 @@ public class HardwareDao implements InterfaceHardwareDao {
     return listaHardware;
   }
 
+  /**
+   * obtiene un hardware especifico
+   * @param noInventarioUv clave buscada
+   * @return el hardware encontrado
+   */
   @Override
   public Hardware buscarHardware(String noInventarioUv) {
     consulta = "select * from hardware where noInventarioUv = ? ";
     Hardware hardware = new Hardware();
     try {
-      conection = AccesoDataBase.obtenerConexionBaseDatos();
+      Connection conection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement consultaParametrizada = conection.prepareStatement(consulta);
       consultaParametrizada.setString(1, noInventarioUv);
       ResultSet resultadoConsulta = consultaParametrizada.executeQuery();
@@ -142,6 +154,8 @@ public class HardwareDao implements InterfaceHardwareDao {
       hardware.setTipoDispositivo(resultadoConsulta.getString("tipoDispositivo"));
       hardware.setFechaAdquisicion(resultadoConsulta.getDate("fechaAdquisicion"));
       hardware.setNumeroSerie(resultadoConsulta.getInt("noSerie"));
+      hardware.setUbicacion(resultadoConsulta.getString("ubicacion"));
+      hardware.setResponsable(resultadoConsulta.getString("responsable"));
 
     } catch (SQLException ex) {
       Logger.getLogger(HardwareDao.class.getName()).log(Level.SEVERE, null, ex);

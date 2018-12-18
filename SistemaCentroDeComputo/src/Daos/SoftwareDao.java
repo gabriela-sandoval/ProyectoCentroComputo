@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +67,11 @@ public class SoftwareDao implements InterfaceSoftwareDao {
    */
   @Override
   public boolean actualizarSoftware(Software software) {
-
     boolean actualizar = false;
+    Validador validador = new Validador();
+    validador.validaIdSoftware(software.getIdSoftware());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+    validador.validarFechaMaxima(sdf.format(software.getFechaAdquisicion()));
 
     consulta = "update software set nombreSoftware = ?, origen = ?, "
             + "Observaciones = ?, fechaAdquisicion = ?, tipoSoftware = ?,"
@@ -111,7 +113,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
       ResultSet resultado = consultaParametrizada.executeQuery();
       while (resultado.next()) {
         Software software = new Software();
-
+ 
         software.setNombre(resultado.getString("nombreSoftware"));
         software.setIdSoftware(resultado.getString("idSoftware"));
         software.setMarca(resultado.getString("marca"));

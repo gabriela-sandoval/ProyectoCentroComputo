@@ -7,8 +7,6 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -26,11 +24,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -38,36 +32,34 @@ import javafx.stage.Stage;
  * @author Irasema Caicero
  */
 public class FxmlAdministrarSoftwareController implements Initializable {
-
-  @FXML
-  private ImageView imageViewLogo;
   // Tabla
   @FXML
   private TableView<Software> tabladeSoftware;
   @FXML
-  private TableColumn tableColumnIdSoftware;
+  private TableColumn<Software, String> tableColumnIdSoftware;
   @FXML
-  private TableColumn tableColumnNombreDeSoftware;
+  private TableColumn<Software, String> tableColumnNombreDeSoftware;
   @FXML
-  private TableColumn tableColumnOrigen;
+  private TableColumn<Software, String> tableColumnOrigen;
   @FXML
-  private TableColumn tableColumnObservaciones;
+  private TableColumn<Software, String> tableColumnObservaciones;
   @FXML
-  private TableColumn tableColumnFecha;
+  private TableColumn<Software, Date> tableColumnFecha;
   @FXML
-  private TableColumn tableColumnTipo;
+  private TableColumn<Software, String> tableColumnTipo;
   @FXML
-  private TableColumn tableColumnMarca;
+  private TableColumn<Software, String> tableColumnMarca;
   @FXML
-  private TableColumn tableColumnActualizacion;
+  private TableColumn<Software, String> tableColumnActualizacion;
   @FXML
-  private TableColumn tableColumnVersion;
+  private TableColumn<Software, Double> tableColumnVersion;
   @FXML
-  private TableColumn tableColumnDisponibilidad;
+  private TableColumn<Software, String> tableColumnDisponibilidad;
   @FXML
-  private TableColumn tableColumnSO;
+  private TableColumn<Software, String> tableColumnSO;
   @FXML
   private TableColumn tableColumnIdioma;
+  
   ObservableList<Software> softwars;
   private int posicionSoftware;
 
@@ -87,7 +79,6 @@ public class FxmlAdministrarSoftwareController implements Initializable {
 
   @Override
   public void initialize(java.net.URL location, ResourceBundle resources) {
-
     controlAdminSoftware = this;
 
     buttonActualizar.setOnAction((ActionEvent event) -> {
@@ -107,7 +98,7 @@ public class FxmlAdministrarSoftwareController implements Initializable {
         aux = seleccion.get(0);
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        // AnchorPane root= null;
+        
         loader.setLocation(getClass().getResource("/interfazGrafica/FxmlModificarSoftware.fxml"));
         Parent root = loader.load();
         FxmlModificarSoftwareController controlModifSoftware =
@@ -132,13 +123,14 @@ public class FxmlAdministrarSoftwareController implements Initializable {
         String idSoftware = software.getIdSoftware();
         String nombreSoftware = software.getNombre();
 
+        //mensaje de alerta de deshabilitacion
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
 
         confirmacion.setTitle("Deshabilitacion de software");
         confirmacion.setHeaderText(null);
-        confirmacion.setContentText("Id: " + idSoftware + "\nNombre: " + nombreSoftware);
+        confirmacion.setContentText("¿Deshabilitar Id: " + idSoftware + "\nNombre: " + nombreSoftware + "?");
 
-        ButtonType btEliminar = new ButtonType("Eliminar");
+        ButtonType btEliminar = new ButtonType("Deshabilitar");
         ButtonType btCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         confirmacion.getButtonTypes().setAll(btEliminar, btCancelar);
@@ -207,21 +199,22 @@ public class FxmlAdministrarSoftwareController implements Initializable {
     List softwares;
     SoftwareDao softwareDao = new SoftwareDao();
     softwares = softwareDao.obtenerListaSoftware();
+    
 
-    tableColumnIdSoftware.setCellValueFactory(new PropertyValueFactory<>("idSoftware"));
-    tableColumnNombreDeSoftware.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-    tableColumnOrigen.setCellValueFactory(new PropertyValueFactory<>("origen"));
-    tableColumnObservaciones.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
-    tableColumnFecha.setCellValueFactory(new PropertyValueFactory<>("fechaAdquisicion"));
-    tableColumnTipo.setCellValueFactory(new PropertyValueFactory<>("tipoSoftware"));
-    tableColumnMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-    tableColumnActualizacion
-        .setCellValueFactory(new PropertyValueFactory<>("requiereActualizacion"));
-    tableColumnVersion.setCellValueFactory(new PropertyValueFactory<>("version"));
-    tableColumnDisponibilidad.setCellValueFactory(new PropertyValueFactory<>("disponible"));
-    tableColumnSO.setCellValueFactory(new PropertyValueFactory<>("sistemaOperativo"));
-    tableColumnIdioma.setCellValueFactory(new PropertyValueFactory<>("idioma"));
+    tableColumnIdSoftware.setCellValueFactory(new PropertyValueFactory<Software, String>("idSoftware"));
+    tableColumnNombreDeSoftware.setCellValueFactory(new PropertyValueFactory<Software, String>("nombre"));
+    tableColumnOrigen.setCellValueFactory(new PropertyValueFactory<Software, String>("origen"));
+    tableColumnObservaciones.setCellValueFactory(new PropertyValueFactory<Software, String>("observaciones"));
+    tableColumnFecha.setCellValueFactory(new PropertyValueFactory<Software, Date>("fechaAdquisicion"));
+    tableColumnTipo.setCellValueFactory(new PropertyValueFactory<Software, String>("tipoSoftware"));
+    tableColumnMarca.setCellValueFactory(new PropertyValueFactory<Software, String>("marca"));
+    tableColumnActualizacion.setCellValueFactory(new PropertyValueFactory<Software, String>("requiereActualizacion"));
+    tableColumnVersion.setCellValueFactory(new PropertyValueFactory<Software, Double>("version"));
+    tableColumnDisponibilidad.setCellValueFactory(new PropertyValueFactory<Software, String>("disponible"));
+    tableColumnSO.setCellValueFactory(new PropertyValueFactory<Software, String>("sistemaOperativo"));
+    tableColumnIdioma.setCellValueFactory(new PropertyValueFactory<Software, String>("idioma"));
 
+    
     softwars = FXCollections.observableArrayList(softwares);
 
     tabladeSoftware.setItems(softwars);

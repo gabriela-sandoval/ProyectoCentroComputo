@@ -89,15 +89,13 @@ public class Validador {
    * @param requiereActualizacion
    * @return
    */
-  public String convertirBooleanoActualizacionAString(boolean requiereActualizacion) {
+  public String convertirActualizacionAString(boolean requiereActualizacion) {
     String cadena = null;
     if (requiereActualizacion == true) {
-      cadena = "si";
+      return cadena = "si";
     }
-    if (requiereActualizacion == false) {
-      cadena = "no";
-    }
-    return cadena;
+    if (requiereActualizacion == false);
+      return cadena = "no";
   }
 
   /**
@@ -105,15 +103,12 @@ public class Validador {
    * @param disponible
    * @return
    */
-  public String convertirBooleanoDisponibleAString(boolean disponible) {
+  public String convertirDisponibleAString(boolean disponible) {
     String cadena = null;
     if (disponible == true) {
-      cadena = "si";
+      return cadena = "si";
     }
-    if (disponible == false) {
-      cadena = "no";
-    }
-    return cadena;
+    if (disponible == false); 
+      return cadena = "no";
   }
-
 }

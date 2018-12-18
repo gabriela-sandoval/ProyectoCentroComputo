@@ -28,12 +28,7 @@
             <Font name="Arial Rounded MT Bold" size="36.0" />
          </font>
       </Text>
-      <Text fx:id="textRegresar" layoutX="178.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regresar">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="18.0" />
-         </font>
-      </Text>
-      <TableView fx:id="tabladeSoftware" layoutX="121.0" layoutY="274.0" prefHeight="205.0" prefWidth="924.0">
+      <TableView fx:id="tabladeSoftware" layoutX="85.0" layoutY="275.0" prefHeight="205.0" prefWidth="924.0">
         <columns>
           <TableColumn fx:id="tableColumnIdSoftware" prefWidth="74.0" text="Id Software" />
           <TableColumn fx:id="tableColumnNombreDeSoftware" prefWidth="59.0" text="Nombre " />
@@ -44,7 +39,7 @@
             <TableColumn fx:id="tableColumnMarca" prefWidth="75.0" text="marca" />
             <TableColumn fx:id="tableColumnActualizacion" prefWidth="75.0" text="requiere Actualizacion" />
             <TableColumn fx:id="tableColumnVersion" prefWidth="75.0" text="version" />
-            <TableColumn fx:id="tableColumnDisponibilidad" prefWidth="75.0" text="disponibilidad" />
+            <TableColumn fx:id="tableColumnDisponibilidad" prefWidth="75.0" text="habilitado" />
             <TableColumn fx:id="tableColumnSO" prefWidth="75.0" text="SO" />
             <TableColumn fx:id="tableColumnIdioma" prefWidth="75.0" text="idioma" />
         </columns>
@@ -54,7 +49,12 @@
       <Button fx:id="buttonActualizar" layoutX="697.0" layoutY="201.0" mnemonicParsing="false" text="Actualizar tabla" />
       <Button fx:id="buttonAgregar" layoutX="859.0" layoutY="201.0" mnemonicParsing="false" text="Agregar" />
       <Button fx:id="buttonEditar" layoutX="937.0" layoutY="201.0" mnemonicParsing="false" text="Editar" />
-      <Button fx:id="buttonDeshabilitar" layoutX="1008.0" layoutY="201.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="buttonDeshabilitar" layoutX="1008.0" layoutY="201.0" mnemonicParsing="false" text="Deshabilitar" />
       <Button fx:id="buttonRegresar" layoutX="106.0" layoutY="160.0" mnemonicParsing="false" text="Regresar" />
+      <ImageView layoutX="69.0" layoutY="157.0">
+         <image>
+            <Image url="@../iconos/regresar.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

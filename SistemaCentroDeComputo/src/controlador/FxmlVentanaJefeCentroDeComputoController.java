@@ -81,12 +81,12 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
       }
 
       Scene scene = new Scene(root);
-
-      primaryStage.setScene(scene);
+      Stage stage = new Stage();
+      stage.setScene(scene);
       Image icono = new Image("/iconos/logo cc.png");
-      primaryStage.getIcons().add(icono);
-      primaryStage.setResizable(false);
-      primaryStage.show();
+      stage.getIcons().add(icono);
+      stage.toFront();
+      stage.show();
     });
 
 

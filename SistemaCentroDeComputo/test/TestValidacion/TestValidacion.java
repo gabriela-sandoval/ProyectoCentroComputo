@@ -1,6 +1,8 @@
 package TestValidacion;
 
 import CentroComputo.Validador;
+import junit.framework.Assert;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -70,6 +72,30 @@ public class TestValidacion {
     String fecha = "12-12-12";
     Boolean obtenido = validador.validarFechaMaxima(fecha);
     assertTrue("fecha maxima", obtenido);
+  }
+  
+  /**
+   * prueba convertir un booleano Disponible a una cadena
+   */
+  @Test
+  public void probarConvertirDisponibleAStringSi() {
+    Validador validador = new Validador();
+    Boolean ingresado = true;
+    String esperado = "si";
+    String obtenido = validador.convertirDisponibleAString(ingresado);
+    assertEquals("prueba disponible", esperado, obtenido);             
+  }
+  
+  /**
+   * prueba convertir booleano Actualizacion a cadena
+   */
+  @Test
+  public void probarConvertirActualizacionAStringNo() {
+      Validador validador = new Validador();
+      Boolean ingresado = false;
+      String esperado = "no";
+      String obtenido = validador.convertirActualizacionAString(ingresado);
+      assertEquals("prueba actualizacion", esperado, obtenido);
   }
 }
 
