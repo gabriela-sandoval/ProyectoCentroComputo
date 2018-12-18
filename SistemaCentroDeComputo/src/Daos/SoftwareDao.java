@@ -74,9 +74,9 @@ public class SoftwareDao implements InterfaceSoftwareDao {
     validador.validarFechaMaxima(sdf.format(software.getFechaAdquisicion()));
 
     consulta = "update software set nombreSoftware = ?, origen = ?, "
-            + "Observaciones = ?, fechaAdquisicion = ?, tipoSoftware = ?,"
-            + "marca = ?, requiereActualizacion = ?, version = ?, disponible = ?,"
-            + "sistemaOperativo = ?, idioma = ? where idSoftware = ?";
+        + "Observaciones = ?, fechaAdquisicion = ?, tipoSoftware = ?,"
+        + "marca = ?, requiereActualizacion = ?, version = ?, disponible = ?,"
+        + "sistemaOperativo = ?, idioma = ? where idSoftware = ?";
     try {
       Connection connection = AccesoDataBase.obtenerConexionBaseDatos();
       PreparedStatement statement = connection.prepareStatement(consulta);
@@ -113,7 +113,7 @@ public class SoftwareDao implements InterfaceSoftwareDao {
       ResultSet resultado = consultaParametrizada.executeQuery();
       while (resultado.next()) {
         Software software = new Software();
- 
+
         software.setNombre(resultado.getString("nombreSoftware"));
         software.setIdSoftware(resultado.getString("idSoftware"));
         software.setMarca(resultado.getString("marca"));

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class HardwareDao implements InterfaceHardwareDao {
   private String consulta;
   private List<Hardware> listaHardware;
-  
+
 
   /**
    * registra un nuevo hardware
@@ -71,7 +71,7 @@ public class HardwareDao implements InterfaceHardwareDao {
     validador.validarNoInventarioHardware(hardware.getNoInventarioUv());
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
     validador.validarFechaMaxima(sdf.format(hardware.getFechaAdquisicion()));
-    
+
     consulta = "update hardware set marca= ?, modelo = ?, estado = ?, "
         + "tipoDispositivo = ?, fechaAdquisicion = ?, noSerie = ?, "
         + "ubicacion = ? , responsable = ? where noInventarioUv = ?";
@@ -112,7 +112,7 @@ public class HardwareDao implements InterfaceHardwareDao {
       ResultSet resultadoConsulta = consultaParametrizada.executeQuery();
       while (resultadoConsulta.next()) {
         Hardware hardware = new Hardware();
-        
+
         hardware.setNoInventarioUv(resultadoConsulta.getString("noInventarioUv"));
         hardware.setMarca(resultadoConsulta.getString("marca"));
         hardware.setModelo(resultadoConsulta.getString("modelo"));
@@ -125,7 +125,7 @@ public class HardwareDao implements InterfaceHardwareDao {
         listaHardware.add(hardware);
       }
     } catch (SQLException ex) {
-        ex.printStackTrace();
+      ex.printStackTrace();
     } finally {
       AccesoDataBase.cerrarConexion();
     }
@@ -134,6 +134,7 @@ public class HardwareDao implements InterfaceHardwareDao {
 
   /**
    * obtiene un hardware especifico
+   * 
    * @param noInventarioUv clave buscada
    * @return el hardware encontrado
    */

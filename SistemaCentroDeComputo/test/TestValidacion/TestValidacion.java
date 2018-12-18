@@ -72,7 +72,7 @@ public class TestValidacion {
     Boolean obtenido = validador.validarFechaMaxima(fecha);
     assertTrue("fecha maxima", obtenido);
   }
-  
+
   /**
    * prueba convertir un booleano Disponible a una cadena
    */
@@ -82,20 +82,20 @@ public class TestValidacion {
     Boolean ingresado = true;
     String esperado = "si";
     String obtenido = validador.convertirDisponibleAString(ingresado);
-    assertEquals("prueba disponible", esperado, obtenido);             
+    assertEquals("prueba disponible", esperado, obtenido);
   }
-  
+
   /**
    * prueba convertir booleano Actualizacion a cadena
    */
   @Test
   public void probarConvertirActualizacionAStringNo() {
-      Validador validador = new Validador();
-      Boolean ingresado = false;
-      String esperado = "no";
-      String obtenido = validador.convertirActualizacionAString(ingresado);
-      assertEquals("prueba actualizacion", esperado, obtenido);
+    Validador validador = new Validador();
+    Boolean ingresado = false;
+    String esperado = "no";
+    String obtenido = validador.convertirActualizacionAString(ingresado);
+    assertEquals("prueba actualizacion", esperado, obtenido);
   }
-  
+
 }
 

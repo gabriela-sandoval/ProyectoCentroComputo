@@ -34,11 +34,11 @@ import javafx.stage.Stage;
  * Controlador de la interfaz Administrar Hardware
  * 
  * @author Irasema Caicero
- * @since  18/12/2018
+ * @since 18/12/2018
  * @version 1.0
  */
 public class FxmlAdministrarHardwareController implements Initializable {
-  //Tabla
+  // Tabla
   @FXML
   private TableView<Hardware> tablaHardware;
   @FXML
@@ -59,10 +59,10 @@ public class FxmlAdministrarHardwareController implements Initializable {
   private TableColumn columnaUbicacion;
   @FXML
   private TableColumn columnaResponsable;
-  
+
   ObservableList<Hardware> equipos;
   private int posicion;
-  //Botones
+  // Botones
   @FXML
   private Button buttonAgregar;
   @FXML
@@ -73,81 +73,84 @@ public class FxmlAdministrarHardwareController implements Initializable {
   private Button buttonActualizar;
   @FXML
   private Button buttonRegresar;
-  
+
   FxmlAdministrarHardwareController controlAdminHardware;
 
   public void initialize(URL url, ResourceBundle rb) {
     controlAdminHardware = this;
-    
+
     buttonActualizar.setOnAction((ActionEvent event) -> {
-        this.inicializarTabla();
+      this.inicializarTabla();
     });
-    
+
     buttonEditar.setDisable(true);
     buttonDeshabilitar.setDisable(true);
     ObservableList<Hardware> seleccion = tablaHardware.getSelectionModel().getSelectedItems();
     seleccion.addListener(selector);
-    
+
     buttonRegresar.setOnAction((ActionEvent event) -> {
-        Stage stage = (Stage) buttonRegresar.getScene().getWindow();
-        stage.close();
+      Stage stage = (Stage) buttonRegresar.getScene().getWindow();
+      stage.close();
     });
-    
+
     buttonAgregar.setOnAction((event) -> {
-        Stage stage = (Stage) buttonAgregar.getScene().getWindow();
-        Parent ruta = null;
-        try {
-            ruta = FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlAgregarHardware.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Scene scene = new Scene(ruta);
-        Stage nuevo = new Stage();
-        nuevo.setScene(scene);
-        nuevo.toFront();
-        nuevo.show();       
+      Stage stage = (Stage) buttonAgregar.getScene().getWindow();
+      Parent ruta = null;
+      try {
+        ruta = FXMLLoader.load(getClass().getResource("/interfazGrafica/FxmlAgregarHardware.fxml"));
+      } catch (IOException ex) {
+        Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null,
+            ex);
+      }
+      Scene scene = new Scene(ruta);
+      Stage nuevo = new Stage();
+      nuevo.setScene(scene);
+      nuevo.toFront();
+      nuevo.show();
     });
-    
+
     buttonEditar.setOnAction((ActionEvent event) -> {
-        try {
-            Stage stagePrimaria = (Stage) buttonEditar.getScene().getWindow();
-            Hardware auxiliar = new Hardware();
-            auxiliar = seleccion.get(0); 
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            
-            loader.setLocation(getClass().getResource("/interfazGrafica/FxmlModificarHardware.fxml"));
-            Parent ruta = loader.load();
-            FxmlModificarHardwareController controlModificar = (FxmlModificarHardwareController) loader.getController();
-            
-            Scene escena = new Scene(ruta);
-            stage.setScene(escena);
-            stage.toFront();
-            stage.show();
-            controlModificar.traerHardware(auxiliar);
-        } catch (IOException ex) {
-            Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+      try {
+        Stage stagePrimaria = (Stage) buttonEditar.getScene().getWindow();
+        Hardware auxiliar = new Hardware();
+        auxiliar = seleccion.get(0);
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/interfazGrafica/FxmlModificarHardware.fxml"));
+        Parent ruta = loader.load();
+        FxmlModificarHardwareController controlModificar =
+            (FxmlModificarHardwareController) loader.getController();
+
+        Scene escena = new Scene(ruta);
+        stage.setScene(escena);
+        stage.toFront();
+        stage.show();
+        controlModificar.traerHardware(auxiliar);
+      } catch (IOException ex) {
+        Logger.getLogger(FxmlAdministrarHardwareController.class.getName()).log(Level.SEVERE, null,
+            ex);
+      }
+
     });
-    
+
     buttonDeshabilitar.setOnAction(new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            Hardware hardware = new Hardware();
-            hardware = seleccion.get(0);
-            
-            String noInventarioUv = hardware.getNoInventarioUv();
-            String nombreHardware = hardware.getTipoDispositivo();
-            String marca = hardware.getMarca();
-            String modelo = hardware.getModelo();
-            
+      @Override
+      public void handle(Event event) {
+        Hardware hardware = new Hardware();
+        hardware = seleccion.get(0);
+
+        String noInventarioUv = hardware.getNoInventarioUv();
+        String nombreHardware = hardware.getTipoDispositivo();
+        String marca = hardware.getMarca();
+        String modelo = hardware.getModelo();
+
         Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
         confirmacion.setTitle("Deshabilitacion del equipo");
         confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿Eliminar el equipo " + nombreHardware + 
-                " de la marca "+ marca + " modelo: " +modelo + 
-                " con el numero de inventario: " +noInventarioUv +"?");
+        confirmacion
+            .setContentText("¿Eliminar el equipo " + nombreHardware + " de la marca " + marca
+                + " modelo: " + modelo + " con el numero de inventario: " + noInventarioUv + "?");
 
         ButtonType btDeshabilitar = new ButtonType("Deshabilitar");
         ButtonType btCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -161,10 +164,10 @@ public class FxmlAdministrarHardwareController implements Initializable {
           hardwareDao.eliminarHardware(hardware);
           tablaHardware.refresh();
         }
-        }     
+      }
     });
   }
-  
+
 
   private final ListChangeListener<Hardware> selector = new ListChangeListener<Hardware>() {
     @Override
@@ -172,12 +175,13 @@ public class FxmlAdministrarHardwareController implements Initializable {
       ponerHardwareSeleccionado();
     }
   };
-  
+
   /**
    * método que permite obtener el elemento seleccionado
+   * 
    * @return Hardware seleccionado
    */
-   public Hardware getHardwareSeleccionado() {
+  public Hardware getHardwareSeleccionado() {
     if (tablaHardware != null) {
       List<Hardware> tabla = tablaHardware.getSelectionModel().getSelectedItems();
       if (tabla.size() == 1) {
@@ -187,8 +191,8 @@ public class FxmlAdministrarHardwareController implements Initializable {
     }
     return null;
   }
-   
-   private void ponerHardwareSeleccionado() {
+
+  private void ponerHardwareSeleccionado() {
     final Hardware hardware = getHardwareSeleccionado();
     posicion = equipos.indexOf(hardware);
     if (hardware != null) {
@@ -196,23 +200,26 @@ public class FxmlAdministrarHardwareController implements Initializable {
       buttonDeshabilitar.setDisable(false);
     }
   }
-   
-   private void inicializarTabla(){
-       List hardwars;
-       HardwareDao hardwareDao = new HardwareDao();
-       hardwars = hardwareDao.obtenerListaHardware();
-       
-       columnaNoInventario.setCellValueFactory(new PropertyValueFactory<Hardware, String>("noInventarioUv"));
-       columnaMarca.setCellValueFactory(new PropertyValueFactory<Hardware, String>("marca"));
-       columnaModelo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("modelo"));
-       columnaNumeroSerie.setCellValueFactory(new PropertyValueFactory<Hardware, Integer>("numeroSerie"));       
-       columnaEstado.setCellValueFactory(new PropertyValueFactory<Hardware, String>("estado"));
-       columnaTipo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("tipoDispositivo"));
-       columnaFecha.setCellValueFactory(new PropertyValueFactory<Hardware, Date>("fechaAdquisicion"));
-       columnaUbicacion.setCellValueFactory(new PropertyValueFactory<Hardware, String>("ubicacion"));
-       columnaResponsable.setCellValueFactory(new PropertyValueFactory<Hardware, String>("responsable"));
 
-       equipos = FXCollections.observableArrayList(hardwars);   
-       tablaHardware.setItems(equipos);
-   }
+  private void inicializarTabla() {
+    List hardwars;
+    HardwareDao hardwareDao = new HardwareDao();
+    hardwars = hardwareDao.obtenerListaHardware();
+
+    columnaNoInventario
+        .setCellValueFactory(new PropertyValueFactory<Hardware, String>("noInventarioUv"));
+    columnaMarca.setCellValueFactory(new PropertyValueFactory<Hardware, String>("marca"));
+    columnaModelo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("modelo"));
+    columnaNumeroSerie
+        .setCellValueFactory(new PropertyValueFactory<Hardware, Integer>("numeroSerie"));
+    columnaEstado.setCellValueFactory(new PropertyValueFactory<Hardware, String>("estado"));
+    columnaTipo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("tipoDispositivo"));
+    columnaFecha.setCellValueFactory(new PropertyValueFactory<Hardware, Date>("fechaAdquisicion"));
+    columnaUbicacion.setCellValueFactory(new PropertyValueFactory<Hardware, String>("ubicacion"));
+    columnaResponsable
+        .setCellValueFactory(new PropertyValueFactory<Hardware, String>("responsable"));
+
+    equipos = FXCollections.observableArrayList(hardwars);
+    tablaHardware.setItems(equipos);
+  }
 }

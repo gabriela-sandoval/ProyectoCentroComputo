@@ -70,7 +70,8 @@ public class FxmlModificarSoftwareController implements Initializable {
         Validador validador = new Validador();
 
         boolean idValidacion = validador.validaIdSoftware(textFieldIdSoftware.getText());
-        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
+        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText())
+            && validador.validarFechaMaxima(textFieldFecha.getText());
         if (idValidacion == true && fechaValida == true) {
           String idSoftware = textFieldIdSoftware.getText();
           String nombreSoftware = textFieldNombre.getText();
@@ -90,18 +91,18 @@ public class FxmlModificarSoftwareController implements Initializable {
               nombreSoftware, origen, observaciones, fechaAdquisicion, tipoSoftware, marca,
               requiereActualizacion, version, disponible, sistemaOperativo, idioma));
 
-          if(resultadoActualizacion == true) {
-          Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-          alerta.setTitle("Software Guardado");
-          alerta.setHeaderText(null);
-          alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
-          alerta.show();
+          if (resultadoActualizacion == true) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Software Guardado");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
+            alerta.show();
           } else {
-          Alert alerta = new Alert(Alert.AlertType.ERROR);
-          alerta.setTitle("Software NO Guardado");
-          alerta.setHeaderText(null);
-          alerta.setContentText("No se guardaron los cambios...");
-          alerta.show();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Software NO Guardado");
+            alerta.setHeaderText(null);
+            alerta.setContentText("No se guardaron los cambios...");
+            alerta.show();
           }
         } else {
           Alert alerta = new Alert(Alert.AlertType.WARNING);
@@ -121,7 +122,8 @@ public class FxmlModificarSoftwareController implements Initializable {
 
   /**
    * obtiene el software que se selecciono a editar y los muestra en la ventana
-   * @param auxiliar software que fue seleccionado a editar 
+   * 
+   * @param auxiliar software que fue seleccionado a editar
    */
   public void traerSoftware(Software auxiliar) {
     textFieldIdSoftware.setText(auxiliar.getIdSoftware());

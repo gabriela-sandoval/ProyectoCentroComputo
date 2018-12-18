@@ -89,7 +89,5 @@ public class FxmlVentanaJefeCentroDeComputoController implements Initializable {
     });
   }
 }
-    
-    
-    
+
 

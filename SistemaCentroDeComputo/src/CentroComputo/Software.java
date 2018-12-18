@@ -1,7 +1,6 @@
 package CentroComputo;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 /**
  * clase de software a administrar

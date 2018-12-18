@@ -66,9 +66,10 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Validador validador = new Validador();
 
         boolean idValidacion = validador.validaIdSoftware(textFieldIdSoftware.getText());
-        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
-        if(idValidacion == true && fechaValida == true) {
-            
+        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText())
+            && validador.validarFechaMaxima(textFieldFecha.getText());
+        if (idValidacion == true && fechaValida == true) {
+
           String idSoftware = textFieldIdSoftware.getText();
           String nombreSoftware = textFieldNombre.getText();
           String origen = textFieldOrigen.getText();
@@ -89,22 +90,22 @@ public class FxmlAgregarSoftwareController implements Initializable {
               sistemaOperativo, idioma);
 
           boolean resultadoGuardado = softwareDao.agregarSoftware(software);
-          
-          if(resultadoGuardado == true) {
 
-          Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-          alerta.setTitle("Software Guardado");
-          alerta.setHeaderText(null);
-          alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
-          alerta.show();    
+          if (resultadoGuardado == true) {
+
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Software Guardado");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
+            alerta.show();
           } else {
-          Alert alerta = new Alert(Alert.AlertType.ERROR);
-          alerta.setTitle("Software NO Guardado");
-          alerta.setHeaderText(null);
-          alerta.setContentText("No se guardó el software...");
-          alerta.show();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Software NO Guardado");
+            alerta.setHeaderText(null);
+            alerta.setContentText("No se guardó el software...");
+            alerta.show();
           }
-          } else {
+        } else {
           Alert alerta = new Alert(Alert.AlertType.WARNING);
           alerta.setTitle("Datos Inválidos");
           alerta.setHeaderText(null);

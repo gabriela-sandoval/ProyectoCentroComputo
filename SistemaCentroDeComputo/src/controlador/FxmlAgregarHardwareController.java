@@ -26,29 +26,29 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class FxmlAgregarHardwareController implements Initializable {
-    @FXML
-    private TextField textFieldNoInventario;
-    @FXML
-    private TextField textFieldMarca;
-    @FXML
-    private TextField textFieldResponsable;
-    @FXML
-    private TextField textFieldTipo;
-    @FXML
-    private TextField textFieldFecha;
-    @FXML
-    private TextField textFieldModelo;
-    @FXML
-    private TextField textFieldNoSerie;
-    @FXML
+  @FXML
+  private TextField textFieldNoInventario;
+  @FXML
+  private TextField textFieldMarca;
+  @FXML
+  private TextField textFieldResponsable;
+  @FXML
+  private TextField textFieldTipo;
+  @FXML
+  private TextField textFieldFecha;
+  @FXML
+  private TextField textFieldModelo;
+  @FXML
+  private TextField textFieldNoSerie;
+  @FXML
     private TextField textFieldUbicación;
-    @FXML
-    private ComboBox<String> comboBoxEstado;
-    //botones
-    @FXML
-    private Button buttonGuardar;
-    @FXML
-    private Button buttonSalir;
+  @FXML
+  private ComboBox<String> comboBoxEstado;
+  // botones
+  @FXML
+  private Button buttonGuardar;
+  @FXML
+  private Button buttonSalir;
 
   /**
    * Inicializa los botones de los eventos
