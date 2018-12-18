@@ -69,7 +69,7 @@ public class TestValidacion {
   @Test
   public void probarValidarFechaMaxima() {
     Validador validador = new Validador();
-    String fecha = "12-12-12";
+    String fecha = "18-12-25";
     Boolean obtenido = validador.validarFechaMaxima(fecha);
     assertTrue("fecha maxima", obtenido);
   }
@@ -97,5 +97,6 @@ public class TestValidacion {
       String obtenido = validador.convertirActualizacionAString(ingresado);
       assertEquals("prueba actualizacion", esperado, obtenido);
   }
+  
 }
 

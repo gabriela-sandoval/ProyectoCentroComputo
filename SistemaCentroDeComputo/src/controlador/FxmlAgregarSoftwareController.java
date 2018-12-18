@@ -64,7 +64,9 @@ public class FxmlAgregarSoftwareController implements Initializable {
         Validador validador = new Validador();
 
         boolean idValidacion = validador.validaIdSoftware(textFieldIdSoftware.getText());
-        if(idValidacion == true) {
+        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
+        if(idValidacion == true && fechaValida == true) {
+            
           String idSoftware = textFieldIdSoftware.getText();
           String nombreSoftware = textFieldNombre.getText();
           String origen = textFieldOrigen.getText();
@@ -84,13 +86,28 @@ public class FxmlAgregarSoftwareController implements Initializable {
               fechaAdquisicion, tipoSoftware, marca, requiereActualizacion, version, disponible,
               sistemaOperativo, idioma);
 
-          softwareDao.agregarSoftware(software);
+          boolean resultadoGuardado = softwareDao.agregarSoftware(software);
+          
+          if(resultadoGuardado == true) {
 
-          // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.INFORMATION);
           alerta.setTitle("Software Guardado");
           alerta.setHeaderText(null);
-          alerta.setContentText("Los datos han sido guardados! :D");
+          alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
+          alerta.show();    
+          } else {
+               // agregar ventana emergente---------------------------------------
+          Alert alerta = new Alert(Alert.AlertType.ERROR);
+          alerta.setTitle("Software NO Guardado");
+          alerta.setHeaderText(null);
+          alerta.setContentText("No se guardó el software...");
+          alerta.show();
+          }
+          } else {
+          Alert alerta = new Alert(Alert.AlertType.WARNING);
+          alerta.setTitle("Datos Inválidos");
+          alerta.setHeaderText(null);
+          alerta.setContentText("Revise que los datos sean correctos.");
           alerta.show();
         }
       }

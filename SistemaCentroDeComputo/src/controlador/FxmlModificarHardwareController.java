@@ -64,7 +64,10 @@ public class FxmlModificarHardwareController implements Initializable {
           Validador validador = new Validador();
           
           boolean noInventarioValidado = validador.validarNoInventarioHardware(textFieldNoInventario.getText());
-          if(noInventarioValidado == true) {
+          boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
+          boolean numSerie = validador.validarNumeroSerie(textFieldNoSerie.getText());
+          if(noInventarioValidado == true && fechaValida == true && numSerie == true) {
+              
               String noInventarioUv = textFieldNoInventario.getText();
               String marca = textFieldMarca.getText();
               String modelo = textFieldModelo.getText();
@@ -85,18 +88,25 @@ public class FxmlModificarHardwareController implements Initializable {
                   Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                   alerta.setTitle("Hardware Guardado");
                   alerta.setHeaderText(null);
-                  alerta.setContentText("Los datos han sido guardados! :D /n Recuerda"
+                  alerta.setContentText("Los datos han sido guardados! Recuerda"
                           + "actualizar la tabla!!");
                   alerta.show();
-              }
-          }else {
+                }else {
           // agregar ventana emergente---------------------------------------
-          Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+          Alert alerta = new Alert(Alert.AlertType.ERROR);
           alerta.setTitle("hardware no Guardado");
           alerta.setHeaderText(null);
-          alerta.setContentText("revise que los datos sean correctos");
+          alerta.setContentText("No se guardaron los cambios ");
           alerta.show();
-              }  
+            } 
+          } else {
+              // agregar ventana emergente---------------------------------------
+          Alert alerta = new Alert(Alert.AlertType.WARNING);
+          alerta.setTitle("Datos Inválidos");
+          alerta.setHeaderText(null);
+          alerta.setContentText("Revise que los datos sean correctos ");
+          alerta.show();
+          }
       });
       
       buttonSalir.setOnAction((ActionEvent event) -> {

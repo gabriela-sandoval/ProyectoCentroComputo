@@ -63,11 +63,11 @@ public class FxmlModificarSoftwareController implements Initializable {
     buttonGuardar.setOnAction(new EventHandler() {
       @Override
       public void handle(Event event) {
-
         Validador validador = new Validador();
 
         boolean idValidacion = validador.validaIdSoftware(textFieldIdSoftware.getText());
-        if (idValidacion == true) {
+        boolean fechaValida = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
+        if (idValidacion == true && fechaValida == true) {
           String idSoftware = textFieldIdSoftware.getText();
           String nombreSoftware = textFieldNombre.getText();
           String origen = textFieldOrigen.getText();
@@ -82,17 +82,30 @@ public class FxmlModificarSoftwareController implements Initializable {
           String idioma = textFieldIdioma.getText();
 
           SoftwareDao softwareDao = new SoftwareDao();
-          boolean resultado = softwareDao.actualizarSoftware(new Software(idSoftware,
+          boolean resultadoActualizacion = softwareDao.actualizarSoftware(new Software(idSoftware,
               nombreSoftware, origen, observaciones, fechaAdquisicion, tipoSoftware, marca,
               requiereActualizacion, version, disponible, sistemaOperativo, idioma));
 
+          if(resultadoActualizacion == true) {
           // agregar ventana emergente---------------------------------------
           Alert alerta = new Alert(Alert.AlertType.INFORMATION);
           alerta.setTitle("Software Guardado");
           alerta.setHeaderText(null);
-          alerta.setContentText("Los datos han sido guardados! :D");
+          alerta.setContentText("Los datos han sido guardados! :D Recuerda Actualizar la tabla!");
           alerta.show();
-
+          } else {
+          Alert alerta = new Alert(Alert.AlertType.ERROR);
+          alerta.setTitle("Software NO Guardado");
+          alerta.setHeaderText(null);
+          alerta.setContentText("No se guardaron los cambios...");
+          alerta.show();
+          }
+        } else {
+          Alert alerta = new Alert(Alert.AlertType.WARNING);
+          alerta.setTitle("Datos Inválidos");
+          alerta.setHeaderText(null);
+          alerta.setContentText("Revise que los datos sean correctos.");
+          alerta.show();
         }
       }
     });

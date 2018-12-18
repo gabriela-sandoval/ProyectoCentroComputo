@@ -67,7 +67,10 @@ public class FxmlAgregarHardwareController implements Initializable {
               Validador validador = new Validador();
               
               boolean noInventarioValidado = validador.validarNoInventarioHardware(textFieldNoInventario.getText());
-              if(noInventarioValidado == true) {
+              boolean fechaValidada = validador.validarEstructuraFecha(textFieldFecha.getText()) && validador.validarFechaMaxima(textFieldFecha.getText());
+              boolean numSerie = validador.validarNumeroSerie(textFieldNoSerie.getText());
+              if(noInventarioValidado == true && fechaValidada == true && numSerie == true) {
+              
               String noInventarioUv = textFieldNoInventario.getText();
               String marca = textFieldMarca.getText();
               String modelo = textFieldModelo.getText();
@@ -89,15 +92,22 @@ public class FxmlAgregarHardwareController implements Initializable {
                   alerta.setContentText("Los datos han sido guardados! :D"
                           + " Recuerda actualizar la tabla!!");
                   alerta.show();   
-              }
               } else {
                   // agregar ventana emergente---------------------------------------
-                  Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                  alerta.setTitle("hardware no Guardado");
+                  Alert alerta = new Alert(Alert.AlertType.ERROR);
+                  alerta.setTitle("hardware NO Guardado");
                   alerta.setHeaderText(null);
-                  alerta.setContentText("revise que los datos sean correctos");
+                  alerta.setContentText("No se guardó el hardware");
                   alerta.show();
-              }   
+              }
+              } else {
+              // agregar ventana emergente---------------------------------------
+                  Alert alerta = new Alert(Alert.AlertType.WARNING);
+                  alerta.setTitle("Datos Inválidos");
+                  alerta.setHeaderText(null);
+                  alerta.setContentText("Revise que los datos sean correctos");
+                  alerta.show();
+              }
           }     
   });
       

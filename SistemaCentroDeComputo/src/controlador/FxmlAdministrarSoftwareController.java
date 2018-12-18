@@ -140,6 +140,10 @@ public class FxmlAdministrarSoftwareController implements Initializable {
         if (eleccion.get() == btEliminar) {
           SoftwareDao softwaredao = new SoftwareDao();
           softwaredao.eliminarSoftware(software);
+          Alert confirmacionDeshabilitacion = new Alert(Alert.AlertType.CONFIRMATION);
+          confirmacion.setTitle("Deshabilitacion del software");
+          confirmacion.setHeaderText(null);
+          confirmacion.setContentText("El software se deshabilitó. Actualiza la tabla para ver los cambios");
           tabladeSoftware.refresh();
         }
       }

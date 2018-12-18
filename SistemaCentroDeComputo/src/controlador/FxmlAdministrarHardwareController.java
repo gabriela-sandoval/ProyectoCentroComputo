@@ -144,9 +144,9 @@ public class FxmlAdministrarHardwareController implements Initializable {
 
         confirmacion.setTitle("Deshabilitacion del equipo");
         confirmacion.setHeaderText(null);
-        confirmacion.setContentText("¿eliminar el equipo " + nombreHardware + 
-                "de la marca "+ marca + " modelo: " +modelo + 
-                "con el numero de inventario: " +noInventarioUv +"?");
+        confirmacion.setContentText("¿Eliminar el equipo " + nombreHardware + 
+                " de la marca "+ marca + " modelo: " +modelo + 
+                " con el numero de inventario: " +noInventarioUv +"?");
 
         ButtonType btDeshabilitar = new ButtonType("Deshabilitar");
         ButtonType btCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -158,6 +158,10 @@ public class FxmlAdministrarHardwareController implements Initializable {
         if (eleccion.get() == btDeshabilitar) {
           HardwareDao hardwareDao = new HardwareDao();
           hardwareDao.eliminarHardware(hardware);
+        Alert confirmacionDeshabilitado = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Deshabilitacion realizada");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("El equipo se ha deshabilitado. Recuerda Actualizar la tabla para ver los cambios");
           tablaHardware.refresh();
         }
         }     

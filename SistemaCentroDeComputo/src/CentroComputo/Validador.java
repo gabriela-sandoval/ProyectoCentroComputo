@@ -75,14 +75,27 @@ public class Validador {
   public boolean validarFechaMaxima(String fecha) {
     final int MES = 1;
     final int DIA = 2;
+    final int ANIO = 1;
     final int MES_MAXIMO = 12;
     final int DIA_MAXIMO = 31;
+    final int ANIO_MAXIMO = 2018;
     String[] fechaSeparada = fecha.split("-");
     int mes = Integer.parseInt(fechaSeparada[MES]);
     int dia = Integer.parseInt(fechaSeparada[DIA]);
-    boolean resultadoEvaluacion = (mes <= MES_MAXIMO && dia <= DIA_MAXIMO);
+    int anio = Integer.parseInt(fechaSeparada[ANIO]);
+    boolean resultadoEvaluacion = (anio <= ANIO_MAXIMO && mes <= MES_MAXIMO && dia <= DIA_MAXIMO);
     return resultadoEvaluacion;
   }
+  
+  public boolean validarNumeroSerie(String numeroSerie) {
+      final String REGEX_PARA_NUMSERIE = "^[0-9]{1,}";
+      patron = Pattern.compile(REGEX_PARA_NUMSERIE);
+      comparaPatron = patron.matcher(numeroSerie);
+      boolean resultado = comparaPatron.find();
+      
+      return resultado;
+  }
+ 
 
   /**
    * 
